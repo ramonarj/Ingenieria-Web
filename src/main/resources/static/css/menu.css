@@ -66,29 +66,41 @@ body{
 	color: #000;
 }
 
-.selectbox{
+.selectbox {
+	width: calc(100% - 250px);
 	height: 100%;
+	position: absolute;
 }
 
 .selectbox input{
-	width: 35vw;
-	height: 35vw;
+	width: 30vw;
+	max-width: 500px;
+	height: 30vw;
+	max-height: 500px;
+	margin-top: 15%;
+	margin-left: 200px;
 	position: relative;
-	left: 5%;
 	
-	border-radius: 3vw;
-	font-size: 40px;
-	font-weight: bold;
-	text-align: center;
-	padding: 320px 0 0 0;
+	border-radius: 2vw;
+	color: transparent;
+	box-shadow: 0 10px #330000;
 }
 
-.selectbox input[value="HORARIO"]{
-	background: #c0c0c0 url(../img/calendario.png) 40px 10px no-repeat;
-	background-size: 320px 320px;
+.selectbox input:hover{
+	cursor: pointer;
 }
 
-.selectbox input[value="EQUIPO"]{
-	background: #c0c0c0 url(../img/equipo.png) 40px 10px no-repeat;
-	background-size: 320px 320px;
+.selectbox input:active{
+	box-shadow: 0 5px #666;
+  	transform: translateY(4px);
+}
+
+.selectbox input[name="HORARIO"]{
+	background: #c0c0c0 url(../img/calendario.png) 50% 30% no-repeat;
+	background-size: 100% 100%;
+}
+
+.selectbox input[name="EQUIPO"]{
+	background: #c0c0c0 url(../img/equipo.png) 50% 30% no-repeat;
+	background-size: 100% 100%;
 }
