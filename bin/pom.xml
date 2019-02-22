@@ -11,7 +11,7 @@
 	<groupId>es.ucm</groupId>
 	<artifactId>iw1819</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Space Bombers</name>
+	<name>iw1819</name>
 	<description>Plantilla para IW en la FdI UCM, curso 2018-19</description>
 	<packaging>jar</packaging>
 

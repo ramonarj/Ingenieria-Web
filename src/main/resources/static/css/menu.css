@@ -1,0 +1,94 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: rgb(79, 0, 0);
+	font-family: OCR A Std, monospace;
+}
+
+.profilebox{
+	z-index: 10;
+	width: 250px;
+	height: 100%;
+	background: #c0c0c0;
+	color: #000;
+	top: 100%;
+	left: 100%;
+	position: absolute;
+	transform: translate(-100%, -100%);
+	box-sizing: border-box;
+	padding: 70px 30px;
+}
+
+.avatar{
+	width: 200px;
+	height: 200px;
+	border: 2px solid #808080;
+	border-radius: 50%;
+	position: absolute;
+	top: 60px;
+	left: calc(50% - 100px);
+}
+
+.profilebox hr{
+	border: 1px solid #808080;
+	transform: translate(0px, 250px);
+}
+
+.profilebox input{
+	width: 200px;
+	margin-bottom: 100px;
+	transform: translate(-3%, 350px);
+	border: none;
+	text-decoration: none;
+	outline: none;
+	height: 40px;
+	background: #808080;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+}
+
+.profilebox input[value="Mi perfil"], input[value="Mensajes"]{
+	background: #808080;
+	color: #fff;
+}
+
+.profilebox input[value="Salir"]{
+	margin-bottom: 50px;
+	transform: translate(-3%, 500px);
+	background: #fb2525;
+	color: #fff;
+}
+
+.profilebox input:hover{
+	cursor: pointer;
+	background: #ffc107;
+	color: #000;
+}
+
+.selectbox{
+	height: 100%;
+}
+
+.selectbox input{
+	width: 35vw;
+	height: 35vw;
+	position: relative;
+	left: 5%;
+	
+	border-radius: 3vw;
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+	padding: 320px 0 0 0;
+}
+
+.selectbox input[value="HORARIO"]{
+	background: #c0c0c0 url(../img/calendario.png) 40px 10px no-repeat;
+	background-size: 320px 320px;
+}
+
+.selectbox input[value="EQUIPO"]{
+	background: #c0c0c0 url(../img/equipo.png) 40px 10px no-repeat;
+	background-size: 320px 320px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="utf-8">
+	<title>Space Bombers</title>
+	<link rel="stylesheet" th:href="@{/css/menu.css}" href="../static/css/menu.css" type="text/css"/>
+</head>
+<body>
+	<div class="selectbox">
+		<form>
+			<a>
+				<input type="submit" name="" value="HORARIO">
+			</a>
+			<a>
+				<input type="submit" name="" value="EQUIPO">
+			</a>
+		</form>
+	</div>
+	<div class="profilebox">
+		<img src="../img/person.jpg" class="avatar">
+		<hr></hr>
+		<form>
+			<a>
+				<input type="submit" name="" value="Mi perfil">
+			</a>
+			<a>
+				<input type="submit" name="" value="Mensajes">
+			</a>
+			<a>
+				<input type="submit" name="" value="Salir">
+			</a>
+		</form>
+	</div>
+</body>
+</html>

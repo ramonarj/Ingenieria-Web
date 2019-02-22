@@ -26,8 +26,13 @@ public class RootController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("xs", "uno dos tres cuatro cinco".split(" "));
-		return "index";
+		return "menu";
 	}
+	
+	@GetMapping("/menu")
+	public String menu(Model model) {
+		return "menu";
+	} 
 
 	@GetMapping("/admin")
 	public String admin(Model model, Principal principal) {
