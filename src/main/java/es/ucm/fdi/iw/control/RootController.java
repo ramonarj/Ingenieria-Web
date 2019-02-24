@@ -26,7 +26,7 @@ public class RootController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("xs", "uno dos tres cuatro cinco".split(" "));
-		return "calendario";
+		return "index";
 	}
 	
 	@GetMapping("/menu")
