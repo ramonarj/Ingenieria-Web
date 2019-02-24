@@ -12,14 +12,14 @@ h1{
   	border-radius: 20px;
 	margin: 40;
 	padding: 0 0 0px;
-	text-align: center;
+	text-align: left;
 	font-size: 50px;
 	color: #fff;
 }
 
 .loginbox{
-	width: 310px;
-	height: 510px;
+	width: 510px;
+	height: 750px;
 	background: #fff;
 	color: #000;
 	border-radius: 0px;
@@ -35,60 +35,36 @@ h1{
 .avatar{
 	width: 150px;
 	height: 150px;
-	box-shadow: -1px -5px 10px 5px #100000;
 	border-radius: 50%;
+	border: solid;
 	position: absolute;
-	top: -75px;
+	top: 50px;
 	left: calc(50% - 75px);
 }
 
 .loginbox h1{
 	border: none;
-	font-size: 30px;
+	font-size: 20px;
 	color: #000;
+	padding: 30px 0px;
 }
 
-.loginbox p{
-	margin: 0;
-	padding: 0;
-	margin-left: 5px;
-	font-size: 22px;
-	font-weight: bold;	
-}
 
-.loginbox input{
-	width: 90%;
-	margin-bottom: 30px;
-}
-
-.loginbox input[type="text"], input[type="password"]{
-	margin-left: 0px;
-	padding: 0.1em;
-	border: none;
-	border-bottom: 0px solid #fff;
-	background: #c0c0c0;
-	outline: none;
-	height: 40px;
-	color: #000000;
-	text-align: left;
-	border-radius: 5px;
-	font-size: 15px;
-}
-
-.loginbox input[type="submit"]{
-	width: 75%;
-	margin-left: 12%;
+.loginbox button[type="button"]{
+	width: 30%;
+	margin-left: 35%;
+	margin-top: 35%;
 	border: none;
 	text-decoration: none;
 	outline: none;
-	height: 40px;
-	background: #fb2525;
-	color: #fff;
+	height: 30px;
+	background: #80ffff;
+	color: #000000;
 	font-size: 18px;
-	border-radius: 20px;
+	border-radius: 5px;
 }
 
-.loginbox input[type="submit"]:hover{
+.loginbox button[type="button"]:hover{
 	cursor: pointer;
 	background: #ffc107;
 	color: #000;

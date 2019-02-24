@@ -12,7 +12,7 @@
 	<artifactId>iw1819</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Space Bombers</name>
-	<description>Plantilla para IW en la FdI UCM, curso 2018-19</description>
+	<description>Proyecto de un prototipo para una pagina que sirve para gestionar información básica para un centro de bomberos</description>
 	<packaging>jar</packaging>
 
 	<!--  
