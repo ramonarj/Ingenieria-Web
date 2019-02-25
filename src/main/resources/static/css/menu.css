@@ -37,7 +37,7 @@ body{
 .profilebox input{
 	width: 200px;
 	margin-bottom: 100px;
-	transform: translate(-3%, 350px);
+	transform: translate(-3%, 300px);
 	border: none;
 	text-decoration: none;
 	outline: none;
@@ -53,9 +53,15 @@ body{
 	color: #fff;
 }
 
+.profilebox input[value="Mensajes"]{
+	transform: translate(-3%, 250px);
+}
+
 .profilebox input[value="Salir"]{
 	margin-bottom: 50px;
-	transform: translate(-3%, 500px);
+	transform: translate(-3%, 0px);
+	position: absolute;
+	bottom: 0px;
 	background: #fb2525;
 	color: #fff;
 }
@@ -74,11 +80,11 @@ body{
 
 .selectbox input{
 	width: 30vw;
-	max-width: 500px;
+	max-width: 400px;
 	height: 30vw;
-	max-height: 500px;
+	max-height: 400px;
 	margin-top: 15%;
-	margin-left: 200px;
+	margin-left: 14vw;
 	position: relative;
 	
 	border-radius: 2vw;
