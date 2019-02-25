@@ -1,9 +1,9 @@
 body{
 	margin: 0;
 	padding: 0;
-	background: url("../img/LoginBG.jpg") no-repeat;
-	background-size: auto;
-	background-position: 50% 0%;
+	background: url("../img/LoginBG.jpg");
+	background-size: cover;
+	background-position: relative;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
@@ -36,10 +36,6 @@ body{
 	border: none;
 	font-size: 30px;
 	color: #000;
-  	border-radius: 20px;
-	margin: 40;
-	padding: 0 0 0px;
-	text-align: center;
 }
 
 .loginbox p{

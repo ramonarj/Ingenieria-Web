@@ -2,42 +2,23 @@
 <html 
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/head.html :: head">
+<head>
 	<meta charset="utf-8">
-	<title>Title goes here</title>
-	<link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css" type="text/css"/>
+	<title>Firefighter space</title>
+	<link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css" type="text/css"/>
 </head>
 <body>
-	<nav th:replace="fragments/nav.html :: nav">
-		Nav goes here
-	</nav>
-	
-	<div class="container">
-	<div class="main">
-	<h1 th:text="#{index.welcome}">Bienvenido a la plantilla de IW</h1>
-		
-	<h4>Información de Login</h4>
-	<ul>
-	<li>Logged user: <span sec:authentication="name">Bob</span>
-	<li>Roles: 
-	<ul>
-	<li>Admin? <span th:text="${#authorization.expression('hasRole(''ROLE_ADMIN'')')?'Si':'No'}">Puede</span>
-	<li>User? <span th:text="${#authorization.expression('hasRole(''ROLE_USER'')')?'Si':'No'}">Quizás</span>
-	</ul>
-	</ul>
+	<div class="loginbox">
+		<img src="../img/loginiconHelmet.jpg" class="avatar">
+		<h1>Iniciar Sesión</h1>
+		<form>
+			<p>Usuario</p>
+			<input type="text" name="" placeholder="Introduce tu nombre de usuario">
+			<p>Contraseña</p>
+			<input type="password" name="" placeholder="Introduce tu contraseña">
+			<input type="submit" name="" placeholder="Iniciar">
+			<a href="/menu">¿Has olvidado tu contraseña?</a><br>
+		</form>
 	</div>
-	<div class="sidebar">
-	<table>
-		<tr th:each="x, i: ${xs}">
-		    <td th:text="|${i.index} ${i.count} ${i.size} ${i.current}|"
-		    th:class="|c${i.odd}-${i.first}-${i.last}|">hola!</td>
-		</tr>
-	</table>
-	</div>
-	</div>
-	
-	<footer th:replace="fragments/footer.html :: footer">
-		Footer goes here
-	</footer>
 </body>
 </html>
