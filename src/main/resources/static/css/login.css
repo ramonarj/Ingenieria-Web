@@ -4,28 +4,25 @@ body{
 	background: url("../img/LoginBG.jpg") no-repeat;
 	background-size: auto;
 	background-position: 50% 0%;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-family: Arial, sans-serif;
 }
 
 .loginbox{
-	width: 310px;
-	height: 510px;
-	background: #fff;
+	width: 350px;
+	height: 600px;
 	color: #000;
 	border-radius: 0px;
-	box-shadow: 0px 0px 20px 20px #100000;
 	top: 50%;
-	left: 50%;
+	left: 82.5%;
 	position: absolute;
 	transform: translate(-50%, -50%);
 	box-sizing: border-box;
-	padding: 70px 30px;
+	padding: 120px 10px;
 }
 
 .avatar{
 	width: 150px;
 	height: 150px;
-	box-shadow: -1px -5px 10px 5px #100000;
 	border-radius: 50%;
 	position: absolute;
 	top: -75px;
@@ -51,16 +48,17 @@ body{
 }
 
 .loginbox input{
-	width: 90%;
-	margin-bottom: 30px;
+	width: 100%;
+	margin-bottom: 3%;
 }
 
 .loginbox input[type="text"], input[type="password"]{
 	margin-left: 0px;
-	padding: 0.1em;
+	margin-bottom: 10%;
+	padding: 0px 0.5em;
 	border: none;
 	border-bottom: 0px solid #fff;
-	background: #c0c0c0;
+	background: #fff;
 	outline: none;
 	height: 40px;
 	color: #000000;
@@ -71,12 +69,14 @@ body{
 
 .loginbox input[type="submit"]{
 	width: 75%;
-	margin-left: 12%;
-	border: none;
+	margin-top: 20%;
+	margin-left: 15%;
+	border: solid;
+	border-width: 2px;
 	text-decoration: none;
 	outline: none;
 	height: 40px;
-	background: #fb2525;
+	background: #303030;
 	color: #fff;
 	font-size: 18px;
 	border-radius: 20px;
@@ -84,19 +84,28 @@ body{
 
 .loginbox input[type="submit"]:hover{
 	cursor: pointer;
-	background: #ffc107;
+	background: #f16101;
 	color: #000;
 }
 
 .loginbox a{
-	margin-left: 2%;
+	margin-left: 28%;
 	text-decoration: underline;
 	font-size: 12px;
 	line-height: 20px;
-	color: #808080;
+	color: #ffffff;
 }
 
 .loginbox a:hover{
 	color: #ffc107;
 }
 	
+
+.loginAlicante {
+	width: 6vw;
+	height: 8vw;
+	position: absolute;
+	bottom: 0%;
+	margin-left: 2%;
+	margin-bottom: 2%;
+}
