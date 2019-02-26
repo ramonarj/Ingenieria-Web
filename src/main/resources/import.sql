@@ -40,4 +40,15 @@ INSERT INTO user(id,enabled,login,password,roles) VALUES (2, 1, 'p',
 -- a teacher with password 'q'
 INSERT INTO user(id,enabled,login,password,roles) VALUES (3, 1, 'q', 
 	'{bcrypt}$2a$04$9rrSETFYL/gqiBxBCy3DMOIZ6qmLigzjqnOGbsNji/bt65q.YBfjK', 	'USER');
+	
+INSERT INTO user(id,enabled,login,password,roles) VALUES (4, 1, 'ale', 
+	'{bcrypt}$2a$04$eiPCDkX7i.89wQl7DOEaMO7BYVQIDWLtZzAm1bLJpZ8l58/IE1mmi', 	'USER');
+INSERT INTO user(id,enabled,login,password,roles) VALUES (5, 1, 'ramon', 
+	'{bcrypt}$2a$04$/92dKh3H3UJ1xizYfMpQMuxXVri60Xod6lMpMgIwSkV4mYX0pQ.Se', 	'USER');
+INSERT INTO user(id,enabled,login,password,roles) VALUES (6, 1, 'kelvin', 
+	'{bcrypt}$2a$04$OudKz64nPFOcNC.UMgMYy.L45HCYb52AenVYqC1.X6X.oEXIR6vyG', 	'USER');
+INSERT INTO user(id,enabled,login,password,roles) VALUES (7, 1, 'alberto', 
+	'{bcrypt}$2a$04$512BG9TBSwDBxdG8J7f.uOJ2OKkwwIxgk7dNYy0BwXrLgMQgz2TEG', 	'USER');
+INSERT INTO user(id,enabled,login,password,roles) VALUES (8, 1, 'javi', 
+	'{bcrypt}$2a$04$9AkKzXf94ipILs.3ZmcBi.f64auKWrycYLLPRwczR/I/MAJzF1pli', 	'USER');
 

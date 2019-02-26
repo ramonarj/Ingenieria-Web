@@ -33,6 +33,11 @@ public class RootController {
 	public String menu(Model model) {
 		return "menu";
 	} 
+	
+	@GetMapping("/perfil")
+	public String perfil(Model model) {
+		return "perfil";
+	} 
 
 	@GetMapping("/admin")
 	public String admin(Model model, Principal principal) {
