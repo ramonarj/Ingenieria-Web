@@ -17,7 +17,7 @@ body{
 	position: absolute;
 	transform: translate(-50%, -50%);
 	box-sizing: border-box;
-	padding: 120px 10px;
+	padding: 10% 10px;
 }
 
 .avatar{
@@ -27,24 +27,6 @@ body{
 	position: absolute;
 	top: -75px;
 	left: calc(50% - 75px);
-}
-
-.loginbox h1{
-	border: none;
-	font-size: 30px;
-	color: #000;
-  	border-radius: 20px;
-	margin: 40;
-	padding: 0 0 0px;
-	text-align: center;
-}
-
-.loginbox p{
-	margin: 0;
-	padding: 0;
-	margin-left: 5px;
-	font-size: 22px;
-	font-weight: bold;	
 }
 
 .loginbox input{
