@@ -1,9 +1,9 @@
 body{
 	margin: 0;
 	padding: 0;
-	background: url("../img/LoginBG.jpg");
-	background-size: cover;
-	background-position: relative;
+	background: url("../img/LoginBG.jpg") no-repeat;
+	background-size: auto;
+	background-position: 50% 0%;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
@@ -11,10 +11,11 @@ h1{
 	border: dotted;
   	border-radius: 20px;
 	margin: 40;
-	padding: 0 0 0px;
+	padding: 0px 0px;
 	text-align: left;
 	font-size: 50px;
 	color: #fff;
+	margin-top: 0%;
 }
 
 .loginbox{
@@ -42,26 +43,57 @@ h1{
 	left: calc(50% - 75px);
 }
 
-.loginbox h1{
+.loginbox h1[type="Mainletters"]{
 	border: none;
 	font-size: 20px;
 	color: #000;
-	padding: 30px 0px;
+	margin-top: 35%;
 }
 
+.loginbox h1[type="letters"]{
+	border: none;
+	font-size: 20px;
+	color: #000;
+	margin-top: 5%;
+}
 
-.loginbox button[type="button"]{
-	width: 30%;
-	margin-left: 35%;
-	margin-top: 35%;
+.loginbox button[type="passButton"]{
+	width: 40%;
+	margin-left: 45%;
+	margin-top: 15%;
 	border: none;
 	text-decoration: none;
 	outline: none;
 	height: 30px;
-	background: #80ffff;
+	background: #fb8784;
 	color: #000000;
 	font-size: 18px;
 	border-radius: 5px;
+	position: absolute;
+	transform: translate(-50%, 0%);
+}
+
+.loginbox button[type="passButton"]:hover{
+	cursor: pointer;
+	background: #ffc107;
+	color: #000;
+}
+
+.loginbox button[type="button"]{
+	width: 40%;
+	margin-left: 45%;
+	margin-top: 25%;
+	border: none;
+	text-decoration: none;
+	outline: none;
+	height: 20px;
+	background: #fb8784;
+	color: #000000;
+	font-size: 14px;
+	border-radius: 5px;
+	position: absolute;
+	transform: translate(-50%, 0%);
+	text-align: center;
 }
 
 .loginbox button[type="button"]:hover{
@@ -70,15 +102,42 @@ h1{
 	color: #000;
 }
 
+.loginbox iconButton[type="button"]{
+	width: 40%;
+	margin-left: 45%;
+	margin-top: 25%;
+	border: none;
+	text-decoration: none;
+	outline: none;
+	height: 20px;
+	background: #fb8784;
+	color: #000000;
+	font-size: 14px;
+	border-radius: 5px;
+	position: absolute;
+	transform: translate(-50%, 0%);
+	text-align: center;
+}
+
+.loginbox iconButton[type="button"]:hover{
+	cursor: pointer;
+	background: #ffc107;
+	color: #000;
+}
+
 .loginbox a{
+	margin-top: 30%;
 	margin-left: 2%;
 	text-decoration: underline;
 	font-size: 12px;
 	line-height: 20px;
 	color: #808080;
+	position: absolute;
+	
 }
 
 .loginbox a:hover{
 	color: #ffc107;
+
 }
 	
