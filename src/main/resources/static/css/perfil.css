@@ -43,16 +43,35 @@ h1{
 	left: calc(50% - 75px);
 }
 
+.loginbox input{
+	width: 90%;
+	margin-bottom: 30px;
+}
+
+.loginbox input[type="text"]{
+	margin-left: 0px;
+	padding: 0.1em;
+	border: none;
+	border-bottom: 0px solid #fff;
+	background: #c0c0c0;
+	outline: none;
+	height: 40px;
+	color: #000000;
+	text-align: left;
+	border-radius: 5px;
+	font-size: 15px;
+}
+
 .loginbox h1[type="Mainletters"]{
 	border: none;
-	font-size: 20px;
+	font-size: 15px;
 	color: #000;
 	margin-top: 35%;
 }
 
 .loginbox h1[type="letters"]{
 	border: none;
-	font-size: 20px;
+	font-size: 15px;
 	color: #000;
 	margin-top: 5%;
 }
@@ -73,16 +92,41 @@ h1{
 	transform: translate(-50%, 0%);
 }
 
+.loginbox textButton{
+	width: 40%;
+	margin-left: 40%;
+	margin-top: -5%;
+	border: none;
+	text-decoration: none;
+	outline: none;
+	height: 30px;
+	background: #c0c0c0;
+	color: #000000;
+	font-size: 18px;
+	border-radius: 5px;
+	position: absolute;
+	transform: translate(-40%, -40%);
+	text-align: center;
+}
+
 .loginbox button[type="passButton"]:hover{
 	cursor: pointer;
 	background: #ffc107;
 	color: #000;
 }
 
+.loginbox button:active{
+	display: none;
+}
+
+.loginbox iconButton:active{
+	display: none;
+}
+
 .loginbox button[type="button"]{
 	width: 40%;
 	margin-left: 45%;
-	margin-top: 25%;
+	margin-top: 50%;
 	border: none;
 	text-decoration: none;
 	outline: none;
