@@ -52,19 +52,24 @@ body{
 	margin-bottom: 3%;
 }
 
+
 .loginbox input[type="text"], input[type="password"]{
-	margin-left: 0px;
-	margin-bottom: 10%;
 	padding: 0px 0.5em;
-	border: none;
-	border-bottom: 0px solid #fff;
-	background: #fff;
+	border: 2px solid #626262;
+	background: Transparent;
 	outline: none;
 	height: 40px;
-	color: #000000;
 	text-align: left;
-	border-radius: 5px;
 	font-size: 15px;
+	color: white;
+}
+
+.loginbox input[type="text"]{
+	margin-bottom: 10%;
+}
+
+.loginbox input[type="text"]::placeholder, input[type="password"]::placeholder{
+	color: #e6e6e6;
 }
 
 .loginbox input[type="submit"]{
@@ -89,7 +94,6 @@ body{
 }
 
 .loginbox a{
-	margin-left: 28%;
 	text-decoration: underline;
 	font-size: 12px;
 	line-height: 20px;
@@ -98,6 +102,75 @@ body{
 
 .loginbox a:hover{
 	color: #ffc107;
+}
+
+.descriptionbox {
+	width: 50%;
+	height: 100%;
+	background: Transparent;
+	color: white;
+	position: absolute;
+}
+
+.descriptionbox h1{
+	border: none;
+	font-size: 30px;
+	color: #ffffff;
+	padding: 0 3% 0;
+	text-align: left;
+	font-size: 72px;
+}
+
+.desc{
+	width: 90%;
+	height: 60%;
+	background: Transparent;
+	color: white;;
+	position: absolute;
+}
+
+.calendarIcon {
+	width: 3vw;
+	height: 3vw;
+	margin-left: 15%;
+	margin-right: 2%;
+	margin-top: 15%;
+	float: left;
+}
+
+.fireExtIcon {
+	width: 2vw;
+	height: 3vw;
+	margin-left: 17.2%;
+	margin-right: 2%;
+	margin-top: 5%;
+	float: left;
+}
+
+.chatIcon {
+	width: 3vw;
+	height: 3vw;
+	margin-left: 15%;
+	margin-right: 2%;
+	margin-top: 5%;
+	float: left;
+}
+
+.desc h2{
+	font-size: 18px;
+}
+
+.desc h2[name="Calendario"]{
+	margin-top: 18%;
+}
+
+.desc h2[name="Extintor"]{
+	margin-top: 8%;
+	margin-left: 20%;
+}
+
+.desc h2[name="Chat"]{
+	margin-top: 8%;
 }
 	
 
