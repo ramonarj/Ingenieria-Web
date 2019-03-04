@@ -1,160 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 body{
 	margin: 0;
 	padding: 0;
-	background: url("../img/LoginBG.jpg") no-repeat;
-	background-size: auto;
-	background-position: 50% 0%;
-	font-family: Arial, sans-serif;
+	font-family: 'Roboto', sans-serif;
+
 }
 
-.loginbox{
-	width: 350px;
-	height: 600px;
-	color: #000;
-	border-radius: 0px;
-	top: 50%;
-	left: 82.5%;
-	position: absolute;
-	transform: translate(-50%, -50%);
-	box-sizing: border-box;
-	padding: 10% 10px;
-}
-
-.avatar{
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
-	position: absolute;
-	top: -75px;
-	left: calc(50% - 75px);
-}
-
-.loginbox input{
+.bg-image{
+	z-index: 0;
 	width: 100%;
-	margin-bottom: 3%;
+	height: 100%;
+	background: url("../img/LoginBG.jpg");
+	filter: blur(8px);
+	
+	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
+.title{
+	z-index: 1;
+	position: relative;
+	text-align: center;
+	padding: 50px 0 20px;
+}
 
-.loginbox input[type="text"], input[type="password"]{
-	padding: 0px 0.5em;
-	border: 2px solid #626262;
-	background: Transparent;
-	outline: none;
-	height: 40px;
-	text-align: left;
-	font-size: 15px;
+.title h1{
+	margin: 0;
+	padding: 0;
 	color: white;
+	text-transform: uppercase;
+	font-size: 42px;
 }
 
-.loginbox input[type="text"]{
-	margin-bottom: 10%;
+.container{
+	z-index: 1;
+	width: 60%;
+	height: 600px;
+	position: absolute;
+	margin: 0 auto;
+	top: 50%;
+	left: 50%;
+	transform:translate(-50%, -50%);
+	background: rgba(0, 26, 51, 0.8);
+	border: 2px solid;
+	border-image: linear-gradient(to bottom, white, transparent, white);
+	border-image-slice: 1;
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
-.loginbox input[type="text"]::placeholder, input[type="password"]::placeholder{
-	color: #e6e6e6;
+.container .left{
+	float: left;
+	width: 50%;
+	height: 100%;
+	background: url("../img/loginiconHelmet.png");
+	background-position: center;
+	background-size: cover;
+	border-right: 2px solid;
+	border-image: linear-gradient(to bottom, transparent, white, transparent);
+	border-image-slice: 1;
 }
 
-.loginbox input[type="submit"]{
-	width: 75%;
-	margin-top: 20%;
-	margin-left: 15%;
-	border: solid;
-	border-width: 2px;
-	text-decoration: none;
-	outline: none;
-	height: 40px;
-	background: #303030;
-	color: #fff;
+.container .right{
+	float: right;
+	width: 49%;
+	height: 100%;
+}
+
+.formBox {
+	width: 100%;
+	height: 100%;
+	padding: 100px 50px;
+	box-sizing: border-box;
+}
+
+.container .right .inputBox{
+	position: relative;
+	margin-top: 40px;
+}
+
+.container .right .inputBox input{
+	width: 100%;
 	font-size: 18px;
-	border-radius: 20px;
+	color:#ffffff;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	outline: none;
+	background: transparent;
 }
 
-.loginbox input[type="submit"]:hover{
-	cursor: pointer;
-	background: #f16101;
-	color: #000;
+.container .right .inputBox label{
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 18px;
+	font-weight: bold;
+	color:#ffffff;
+	pointer-events: none;
+	transition: .5s;
 }
 
-.loginbox a{
+.logicontainer .rightnBox .inputBox input:focus ~ label,
+.container .right .inputBox input:valid ~ label{
+	top: -18px;
+	left: 0;
+	color: #0080ff;
+	font-size: 12px;
+}
+
+
+.container .right a{
 	text-decoration: underline;
 	font-size: 12px;
 	line-height: 20px;
 	color: #ffffff;
 }
 
-.loginbox a:hover{
+.container .right a:hover{
 	color: #ffc107;
 }
 
-.descriptionbox {
-	width: 50%;
-	height: 100%;
-	background: Transparent;
-	color: white;
-	position: absolute;
-}
 
-.descriptionbox h1{
-	border: none;
-	font-size: 30px;
-	color: #ffffff;
-	padding: 0 3% 0;
-	text-align: left;
-	font-size: 72px;
-}
-
-.desc{
-	width: 90%;
-	height: 60%;
-	background: Transparent;
-	color: white;;
-	position: absolute;
-}
-
-.calendarIcon {
-	width: 3vw;
-	height: 3vw;
-	margin-left: 15%;
-	margin-right: 2%;
-	margin-top: 15%;
-	float: left;
-}
-
-.fireExtIcon {
-	width: 2vw;
-	height: 3vw;
-	margin-left: 17.2%;
-	margin-right: 2%;
-	margin-top: 5%;
-	float: left;
-}
-
-.chatIcon {
-	width: 3vw;
-	height: 3vw;
-	margin-left: 15%;
-	margin-right: 2%;
-	margin-top: 5%;
-	float: left;
-}
-
-.desc h2{
+.container .right input[type="submit"]{
+	width: 75%;
+	height: 40px;
+	background: #303030;
+	color: #fff;
 	font-size: 18px;
+	border-radius: 20px;
+	border: solid;
+	border-width: 2px;
+	text-decoration: none;
+	margin-top: 100px;
+	margin-left: 15%;
 }
 
-.desc h2[name="Calendario"]{
-	margin-top: 18%;
+.container .right input[type="submit"]:hover{
+	cursor: pointer;
+	background: #ffffff;
+	color: #000;
 }
 
-.desc h2[name="Extintor"]{
-	margin-top: 8%;
-	margin-left: 20%;
+.subInfoBox{
+	margin: 100px 0 0 20px;
+	position: relative;
+	color: #fff;
+	font-size: 12px;
 }
 
-.desc h2[name="Chat"]{
-	margin-top: 8%;
+.subInfoBox img{
+	float: left;
+	width: 4vw;
+	height: 4vw;
+	bottom: 0%;
+	margin-left: 2%;
+	margin-bottom: 2%;
+	margin-right: 7%;
 }
-	
 
 .loginAlicante {
 	width: 6vw;

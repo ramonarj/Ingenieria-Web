@@ -8,16 +8,49 @@
 	<link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css" type="text/css"/>
 </head>
 <body>
-	<div class="loginbox">
-		<img src="../img/loginiconHelmet.jpg" class="avatar">
-		<form>
-			<input type="text" name="" placeholder="ID de Bombero">
-			<input type="password" name="" placeholder="Contraseña"><br>
-			<a href="/menu">¿Has olvidado tu contraseña?</a><br>
-			<input type="submit" name="" value="Iniciar Sesión">
-		</form>
-		
+	<div class="bg-image"></div>
+	<div class="title"><h1>Fightfighter Space</h1></div>
+	<div class="container">
+		<div class="left">
+			<div class="infoBox">
+				<div class="subInfoBox">
+					<img src="../img/calendarIcon.png" class="calendarIcon">
+					<h2 name="Calendario">Consulta y gestiona tus turnos</h2><br> 
+				</div>
+				<div class="subInfoBox">
+					<img src="../img/fire_extinguisher.png" class="fireExtIcon">
+					<h2 name="Extintor">Infórmate sobre el equipo</h2><br>
+				</div>
+				<div class="subInfoBox">
+					<img src="../img/chatIcon.png" class="chatIcon">
+					<h2 name="Chat">Habla con tus compañeros del parque</h2><br>
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<div class="formBox">
+				<form>
+					<div class="inputBox">
+						<input type="text" name="" required="">
+						<label>ID Bombero</label>
+					</div>
+					<div class="inputBox">
+						<input type="password" name="" required="">
+						<label>Contraseña</label>
+					</div>
+						<a href="/menu">¿Has olvidado tu contraseña?</a><br>
+						<input type="submit" name="" value="Iniciar Sesión">
+				</form>
+			</div>
+		</div>
 	</div>
+	
+	<div class="logoAlicante">
+			<a href="http://www.diputacionalicante.es/">
+				<img src="../img/alicante.png" class="loginAlicante">
+			</a>
+	</div>
+	<!-- 
 	<div class="descriptionbox">
 	<h1>Firefighter Space</h1>
 		<a href="http://www.diputacionalicante.es/">
@@ -32,5 +65,6 @@
 			<h2 name="Chat">Habla con tus compañeros del parque</h2><br>
 		</div>
 	</div>
+	-->
 </body>
 </html>

@@ -1,152 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 body{
 	margin: 0;
 	padding: 0;
-	background: url("../img/LoginBG.jpg") no-repeat;
-	background-size: auto;
-	background-position: 50% 0%;
-	font-family: Arial, sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
-.optionsbox{
-	z-index: 10;
+.bg-image{
+	z-index: 0;
 	width: 100%;
-	height: 100px;
-	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0), transparent);
-	color: #ffffff;
+	height: 100%;
+	background: url("../img/LoginBG.jpg");
+	
+	margin: -20px auto;
 	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+header{
+	z-index: 999;
+	position: relative;
+	max-width: 1200px;
+	margin: 20px auto;
+	padding: 10px;
+	background: white;
 	box-sizing: border-box;
-	font-size: 10px;
-}
-
-.optionsbox a{
-	text-decoration: none;
-	color: #ffffff;
-}
-
-.optionsbox h1{
-	width: 100%;
-	height: 100%;
-	margin-top: 40px;
-}
-
-.perfilbox {
-	width: 25%;
-	height: 100%;
-	position: absolute;
-	background: Transparent;
-	right: 0;
-}
-
-.perfilbox:hover{
-	background: rgba(53, 53, 53, 0.6);
+	border-radius: 4px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	font-size: 20px;
 }
 
 .avatar{
-	width: 13%;
-	height: 60%;
-	top: 15%;
-	right: 18%;
-	border: 2px solid #2a2a2a;
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 80px;
+	height: 80px;
+	position: relative;
+	border: 2px solid #ff3900;
 	border-radius: 50%;
-	position: absolute;
+	background: url("../img/person.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
-.perfilbox h1{
-	margin-top: 8%;
-	text-align: right;
-	margin-left: -40%;
+nav{
+	float: right;
 }
 
-.mensajesbox {
-	width: 25%;
-	height: 100%;
-	position: absolute;
-	border: 2px solid;
-	background: Transparent;
-	border-image: linear-gradient(to bottom, transparent, white, transparent);
-  	border-image-slice: 1;
-	right: 25%;
+.clearfix{
+	clear: both;
 }
 
-.mensajesbox:hover{
-	background: rgba(53, 53, 53, 0.6);
+nav ul{
+	margin: 0;
+	padding: 0;
+	display: flex;
 }
 
-.mensajesbox h1{
-	margin-top: 8%;
-	text-align: left;
-	margin-left: 30%;
+nav ul li{
+	list-style: none;
 }
 
-.mensajesIcon{
-	width: 15%;
-	height: 50%;
-	top: 25%;
-	right: 28%;
-	position: absolute;
+nav ul li a{
+	display: block;
+	margin: 20px 0;
+	padding: 10px 40px;
+	text-decoration: none;
+	color: #262626;
 }
 
-.equipobox {
-	width: 25%;
-	height: 100px;
-	position: absolute;
-	background: Transparent;
-	right: 50%;
+nav ul li a.active, nav ul li a:hover {
+	background: #0080c0;
+	border-radius: 4px;
+	color: white;
+	transition: 0.5s;
 }
 
-.equipobox:hover{
-	background: rgba(53, 53, 53, 0.6);
+@media (max-width: 1200px){
+	header{
+		margin: 50px;
+	}
 }
 
-.equipobox h1{
-	margin-top: 8%;
-	text-align: left;
-	margin-left: 32%;
+@media (max-width: 768px){
+	.menu-toggle{
+		display: block;
+		width: 40px;
+		height: 50px;
+		margin: 20px 10px;
+		float: right;
+		cursor: pointer;
+		text-align: center;
+		font-size: 30px;
+		color: #0080c0;
+	}
+	
+	.menu-toggle:before{
+		content: '\f0c9';
+		font-family:fontAwesome;
+		line-height: 40px;
+	}
+	
+	.menu-toggle.active:before{
+		content: '\f00d';
+	}
+	
+	nav{
+		display: none;
+	}
+	nav.active {
+		display: block;
+		width: 100%;
+	}
+	
+	nav.active ul {
+		display: block;
+	}
+	
+	nav.active ul li a {
+		margin: 0;
+	}
 }
 
-.equipoIcon{
-	width: 8%;
-	height: 50%;
-	top: 25%;
-	right: 30%;
-	position: absolute;
-}
 
-.horariobox {
-	width: 25%;
-	height: 100px;
-	position: absolute;
-	border: 2px solid;
-	background: Transparent;
-	border-image: linear-gradient(to bottom, transparent, white, transparent);
-  	border-image-slice: 1;
-	right: 75%;
-}
 
-.horariobox:hover{
-	background: rgba(53, 53, 53, 0.6);
-}
-
-.horariobox h1{
-	margin-top: 8%;
-	text-align: left;
-	margin-left: 32%;
-}
-
-.calendarioIcon{
-	width: 12%;
-	height: 55%;
-	top: 22%;
-	right: 30%;
-	position: absolute;
-}
-
-.exitIcon{
-	width: 4vw;
-	height: 4vw;
-	position: absolute;
-	bottom: 0%;
-	right: 0%;
-	margin-right: 1%;
-	margin-bottom: 1%;
-} 

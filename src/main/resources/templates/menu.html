@@ -4,46 +4,41 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>Firefighter Space</title>
-	<link rel="stylesheet" th:href="@{/css/menu.css}" href="../static/css/menu.css" type="text/css"/>
+	<link rel="stylesheet" th:href="@{/css/menu.css}" href="../static/css/menu.css" type="text/css"/> 
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+	rel="stylesheet">
 </head>
 <body>
-	<a href="http://www.diputacionalicante.es/">
-		<img src="../img/doorIcon.png" class="exitIcon">
-	</a>
-	<div class="optionsbox">
+	<div class="bg-image"></div>
+	<header>
+		<div class="avatar"></div>
+		<div class="menu-toggle"></div>
+		<nav>
+			<ul>
+				<li><a href="#" class="active">Horario</a></li>
+				<li><a href="#">Equipo</a></li>	
+				<li><a href="#">Chat</a></li>
+				<li><a href="#">Perfil</a></li>
 	
-		<div class="perfilbox">
-			<a href="https://www.youtube.com/?hl=es&gl=ES">
-				<img src="../img/person.jpg" class="avatar">
-				<h1>Alejandro Villar Rubio</h1>
-			</a>
-		</div>
-		
-		<div class="mensajesbox">
-			<a>
-				<img src="../img/mensajesIcon.png" class="mensajesIcon">
-				<h1>Mensajes</h1>
-			</a>
-		</div>
-		<div class="horariobox">
-			<a>
-				<img src="../img/calendarIcon.png" class="calendarioIcon">
-				<h1>Horario</h1>
-			</a>
-		</div>
-		<div class="equipobox">
-			<a>
-				<img src="../img/fire_extinguisher.png" class="equipoIcon">	
-				<h1>Equipo</h1>
-			</a>
-		</div>
-		<!--<div>			
-			<a>
-				<input type="submit" name="" value="Salir">
-			</a>
-		</div>
-		-->
-	</div>
+			</ul>
+		</nav>
+		<div class="clearfix"></div>
+	</header>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('.menu-toggle').click(function(){
+				$('.menu-toggle').toggleClass('active')
+				$('nav').toggleClass('active')
+			})
+			
+			$('a').click(function(){
+				$('a').removeClass('active');
+				$(this).toggleClass('active');
+			})
+		})
+	</script>
 </body>
 </html>
