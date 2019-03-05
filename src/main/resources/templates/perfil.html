@@ -4,24 +4,20 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="utf-8">
-	<title>Firefighter space (Usuario)</title>
+	<title>Firefighter space</title>
 	<link rel="stylesheet" th:href="@{/css/perfil.css}" href="../static/css/perfil.css" type="text/css"/>
 </head>
+<head th:replace="menu.html :: head"></head>
 <body>
-	<div class="loginbox">
-		<div class="fotoPerfil">
-			<img src="../img/person.jpg" class="avatar">
-			<div class="cambiarFotoText">Cambiar foto de perfil</div>
+	<nav th:replace="menu.html :: body"></nav>
+	<div class="container">
+		<img src="../img/person.jpg" class="avatar">
+		<div class="infoBoxUp">
+				<div class="name"><p>Alejandro Villar Rubio</p></div>
 		</div>
-		<h1 type="Mainletters">Nombre:</h1>
-		<textButton type="button" size="30">Alberto</textButton>
-		<h1 type="letters">Identificador:</h1>
-		<textButton type="button" size="30">12413</textButton>
-		<h1 type="letters">¿Conductor?</h1>
-		<textButton type="button" size="30">SI</textButton>
-		<input type="submit" name="" value="Cambiar contraseña">
-		<input type="submit" name="" value="Confirmar cambios">
-		
+		<div class="infoBoxDown">
+				
+		</div>
 	</div>
 </body>
 </html>
