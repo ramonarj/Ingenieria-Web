@@ -4,19 +4,49 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>Firefighter space</title>
 	<link rel="stylesheet" th:href="@{/css/perfil.css}" href="../static/css/perfil.css" type="text/css"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <head th:replace="menu.html :: head"></head>
 <body>
 	<nav th:replace="menu.html :: body"></nav>
-	<div class="container">
-		<img src="../img/person.jpg" class="avatar">
-		<div class="infoBoxUp">
-				<div class="name"><p>Alejandro Villar Rubio</p></div>
-		</div>
-		<div class="infoBoxDown">
-				
+	<div class="cardBox">
+		<div class="card">
+			<div class="perfil">
+				<img src="../img/person.jpg">
+				<ul>
+					<li>
+						<h2>Juan Antonio Pérez Romero</h2>
+					</li>
+					<li>
+						<h2>ID Fire8529</h2>
+					</li>
+				</ul>
+			</div>
+			<ul class="infoBottom">
+				<li>
+					<span><i class="fa fa-fire" aria-hidden="true"></i></span>
+					<span>Un rango de mierda</span>
+				</li>
+				<li>
+					<span><i class="fa fa-truck" aria-hidden="true"></i></span>
+					<span>Si</span>
+				</li>
+				<li>
+					<span><i class="fa fa-phone" aria-hidden="true"></i></span>
+					<span>+34 902 458 329</span>
+				</li>
+				<li>
+					<span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+					<span>juanpollagorda69@gmail.es</span>
+				</li>
+				<li>
+					<span><i class="fa fa-home" aria-hidden="true"></i></span>
+					<span>C/Alberto Verdejo, 1</span>
+				</li>
+			</ul>
 		</div>
 	</div>
 </body>
