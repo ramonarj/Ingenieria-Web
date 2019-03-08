@@ -72,7 +72,7 @@ nav ul li a{
 	color: #262626;
 }
 
-nav ul li a.active, nav ul li a:hover {
+nav ul li a:hover {
 	background: #0080c0;
 	border-radius: 4px;
 	color: white;
@@ -111,6 +111,7 @@ nav ul li a.active, nav ul li a:hover {
 	nav{
 		display: none;
 	}
+	
 	nav.active {
 		display: block;
 		width: 100%;

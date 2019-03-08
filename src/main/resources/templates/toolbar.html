@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>Firefighter Space</title>
-	<link rel="stylesheet" th:href="@{/css/menu.css}" href="../static/css/menu.css" type="text/css"/> 
+	<link rel="stylesheet" th:href="@{/css/toolbar.css}" href="../static/css/toolbar.css" type="text/css"/> 
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
 	rel="stylesheet">
 </head>
@@ -17,7 +17,7 @@
 		<div class="menu-toggle"></div>
 		<nav>
 			<ul>
-				<li><a href="#" class="active">Horario</a></li>
+				<li><a href="#">Horario</a></li>
 				<li><a href="#">Equipo</a></li>	
 				<li><a href="#">Chat</a></li>
 				<li><a href="#">Perfil</a></li>
@@ -27,18 +27,6 @@
 		<div class="clearfix"></div>
 	</header>
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script>
-		$(document).ready(function(){
-			$('.menu-toggle').click(function(){
-				$('.menu-toggle').toggleClass('active')
-				$('nav').toggleClass('active')
-			})
-			
-			$('a').click(function(){
-				$('a').removeClass('active');
-				$(this).toggleClass('active');
-			})
-		})
-	</script>
+	<script src="../js/toolbar.js"></script>
 </body>
 </html>

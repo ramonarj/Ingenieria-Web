@@ -7,6 +7,7 @@
 	<title>Firefighter Space</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css" type="text/css"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="bg-image"></div>
@@ -14,18 +15,20 @@
 	<div class="container">
 		<div class="left">
 			<div class="infoBox">
-				<div class="subInfoBox">
-					<img src="../img/calendarIcon.png" class="calendarIcon">
-					<h2 name="Calendario">Consulta y gestiona tus turnos</h2><br> 
-				</div>
-				<div class="subInfoBox">
-					<img src="../img/fire_extinguisher.png" class="fireExtIcon">
-					<h2 name="Extintor">Infórmate sobre el equipo</h2><br>
-				</div>
-				<div class="subInfoBox">
-					<img src="../img/chatIcon.png" class="chatIcon">
-					<h2 name="Chat">Habla con tus compañeros del parque</h2><br>
-				</div>
+				<ul>
+					<li>
+						<span><i class="fa fa-calendar" aria-hidden="true"></i></span>
+						<span>Consulta y gestiona tus turnos</span>
+					</li>
+					<li>
+						<span><i class="fa fa-fire-extinguisher" aria-hidden="true"></i></span>
+						<span>Infórmate sobre el equipo</span>
+					</li>
+					<li>
+						<span><i class="fa fa-comments" aria-hidden="true"></i></span>
+						<span>Habla con tus compañeros del parque</span>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<div class="right">
