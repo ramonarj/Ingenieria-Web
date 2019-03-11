@@ -334,7 +334,7 @@ input.add-event-edit:-ms-input-placeholder {
 .cview--spacer, .cview__header, .cview--date{
   width: 14.28571428571429%;
   max-width: 14.28571428571429%;
-  padding: 10px;
+  padding: 25px;
   box-sizing: border-box;
   position: relative;
   text-align: center;

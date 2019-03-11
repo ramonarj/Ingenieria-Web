@@ -91,7 +91,7 @@ CalendarApp.prototype.showView = function(date){
   var today = new Date();
   
   var lastDayOfM = new Date(y, m + 1, 0).getDate();
-  var startingD = new Date(y, m, 1).getDay();
+  var startingD = new Date(y, m, 0).getDay();
   var lastM = new Date(y, now.getMonth()-1, 1);
   var nextM = new Date(y, now.getMonth()+1, 1);
  
