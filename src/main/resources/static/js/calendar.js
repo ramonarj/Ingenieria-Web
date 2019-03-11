@@ -165,7 +165,7 @@ CalendarApp.prototype.openDayWindow = function(date){
   
   var now = new Date();
   var day = new Date(date);
-  this.dayViewDateEle.textContent = this.days[day.getDay()] + ", " + this.months[day.getMonth()] + " " + day.getDate() + ", " + day.getFullYear();
+  this.dayViewDateEle.textContent = this.days[day.getDay() - 1] + ", " + this.months[day.getMonth()] + " " + day.getDate() + ", " + day.getFullYear();
   this.dayViewDateEle.setAttribute('data-date', day);
   this.dayViewEle.classList.add("calendar--day-view-active");
   
