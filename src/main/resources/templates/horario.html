@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Firefighter space</title>
+	<link rel="stylesheet" th:href="@{/css/horario.css}" href="../static/css/horario.css" type="text/css"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<head th:replace="/fragments/toolbar.html :: head"></head>
+<head th:replace="calendar.html :: head"></head>
+<body th:replace="calendar.html :: body"></body>
+<body>
+	<nav th:replace="/fragments/toolbar.html :: body"></nav>
+</body>
+</html>

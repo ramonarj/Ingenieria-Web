@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+  font-family: 'Roboto', sans-serif;	
+  align-items: center;
+}
+
+.bg-image{
+	z-index: 0;
+	filter: blur(8px);
+}
