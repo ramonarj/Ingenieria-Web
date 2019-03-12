@@ -32,9 +32,13 @@ public class RootController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("xs", "uno dos tres cuatro cinco".split(" "));
+<<<<<<< HEAD
 		User u = entityManager.find(User.class, 4L);
 		model.addAttribute("user", u);
 		return "perfil";
+=======
+		return "login";
+>>>>>>> 00a56e249c872b50d2c16eae64e8d2e35ca6c643
 	}
 	
 	@GetMapping("/menu")
