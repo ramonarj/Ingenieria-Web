@@ -4,20 +4,50 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="utf-8">
-	<title>Firefighter space (Ususario)</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Firefighter space</title>
 	<link rel="stylesheet" th:href="@{/css/perfil.css}" href="../static/css/perfil.css" type="text/css"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+<head th:replace="../fragments/toolbar.html :: head"></head>
 <body>
-	<div class="loginbox">
-		<img src="../img/person.jpg" class="avatar"><br>
-		<iconButton type="button" size="30">Cambiar imagen de perfil</iconButton><br>
-		<h1 type="Mainletters">Nombre:</h1>
-		<h1 type="letters">Identificador:</h1>
-		<h1 type="letters">¿Conductor?</h1>
-		<button type="passButton" size="30">Cambiar contraseña</button><br>
-		<button type="button" size="30">Confirmar cambios</button><br>
-		<a href="/menu">¿Has olvidado tu contraseña?</a><br>
-		
+	<nav th:replace="../fragments/toolbar.html :: body"></nav>
+	<div class="cardBox">
+		<div class="card">
+			<div class="perfil">
+				<img src="../img/person.jpg">
+				<ul>
+					<li>
+						<h2>Juan Antonio Pérez Romero</h2>
+					</li>
+					<li>
+						<h2>ID Fire8529</h2>
+					</li>
+				</ul>
+			</div>
+			<ul class="infoBottom">
+				<li>
+					<span><i class="fa fa-fire" aria-hidden="true"></i></span>
+					<span>Un rango de mierda</span>
+				</li>
+				<li>
+					<span><i class="fa fa-truck" aria-hidden="true"></i></span>
+					<span>Si</span>
+				</li>
+				<li>
+					<span><i class="fa fa-phone" aria-hidden="true"></i></span>
+					<span>+34 902 458 329</span>
+				</li>
+				<li>
+					<span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+					<span>juanpollagorda69@gmail.es</span>
+				</li>
+				<li>
+					<span><i class="fa fa-home" aria-hidden="true"></i></span>
+					<span>C/Alberto Verdejo, 1</span>
+				</li>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>

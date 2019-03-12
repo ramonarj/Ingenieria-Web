@@ -4,21 +4,55 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="utf-8">
-	<title>Firefighter space</title>
+	<title>Firefighter Space</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css" type="text/css"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-	<div class="loginbox">
-		<img src="../img/loginiconHelmet.jpg" class="avatar">
-		<h1>Iniciar Sesión</h1>
-		<form>
-			<p>Usuario</p>
-			<input type="text" name="" placeholder="Introduce tu nombre de usuario">
-			<p>Contraseña</p>
-			<input type="password" name="" placeholder="Introduce tu contraseña">
-			<input type="submit" name="" placeholder="Iniciar">
-			<a href="/menu">¿Has olvidado tu contraseña?</a><br>
-		</form>
+	<div class="bg-image"></div>
+	<div class="title"><h1>Fightfighter Space</h1></div>
+	<div class="container">
+		<div class="left">
+			<div class="infoBox">
+				<ul>
+					<li>
+						<span><i class="fa fa-calendar" aria-hidden="true"></i></span>
+						<span>Consulta y gestiona tus turnos</span>
+					</li>
+					<li>
+						<span><i class="fa fa-fire-extinguisher" aria-hidden="true"></i></span>
+						<span>Infórmate sobre el equipo</span>
+					</li>
+					<li>
+						<span><i class="fa fa-comments" aria-hidden="true"></i></span>
+						<span>Habla con tus compañeros del parque</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="right">
+			<div class="formBox">
+				<form>
+					<div class="inputBox">
+						<input type="text" name="" required="">
+						<label>ID Bombero</label>
+					</div>
+					<div class="inputBox">
+						<input type="password" name="" required="">
+						<label>Contraseña</label>
+					</div>
+						<a href="#">¿Has olvidado tu contraseña?</a><br>
+						<input type="submit" name="" value="Iniciar Sesión">
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="logoAlicante">
+			<a href="http://www.diputacionalicante.es/">
+				<img src="../img/alicante.png" class="loginAlicante">
+			</a>
 	</div>
 </body>
 </html>

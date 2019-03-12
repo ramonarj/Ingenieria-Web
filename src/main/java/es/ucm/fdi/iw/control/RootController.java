@@ -2,6 +2,7 @@ package es.ucm.fdi.iw.control;
 
 import java.security.Principal;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,9 +12,14 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import es.ucm.fdi.iw.model.User; ///USER
 
 @Controller
 public class RootController {
+	
+	@Autowired 
+	private EntityManager entityManager;
+	
 	
 	private static final Logger log = LogManager.getLogger(RootController.class);
 	
@@ -26,7 +32,9 @@ public class RootController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("xs", "uno dos tres cuatro cinco".split(" "));
-		return "horario";
+		User u = entityManager.find(User.class, 4L);
+		model.addAttribute("user", u);
+		return "perfil";
 	}
 	
 	@GetMapping("/menu")
@@ -34,8 +42,20 @@ public class RootController {
 		return "menu";
 	} 
 	
+	@GetMapping("/horario")
+	public String horario(Model model) {
+		return "horario";
+	} 
+	
+	@GetMapping("/equipo")
+	public String equipo(Model model) {
+		return "horario";
+	} 
+	
 	@GetMapping("/perfil")
 	public String perfil(Model model) {
+		User u = entityManager.find(User.class, 2L);
+		model.addAttribute("user", u);
 		return "perfil";
 	} 
 
@@ -56,4 +76,5 @@ public class RootController {
 				.replace("chat", "ws"));
 		return "chat";
 	} 
+	
 }
