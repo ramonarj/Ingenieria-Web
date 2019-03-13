@@ -29,25 +29,62 @@ public class RootController {
 	@Autowired
 	private IwSocketHandler iwSocketHandler;
 	
+	//Página de login (la que sale por defecto)
 	@GetMapping("/")
 	public String menu(Model model) {
-		return "perfil";
+		return "login";
 	} 
 	
+	@GetMapping("/tryLogin")
+	public String tryLogin(Model model, String login, String password) 
+	{
+		if(login != null || password != null) 
+		{
+			User u = new User();
+			u.setId(10);
+			u.setLogin(login);
+			u.setPassword(password);
+			
+			model.addAttribute("user", u);
+			return "inicio";
+		}
+		else
+			return "login";
+	} 
+	
+	
+	//Página de inicio (se accede desde el login)
+	@GetMapping("/inicio")
+	public String inicio(Model model)
+	{
+		return "inicio";
+	} 
+	
+	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/horario")
 	public String horario(Model model) {
 		return "horario";
 	} 
 	
+	//Página de equipo (se accede desde el inicio)
 	@GetMapping("/equipo")
 	public String equipo(Model model) {
-		return "horario";
+		return "equipo";
 	} 
 	
+	//Página de chat (se accede desde el inicio)
+	@GetMapping("/chat")
+	public String chat(Model model, HttpServletRequest request) {
+		model.addAttribute("socketUrl", request.getRequestURL().toString()
+				.replaceFirst("[^:]*", "ws")
+				.replace("chat", "ws"));
+		return "chat";
+	} 
+		
+	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/perfil")
 	public String perfil(Model model) {
-		User u = entityManager.find(User.class, 2L);
-		model.addAttribute("user", u);
+		//User u = entityManager.find(User.class, 2L);
 		return "perfil";
 	} 
 
@@ -60,13 +97,4 @@ public class RootController {
 		
 		return "index";
 	}
-	
-	@GetMapping("/chat")
-	public String chat(Model model, HttpServletRequest request) {
-		model.addAttribute("socketUrl", request.getRequestURL().toString()
-				.replaceFirst("[^:]*", "ws")
-				.replace("chat", "ws"));
-		return "chat";
-	} 
-	
 }
