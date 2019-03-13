@@ -31,7 +31,7 @@ public class RootController {
 	
 	@GetMapping("/")
 	public String menu(Model model) {
-		return "inicio";
+		return "perfil";
 	} 
 	
 	@GetMapping("/horario")

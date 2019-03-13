@@ -2,6 +2,7 @@ package es.ucm.fdi.iw.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -28,13 +29,13 @@ import javax.persistence.NamedQuery;
 })
 public class Question {
 	private long id;
-	private Group group;
+	private CGroup group;
 	private User author;
 	private String text;
 	private boolean poll;	
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public long getId() {
 		return id;
 	}
@@ -60,11 +61,11 @@ public class Question {
 	public void setAuthor(User author) {
 		this.author = author;
 	}
-	@ManyToOne(targetEntity=Group.class)
-	public Group getGroup() {
+	@ManyToOne(targetEntity=CGroup.class)
+	public CGroup getGroup() {
 		return group;
 	}
-	public void setGroup(Group group) {
+	public void setGroup(CGroup group) {
 		this.group = group;
 	}
 }

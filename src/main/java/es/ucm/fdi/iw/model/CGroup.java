@@ -7,6 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -24,11 +25,11 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Group.ByCode",
-			query="SELECT g FROM Group g "
-					+ "WHERE g.code = :groupCode")
+	@NamedQuery(name="CGroup.ByCode",
+	query="SELECT g FROM CGroup g "
+			+ "WHERE g.code = :groupCode")
 })
-public class Group {
+public class CGroup {
 	private long id;
 	private String code;
 	private List<Vote> votes = new ArrayList<>();
@@ -46,7 +47,7 @@ public class Group {
 	}
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public long getId() {
 		return id;
 	}
@@ -80,5 +81,10 @@ public class Group {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	@Override
+	public String toString() {
+		return "CGroup [id=" + id + ", code=" + code + "]";
 	}
 }

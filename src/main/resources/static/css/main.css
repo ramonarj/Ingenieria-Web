@@ -13,7 +13,6 @@ html, body{
 body {
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(102, 0, 0);
 }
 
 
@@ -45,21 +44,20 @@ nav>*{
 .logx {
 	margin-left: auto;
 }
+.logx form {
+	display: inline;
+}
 
 /* setup main container */
 div.container {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: auto;
-	grid-template-areas: 
-	  "main main . sidebar"
-	  "footer footer footer footer";
+	display: flex;
+	flex-wrap: wrap-reverse;
 }
 div.main {
-	grid-area: main;
+	flex: auto;
 }
 div.sidebar {
-	grid-area: sidebar;
+	flex: none;
 }
 
 /* setup footer */
@@ -68,4 +66,15 @@ footer {
 }
 footer img {
 	vertical-align: middle;
+}
+
+/* for compact forms */
+.smallform input {
+	display: block;
+}
+
+/* to highlight debug elements */
+.debug {
+	padding: 5px;
+	border: 1px dashed red;
 }

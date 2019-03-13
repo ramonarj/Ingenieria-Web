@@ -52,3 +52,8 @@ INSERT INTO user(id,enabled,login,password,roles) VALUES (7, 1, 'alberto',
 INSERT INTO user(id,enabled,login,password,roles) VALUES (8, 1, 'javi', 
 	'{bcrypt}$2a$04$9AkKzXf94ipILs.3ZmcBi.f64auKWrycYLLPRwczR/I/MAJzF1pli', 	'USER');
 
+
+-- a group
+INSERT INTO cgroup VALUES (1, 'test');
+INSERT INTO cgroup VALUES (2, 'x');
+
