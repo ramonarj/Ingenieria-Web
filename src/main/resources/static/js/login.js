@@ -6,7 +6,8 @@ $(document).ready(function(){
 	//	var contraseñaBombero = document.getElementById("contraseñaBombero").value;
 	//	if(idBombero != "" && contraseñaBombero != "")
 	//	{
-	//		model.addAttribute("user", u);
+	//		alert(contraseñaBombero);
+	//		document.location.href = '/inicio';
 	//	}
 	//}
 });

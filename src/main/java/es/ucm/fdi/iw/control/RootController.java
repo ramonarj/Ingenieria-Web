@@ -84,7 +84,8 @@ public class RootController {
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/perfil")
 	public String perfil(Model model) {
-		//User u = entityManager.find(User.class, 2L);
+		User u = entityManager.find(User.class, 2L);
+		model.addAttribute("user", u);
 		return "perfil";
 	} 
 
