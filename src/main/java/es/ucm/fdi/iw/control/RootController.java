@@ -45,7 +45,7 @@ public class RootController {
 	@GetMapping("/tryLogin")
 	public String tryLogin(Model model, String login, String password) 
 	{
-		if(login != null || password != null) 
+		if(login != null && password != null) 
 		{
 			User u = new User();
 			u.setId(10);

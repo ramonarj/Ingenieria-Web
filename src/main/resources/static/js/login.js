@@ -6,8 +6,7 @@ $(document).ready(function(){
 		var contraseñaBombero = document.getElementById("contraseñaBombero").value;
 		if(idBombero != "" && contraseñaBombero != "")
 		{
-			document.location.href = "../templates/inicio";
-			alert(document.location.href);
+			document.location.href = "/inicio";
 		}
 	}
 });
