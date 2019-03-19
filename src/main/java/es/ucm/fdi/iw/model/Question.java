@@ -1,5 +1,8 @@
 package es.ucm.fdi.iw.model;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 /**
  * A question or comment by a student.
@@ -22,20 +28,28 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Question.ValidVotes",
-			query="SELECT NEW java.lang.Integer(v.value) "
-					+ "FROM User u JOIN u.votes v "
-					+ "WHERE u.enabled = 1 AND v.question = :questionId")
+	@NamedQuery(name="Question.count",
+	query="SELECT q.author.id, COUNT(q) "
+			+ "FROM Question q "
+			+ "GROUP BY q.author.id")
 })
 public class Question {
-	private long id;
+    @JsonView(Views.Public.class)	
+	private long id;    
 	private CGroup group;
+    @JsonView(Views.Public.class)
+	private List<Vote> votes;
+    @JsonView(Views.Public.class)
 	private User author;
+    @JsonView(Views.Public.class)    
 	private String text;
-	private boolean poll;	
+    @JsonView(Views.Public.class)    
+	private boolean poll;
+    @JsonView(Views.Public.class)    
+    private Timestamp time;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}
@@ -67,5 +81,18 @@ public class Question {
 	}
 	public void setGroup(CGroup group) {
 		this.group = group;
+	}
+	@OneToMany(targetEntity=Vote.class)
+	public List<Vote> getVotes() {
+		return votes;
+	}
+	public void setVotes(List<Vote> votes) {
+		this.votes = votes;
+	}	
+	public Timestamp getTime() {
+		return time;
+	}
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 }

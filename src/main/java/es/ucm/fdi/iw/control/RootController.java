@@ -98,4 +98,9 @@ public class RootController {
 		
 		return "index";
 	}
+	
+	@GetMapping("/error")
+	public String error(Model model) {
+		return "error";
+	}
 }

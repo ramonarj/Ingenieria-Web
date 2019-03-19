@@ -53,7 +53,18 @@ INSERT INTO user(id,enabled,login,password,roles) VALUES (8, 1, 'javi',
 	'{bcrypt}$2a$04$9AkKzXf94ipILs.3ZmcBi.f64auKWrycYLLPRwczR/I/MAJzF1pli', 	'USER');
 
 
--- a group
+-- a sample group
 INSERT INTO cgroup VALUES (1, 'test');
-INSERT INTO cgroup VALUES (2, 'x');
 
+-- polls for the group
+INSERT INTO question (poll, text, author_id, group_id, time) VALUES (
+	1, 'La explicación va demasiado rápido: estoy perdido', 1, 1, LOCALTIMESTAMP);
+	
+INSERT INTO question (poll, text, author_id, group_id, time) VALUES (
+	2, 'La explicación va demasiado lento: me aburro', 1, 1, LOCALTIMESTAMP);
+	
+INSERT INTO question (poll, text, author_id, group_id, time) VALUES (
+	3, 'Esto es interesante: me gustaría profundizar', 1, 1, LOCALTIMESTAMP);
+	
+INSERT INTO question (poll, text, author_id, group_id, time) VALUES (
+	4, 'Esto es poco útil: pasemos de largo', 1, 1, LOCALTIMESTAMP);

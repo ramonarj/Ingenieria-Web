@@ -15,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 /**
  * A user.
  * 
@@ -26,25 +28,26 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name="User.ByLogin",
+	@NamedQuery(name="User.byLogin",
 	query="SELECT u FROM User u "
-			+ "WHERE u.login = :userLogin"),
-	@NamedQuery(name="User.HasLogin",
+			+ "WHERE u.login = :userLogin AND u.enabled = 1"),
+	@NamedQuery(name="User.hasLogin",
 	query="SELECT COUNT(u) "
 			+ "FROM User u "
-			+ "WHERE u.login = :userLogin")	
+			+ "WHERE u.login = :userLogin")
 })
 public class User {
+    @JsonView(Views.Public.class)    
 	private long id;
-	private String login;
+    @JsonView(Views.Public.class)    
+	private String login;	
 	private String password;
 	private String roles; // split by ',' to separate roles
 	private byte enabled;
 	
 	public boolean hasRole(String roleName) {
-		String requested = roleName.toLowerCase();
 		return Arrays.stream(roles.split(","))
-				.anyMatch(r -> r.equals(requested));
+				.anyMatch(r -> r.equalsIgnoreCase(roleName));
 	}
 	
 	// application-specific fields
@@ -53,7 +56,7 @@ public class User {
 	private List<CGroup> groups = new ArrayList<>();
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}
@@ -96,7 +99,7 @@ public class User {
 	}
 	
 	@OneToMany(targetEntity=Vote.class)
-	@JoinColumn(name="author_id")
+	@JoinColumn(name="voter_id")
 	public List<Vote> getVotes() {
 		return votes;
 	}
@@ -106,7 +109,7 @@ public class User {
 	}
 
 	@OneToMany(targetEntity=Question.class)
-	@JoinColumn(name="participant_id")
+	@JoinColumn(name="author_id")
 	public List<Question> getQuestions() {
 		return questions;
 	}
