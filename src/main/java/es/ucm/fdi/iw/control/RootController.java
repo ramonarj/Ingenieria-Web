@@ -35,6 +35,13 @@ public class RootController {
 		return "login";
 	} 
 	
+	//Página de inicio (se accede desde el login)
+	@GetMapping("/login")
+	public String login(Model model)
+	{
+		return "login";
+	} 
+	
 	@GetMapping("/tryLogin")
 	public String tryLogin(Model model, String login, String password) 
 	{
