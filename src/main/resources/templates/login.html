@@ -34,17 +34,18 @@
 		</div>
 		<div class="right">
 			<div class="formBox">
-				<form>
+				<form action="login" method="post">
 					<div class="inputBox">
-						<input type="text" id="idBombero" required="">
+						<input type="text" name="username" required="">
 						<label>ID Bombero</label>
 					</div>
 					<div class="inputBox">
-						<input type="password" id="contraseñaBombero" required="">
+						<input type="password" name="password" required="">
 						<label>Contraseña</label>
 					</div>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 						<a href="#">¿Has olvidado tu contraseña?</a><br>
-						<input type="submit" id="botonLogin" value="Iniciar Sesión"> <!-- El controlador está en login.js -->
+						<button type="submit">Login</button>
 						
 				</form>
 			</div>

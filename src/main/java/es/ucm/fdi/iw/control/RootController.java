@@ -43,13 +43,14 @@ public class RootController {
 	} 
 	
 	@GetMapping("/tryLogin")
-	public String tryLogin(Model model, String login, String password) 
+	public String tryLogin(Model model, long id, String password) 
 	{
-		if(login != null && password != null) 
+		if(password != null) 
 		{
+			//User u = entityManager.find(User.class, id);
 			User u = new User();
-			u.setId(10);
-			u.setLogin(login);
+			u.setId(id);
+			u.setLogin("pepe");
 			u.setPassword(password);
 			
 			model.addAttribute("user", u);
