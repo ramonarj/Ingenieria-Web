@@ -60,8 +60,8 @@ public class UserController {
 		return "inicio";
 	}
 	
-	@GetMapping("/perfil")
-	public String perfil(@PathVariable long id, Model model, HttpSession session) {
+	@GetMapping("/{id}/perfil")
+	public String perfil(@RequestParam long id, Model model, HttpSession session) {
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
 		return "perfil";
