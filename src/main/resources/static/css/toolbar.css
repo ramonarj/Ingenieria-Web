@@ -64,6 +64,13 @@ nav ul li{
 	list-style: none;
 }
 
+nav ul li button[type="submit"]{
+	background-color: Transparent;
+	border: none;
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+}
+
 nav ul li a{
 	display: block;
 	margin: 20px 0;

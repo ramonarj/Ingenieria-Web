@@ -23,17 +23,10 @@
 				<div class="content">
 				<form th:action = "@{/user/} + ${user.id} + '/horario'" method="get">
 						<input type="hidden" th:name="id" th:value="${user.id}" />
-						<i class="fa fa-calendar" aria-hidden="true" onclick="location.href='/horario';"></i>
-						<button type="submit">Ir</button>
+						<button type="submit"><i class="fa fa-calendar" aria-hidden="true" onclick="location.href='/horario';"></i></button>
 						<h3>Horario</h3>
 						<a href="#">Leer Más</a>
 					</form>
-					<!-- COMO ESTABA ANTES:
-				
-					<i class="fa fa-calendar" aria-hidden="true" onclick="location.href='/horario';"></i>
-					<h3>Horario</h3>
-					<a href="#">Leer Más</a>
-					 -->
 				</div>
 			</div>
 		</div>
@@ -48,8 +41,7 @@
 				<div class="content">
 				<form th:action = "@{/user/} + ${user.id} + '/equipo'" method="get">
 						<input type="hidden" th:name="id" th:value="${user.id}" />
-						<i class="fa fa-fire-extinguisher" aria-hidden="true"></i>
-						<button type="submit">Ir</button>
+						<button type="submit"><i class="fa fa-fire-extinguisher" aria-hidden="true"></i></button>
 						<h3>Equipo</h3>
 						<a href="#">Leer Más</a>
 					</form>
@@ -67,8 +59,7 @@
 				<div class="content">
 					<form th:action = "@{/user/} + ${user.id} + '/chat'" method="get">
 						<input type="hidden" th:name="id" th:value="${user.id}" />
-						<i class="fa fa-comments" aria-hidden="true"></i>
-						<button type="submit">Ir</button>
+						<button type="submit"><i class="fa fa-comments" aria-hidden="true"></i></button>
 						<h3>Chat</h3>
 						<a href="#">Leer Más</a>
 					</form>
@@ -86,8 +77,7 @@
 				<div class="content">
 					<form th:action = "@{/user/} + ${user.id} + '/perfil'" method="get">
 						<input type="hidden" th:name="id" th:value="${user.id}" />
-						<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-						<button type="submit">Ir</button>
+						<button type="submit"><i class="fa fa-user-circle-o" aria-hidden="true"></i></button>
 						<h3>Perfil</h3>
 						<a href="#">Leer Más</a>
 					</form>

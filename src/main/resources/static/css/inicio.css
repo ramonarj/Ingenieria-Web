@@ -132,6 +132,11 @@ body{
 	transition: 0.5s;
 }
 
+.container .box .details .content button[type="submit"]{
+	background-color: Transparent;
+	border: none;
+}
+
 .container .box .details .content .fa{
 	font-size: 80px;
 	color: #fff;
