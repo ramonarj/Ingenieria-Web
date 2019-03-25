@@ -44,6 +44,10 @@ public class User {
 	private String password;
 	private String roles; // split by ',' to separate roles
 	private byte enabled;
+//	private int phone;
+//	private String mail;
+//	private String address;
+	
 	
 	public boolean hasRole(String roleName) {
 		return Arrays.stream(roles.split(","))
@@ -97,6 +101,30 @@ public class User {
 	public void setEnabled(byte enabled) {
 		this.enabled = enabled;
 	}
+	
+//	public int getPhone() {
+//		return phone;
+//	}
+//
+//	public void setPhone(int phone) {
+//		this.phone = phone;
+//	}
+//	
+//	public String getMail() {
+//		return mail;
+//	}
+//
+//	public void setMail(String mail) {
+//		this.mail = mail;
+//	}
+//	
+//	public String getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(String address) {
+//		this.address = address;
+//	}
 	
 	@OneToMany(targetEntity=Vote.class)
 	@JoinColumn(name="voter_id")
