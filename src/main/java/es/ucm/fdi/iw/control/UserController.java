@@ -60,11 +60,29 @@ public class UserController {
 		return "inicio";
 	}
 	
+	//LAS 4 VISTAS PRINCIPALES DE LA PÁGINA
 	@GetMapping("/{id}/perfil")
 	public String perfil(@RequestParam long id, Model model, HttpSession session) {
-		User u = entityManager.find(User.class, id);
-		model.addAttribute("user", u);
+		getUser(id, model, session);
 		return "perfil";
+	}
+	
+	@GetMapping("/{id}/horario")
+	public String horario(@RequestParam long id, Model model, HttpSession session) {
+		getUser(id, model, session);
+		return "horario";
+	}
+	
+	@GetMapping("/{id}/equipo")
+	public String equipo(@RequestParam long id, Model model, HttpSession session) {
+		getUser(id, model, session);
+		return "equipo";
+	}
+	
+	@GetMapping("/{id}/chat")
+	public String chat(@RequestParam long id, Model model, HttpSession session) {
+		getUser(id, model, session);
+		return "chat";
 	}
 	
 
