@@ -52,11 +52,12 @@ public class UserController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	
 	@GetMapping("/{id}")
 	public String getUser(@PathVariable long id, Model model, HttpSession session) {
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
-		return "user";
+		return "inicio";
 	}
 	
 	@PostMapping("/{id}")

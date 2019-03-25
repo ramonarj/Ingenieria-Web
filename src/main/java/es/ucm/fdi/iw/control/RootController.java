@@ -42,25 +42,6 @@ public class RootController {
 		return "login";
 	} 
 	
-	@GetMapping("/tryLogin")
-	public String tryLogin(Model model, long id, String password) 
-	{
-		if(password != null) 
-		{
-			//User u = entityManager.find(User.class, id);
-			User u = new User();
-			u.setId(id);
-			u.setLogin("pepe");
-			u.setPassword(password);
-			
-			model.addAttribute("user", u);
-			return "inicio";
-		}
-		else
-			return "login";
-	} 
-	
-	
 	//Página de inicio (se accede desde el login)
 	@GetMapping("/inicio")
 	public String inicio(Model model)
@@ -92,8 +73,6 @@ public class RootController {
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/perfil")
 	public String perfil(Model model) {
-		User u = entityManager.find(User.class, 2L);
-		model.addAttribute("user", u);
 		return "perfil";
 	} 
 
