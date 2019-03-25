@@ -61,14 +61,18 @@
 			<div class="thumb">
 				<img src="../img/perfilInicio.png">
 				<h3>
-					Consulta tus datos personales.
+					Consulta tus datos personales. 
 				</h3>
 			</div>
 			<div class="details">
 				<div class="content">
-					<i class="fa fa-user-circle-o" aria-hidden="true" onclick="location.href='/perfil';"></i>
-					<h3>Perfil</h3>
-					<a href="#">Leer Más</a>
+					<form action = "perfil" method="get">
+					<input type="hidden" th:name="id" th:value="${user.id}" />
+						<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+						<input type="submit"/>
+						<h3>Perfil</h3>
+						<a href="#">Leer Más</a>
+					</form>
 				</div>
 			</div>
 		</div>

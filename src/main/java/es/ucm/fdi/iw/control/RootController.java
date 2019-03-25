@@ -42,13 +42,6 @@ public class RootController {
 		return "login";
 	} 
 	
-	//Página de inicio (se accede desde el login)
-	@GetMapping("/inicio")
-	public String inicio(Model model)
-	{
-		return "inicio";
-	} 
-	
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/horario")
 	public String horario(Model model) {
@@ -70,11 +63,6 @@ public class RootController {
 		return "chat";
 	} 
 		
-	//Página de horarios (se accede desde el inicio)
-	@GetMapping("/perfil")
-	public String perfil(Model model) {
-		return "perfil";
-	} 
 
 	@GetMapping("/admin")
 	public String admin(Model model, Principal principal) {

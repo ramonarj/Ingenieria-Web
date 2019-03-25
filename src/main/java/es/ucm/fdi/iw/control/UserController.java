@@ -60,8 +60,16 @@ public class UserController {
 		return "inicio";
 	}
 	
+	@GetMapping("/perfil")
+	public String perfil(@PathVariable long id, Model model, HttpSession session) {
+		User u = entityManager.find(User.class, id);
+		model.addAttribute("user", u);
+		return "perfil";
+	}
+	
+
 	@PostMapping("/{id}")
-	@Transactional
+	@Transactional //¡¡PARA MODIFICAR LA BASE DE DATOS!!
 	public String postUser(@PathVariable long id, 
 			@ModelAttribute User edited, 
 			@RequestParam(required=false) String pass2,
