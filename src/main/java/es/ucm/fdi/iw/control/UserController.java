@@ -58,7 +58,7 @@ public class UserController {
 		model.addAttribute("user", u);
 		return "user";
 	}
-
+	
 	@PostMapping("/{id}")
 	@Transactional
 	public String postUser(@PathVariable long id, 
