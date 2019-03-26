@@ -92,12 +92,14 @@ public class UserController {
 			@ModelAttribute User edited, 
 			@RequestParam(required=false) String pass2,
 			Model model, HttpSession session) {
+		
+		//Busca el usuario a editar
 		User target = entityManager.find(User.class, id);
 		model.addAttribute("user", target);
 		
+		//Pilla el usuario que quiere cambiar algo
 		User requester = (User)session.getAttribute("u");
-		if (requester.getId() != target.getId() &&
-				! requester.hasRole("admin")) {			
+		if (requester.getId() != target.getId() && ! requester.hasRole("admin")) {			
 			return "perfil";
 		}
 		
@@ -106,6 +108,7 @@ public class UserController {
 			target.setPassword(passwordEncoder.encode(edited.getPassword()));
 		}		
 		target.setLogin(edited.getLogin());
+		target.setMail(edited.getMail());
 		
 		return "perfil";
 	}	

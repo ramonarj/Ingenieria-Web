@@ -44,7 +44,7 @@ INSERT INTO user(id,enabled,login,phone,mail,address,password,roles) VALUES
 	'{bcrypt}$2a$04$eiPCDkX7i.89wQl7DOEaMO7BYVQIDWLtZzAm1bLJpZ8l58/IE1mmi', 	'USER');
 INSERT INTO user(id,enabled,login,phone,mail,address,password,roles) VALUES 
 (5, 1, 'ramon', '695274369', 'ramonarku@gmail.com', 'C/San Jacinto nº64, 3ºE', 
-	'{bcrypt}$2a$04$/92dKh3H3UJ1xizYfMpQMuxXVri60Xod6lMpMgIwSkV4mYX0pQ.Se', 	'USER');
+	'{bcrypt}$2a$04$/92dKh3H3UJ1xizYfMpQMuxXVri60Xod6lMpMgIwSkV4mYX0pQ.Se', 	'USER,ADMIN');
 INSERT INTO user(id,enabled,login,phone,mail,address,password,roles) VALUES 
 (6, 1, 'kelvin', '123456789', 'erKelvinReshulon@hotmail.com', 'Avda. Ballecas nº404',
 	'{bcrypt}$2a$04$OudKz64nPFOcNC.UMgMYy.L45HCYb52AenVYqC1.X6X.oEXIR6vyG', 	'USER');
