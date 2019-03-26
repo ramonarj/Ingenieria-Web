@@ -62,31 +62,31 @@ public class UserController {
 	
 	//LAS 4 VISTAS PRINCIPALES DE LA PÁGINA
 	@GetMapping("/{id}/perfil")
-	public String perfil(@RequestParam long id, Model model, HttpSession session) {
+	public String perfil(@PathVariable long id, Model model, HttpSession session) {
 		getUser(id, model, session);
 		return "perfil";
 	}
 	
 	@GetMapping("/{id}/horario")
-	public String horario(@RequestParam long id, Model model, HttpSession session) {
+	public String horario(@PathVariable long id, Model model, HttpSession session) {
 		getUser(id, model, session);
 		return "horario";
 	}
 	
 	@GetMapping("/{id}/equipo")
-	public String equipo(@RequestParam long id, Model model, HttpSession session) {
+	public String equipo(@PathVariable long id, Model model, HttpSession session) {
 		getUser(id, model, session);
 		return "equipo";
 	}
 	
 	@GetMapping("/{id}/chat")
-	public String chat(@RequestParam long id, Model model, HttpSession session) {
+	public String chat(@PathVariable long id, Model model, HttpSession session) {
 		getUser(id, model, session);
 		return "chat";
 	}
 	
 
-	@PostMapping("/{id}")
+	@PostMapping("/{id}/perfil")
 	@Transactional //¡¡PARA MODIFICAR LA BASE DE DATOS!!
 	public String postUser(@PathVariable long id, 
 			@ModelAttribute User edited, 
@@ -98,7 +98,7 @@ public class UserController {
 		User requester = (User)session.getAttribute("u");
 		if (requester.getId() != target.getId() &&
 				! requester.hasRole("admin")) {			
-			return "user";
+			return "perfil";
 		}
 		
 		if (edited.getPassword() != null && edited.getPassword().equals(pass2)) {
@@ -106,7 +106,8 @@ public class UserController {
 			target.setPassword(passwordEncoder.encode(edited.getPassword()));
 		}		
 		target.setLogin(edited.getLogin());
-		return "user";
+		
+		return "perfil";
 	}	
 	
 	@GetMapping(value="/{id}/photo")
