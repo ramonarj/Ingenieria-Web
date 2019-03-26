@@ -23,7 +23,7 @@
 				<div class="content">
 				<form th:action = "@{/user/} + ${user.id} + '/horario'" method="get">
 						<input type="hidden" th:name="id" th:value="${user.id}" />
-						<button type="submit"><i class="fa fa-calendar" aria-hidden="true" onclick="location.href='/horario';"></i></button>
+						<button type="submit"><i class="fa fa-calendar" aria-hidden="true"></i></button>
 						<h3>Horario</h3>
 						<a href="#">Leer Más</a>
 					</form>
