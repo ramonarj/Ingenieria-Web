@@ -147,7 +147,7 @@ body{
 }
 
 
-.container .right input[type="submit"]{
+.container .right button[type="submit"]{
 	width: 75%;
 	height: 40px;
 	background: #303030;
@@ -161,7 +161,7 @@ body{
 	margin-left: 15%;
 }
 
-.container .right input[type="submit"]:hover{
+.container .right button[type="submit"]:hover{
 	cursor: pointer;
 	background: #ffffff;
 	color: #000;

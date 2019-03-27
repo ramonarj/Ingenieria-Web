@@ -108,7 +108,9 @@ public class UserController {
 			target.setPassword(passwordEncoder.encode(edited.getPassword()));
 		}		
 		target.setLogin(edited.getLogin());
+		target.setPhone(edited.getPhone());
 		target.setMail(edited.getMail());
+		target.setAddress(edited.getAddress());
 		
 		return "perfil";
 	}	

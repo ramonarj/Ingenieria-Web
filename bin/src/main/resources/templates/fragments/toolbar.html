@@ -17,16 +17,31 @@
 		<div class="menu-toggle"></div>
 		<nav>
 			<ul>
-				<li><a href="#">Horario</a></li>
-				<li><a href="#">Equipo</a></li>	
-				<li><a href="#">Chat</a></li>
-				<li><a href="#">Perfil</a></li>
-	
+				<li>
+					<form th:action = "@{/user/} + ${user.id} + '/horario'" method="get">
+					<button type="submit"><a>Horario</a></button>
+					</form>
+				</li>
+				<li>
+					<form th:action = "@{/user/} + ${user.id} + '/equipo'" method="get">
+					<button type="submit"><a>Equipo</a></button>
+					</form>
+				</li>
+				<li>
+					<form th:action = "@{/user/} + ${user.id} + '/chat'" method="get">
+					<button type="submit"><a>Chat</a></button>
+					</form>
+				</li>
+				<li>
+					<form th:action = "@{/user/} + ${user.id} + '/perfil'" method="get">
+					<button type="submit"><a>Perfil</a></button>
+					</form>
+				</li>
 			</ul>
 		</nav>
 		<div class="clearfix"></div>
 	</header>
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="../js/toolbar.js"></script>
+	<script src="/js/toolbar.js"></script>
 </body>
 </html>

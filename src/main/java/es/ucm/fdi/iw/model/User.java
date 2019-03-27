@@ -44,6 +44,8 @@ public class User {
 	private String password;
 	private String roles; // split by ',' to separate roles
 	private byte enabled;
+	private String name;
+	private String idfire;
 	private String phone;
 	private String mail;
 	private String address;
@@ -102,6 +104,22 @@ public class User {
 		this.enabled = enabled;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getIdfire() {
+		return idfire;
+	}
+
+	public void setIdfire(String idfire) {
+		this.idfire = idfire;
+	}
+	
 	public String getPhone() {
 		return phone;
 	}
@@ -125,6 +143,7 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
 	
 	@OneToMany(targetEntity=Vote.class)
 	@JoinColumn(name="voter_id")

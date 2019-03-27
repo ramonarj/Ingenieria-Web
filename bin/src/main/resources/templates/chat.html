@@ -2,16 +2,16 @@
 <html 
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/head.html :: head">
+<head>
 	<meta charset="utf-8">
-	<title>Title goes here</title>
-	<link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css" type="text/css"/>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Firefighter chat</title>
+	<link rel="stylesheet" th:href="@{/css/horario.css}" href="../static/css/horario.css" type="text/css"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+<head th:replace="/fragments/toolbar.html :: head"></head>
 <body>
-	<nav th:replace="fragments/nav.html :: nav">
-		Nav goes here
-	</nav>
-	
+	<nav th:replace="/fragments/toolbar.html :: body"></nav>
 	<div class="container">
 	<div class="main">
 	
