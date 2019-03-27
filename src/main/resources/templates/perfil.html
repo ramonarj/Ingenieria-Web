@@ -15,7 +15,9 @@
 	<div class="cardBox">
 		<div class="card">
 			<div class="perfil">
-				<img src="/img/person.jpg">
+				<form th:action="@{/user/{id}/photo(id=${user.id})}" method="POST" enctype="multipart/form-data">
+					<img th:src="@{/user/{id}/photo(id=${user.id})}">
+				</form>
 				<ul>
 					<li>
 						<h2 th:text="${user.name}">usuario</h2>
@@ -54,8 +56,8 @@
 						<input name="address" class="placeholder" required placeholder="Escribe aqui" th:value="${user.address}"/>
 					</li>
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-					<button type="button" id="edit" class="active">Editar</button>
 					<button type="submit" id="save" class="">Guardar</button>
+					<button type="button" id="edit" class="active">Editar</button>
 				</form>
 			</ul>
 		</div>
