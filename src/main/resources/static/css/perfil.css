@@ -69,7 +69,8 @@ body{
 	border-top: 10px solid #fc2827;
 }
 
-.cardBox .card .infoBottom button[type="submit"]{
+.cardBox .card .infoBottom button{
+	transform: scale(0);
 	margin: 0 -200px;
 	position: relative;
 	float: right;
@@ -81,8 +82,18 @@ body{
 	font-size: 18px;
 	font-weight: bold;
 	color: #303030;
-	
 	border: 3px solid #303030;
+}
+
+.cardBox .card .infoBottom button.active{
+	transform: scale(1);
+}
+
+.cardBox .card .infoBottom button[type="submit"]{
+	background: #ec5f00;
+}
+
+.cardBox .card .infoBottom button[type="button"]{
 	background: white;
 }
 
@@ -95,10 +106,33 @@ body{
 	
 }
 
+.cardBox .card .infoBottom li .placeholder{
+	transform: scale(0);
+	background: Transparent;
+	color: #ec5f00;
+	border: none;
+	border-bottom: 3px solid #ec5f00;
+	text-transform: uppercase;
+	font-size: 18px;
+}
+
+.cardBox .card .infoBottom li .placeholder.active{
+	transform: scale(1);
+	width:60%;
+}
+
 .cardBox .card .infoBottom li span:nth-child(1){
 	width: 30px;
 	display: inline-block;
+}
+
+.cardBox .card .infoBottom li .infoText{
+	font-size: 0;
 	
+}
+
+.cardBox .card .infoBottom li .infoText.active{
+	font-size: 18px;
 }
 
 @media (max-width: 1000px){
