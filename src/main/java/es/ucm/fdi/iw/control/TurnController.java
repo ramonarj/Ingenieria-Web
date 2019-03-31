@@ -31,6 +31,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.model.Turno;
 
 /**
  * User-administration controller
@@ -38,10 +39,10 @@ import es.ucm.fdi.iw.model.User;
  * @author mfreire
  */
 @Controller()
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("turno")
+public class TurnController {
 	
-	private static final Logger log = LogManager.getLogger(UserController.class);
+	private static final Logger log = LogManager.getLogger(TurnController.class);
 	
 	@Autowired 
 	private EntityManager entityManager;
@@ -52,11 +53,10 @@ public class UserController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	
 	@GetMapping("/{id}")
 	public String getUser(@PathVariable long id, Model model, HttpSession session) {
-		User u = entityManager.find(User.class, id);
-		model.addAttribute("user", u);
+		Turno t = entityManager.find(Turno.class, id);
+		model.addAttribute("turno", t);
 		return "inicio";
 	}
 	

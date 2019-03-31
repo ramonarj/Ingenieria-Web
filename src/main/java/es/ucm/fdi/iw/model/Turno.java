@@ -17,26 +17,17 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-/**
- * A user.
- * 
- * Note that, in this particular application, we will automatically be creating
- * users for students. Those users will have the group password as their "password", 
- * but will be generally unable to actually log in without the group password.  
- * 
- * @author mfreire
- */
 @Entity
 @NamedQueries({
-	@NamedQuery(name="User.byLogin",
-	query="SELECT u FROM User u "
-			+ "WHERE u.login = :userLogin AND u.enabled = 1"),
-	@NamedQuery(name="User.hasLogin",
-	query="SELECT COUNT(u) "
-			+ "FROM User u "
-			+ "WHERE u.login = :userLogin")
+	@NamedQuery(name="Turno.byLogin",
+	query="SELECT t FROM Turno t "
+			+ "WHERE t.login = :userLogin AND t.enabled = 1"),
+	@NamedQuery(name="Turno.hasLogin",
+	query="SELECT COUNT(t) "
+			+ "FROM Turno t "
+			+ "WHERE t.login = :userLogin")
 })
-public class User {
+public class Turno {
     @JsonView(Views.Public.class)    
 	private long id;
     @JsonView(Views.Public.class)    

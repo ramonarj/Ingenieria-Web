@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.model.Turno;
 
 /**
  * Called when a user is first authenticated (via login).
@@ -49,6 +50,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		        .setParameter("userLogin", login)
 		        .getSingleResult();		
 		session.setAttribute("u", u);
+		
+		Turno t = entityManager.createNamedQuery("Turno.byLogin", Turno.class)
+		        .setParameter("userLogin", login)
+		        .getSingleResult();		
+		session.setAttribute("t", t);
 		
 		// add a 'ws' session variable
 		session.setAttribute("ws", request.getRequestURL().toString()

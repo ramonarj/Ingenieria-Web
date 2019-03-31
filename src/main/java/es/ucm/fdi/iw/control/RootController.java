@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import es.ucm.fdi.iw.model.User; ///USER
+import es.ucm.fdi.iw.model.Turno; ///TURNO
 
 @Controller
 public class RootController {
