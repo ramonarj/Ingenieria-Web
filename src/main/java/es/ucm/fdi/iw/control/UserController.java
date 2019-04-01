@@ -91,7 +91,6 @@ public class UserController {
 			@ModelAttribute User edited, 
 			@RequestParam(required=false) String pass2,
 			Model model, HttpSession session) {
-		
 		//Busca el usuario a editar
 		User target = entityManager.find(User.class, id);
 		model.addAttribute("user", target);
