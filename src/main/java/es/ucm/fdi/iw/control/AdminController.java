@@ -59,9 +59,19 @@ public class AdminController {
 		
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
-		return "inicio";
+		return "index";
 	}
 
+	@GetMapping("/{id}/chooseRole")
+	public String chooseRole(Model model, @RequestParam("role") String role)
+	{
+		log.info("The admin has chosen to enter the page with " + role + " role");
+		if(role == "USER")
+			return "inicio";
+		else
+			return "admin";
+	} 
+	
 	/**
 	 * Creates a map from a query, where the 1st column of results is used as key.
 	 * @param queryName that returns unique long ids as 1st column

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="utf-8">
+	<title>SELECCIÓN DE ROL</title>
+</head>
+ <script>
+      function change(value){
+      document.getElementsByName("role")[0].value= value;
+      }
+
+   </script>
+<body>
+	<h1>Elige el rol a desempeñar:</h1>
+	<form th:action = "@{/admin/} + ${user.id} + '/chooseRole'" method="get">	
+		<input type="hidden" name="role" value=""></input>
+		<button type="submit" id="usuario" onclick="change('USER')">Usuario</button>
+		<button type="submit" id="admin" onclick="change('ADMIN')">Admin</button>
+	</form>
+<script src="/js/chooseRole.js"></script>
+</body>
+</html>

@@ -12,6 +12,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import es.ucm.fdi.iw.model.User; ///USER
 import es.ucm.fdi.iw.model.Turno; ///TURNO
 
@@ -29,6 +31,8 @@ public class RootController {
 	
 	@Autowired
 	private IwSocketHandler iwSocketHandler;
+	
+	//Página de inicio (se accede desde el login)
 	
 	//Página de login (la que sale por defecto)
 	@GetMapping("/")
