@@ -5,6 +5,7 @@ $(document).ready(function(){
 	var address = document.getElementsByName("address")[0];
 	
 	var edit = function(){
+		$('#reset').addClass('active')
 		$('#save').addClass('active')
 		$(this).removeClass('active')
 		$('.placeholder').each(function(){
@@ -31,5 +32,5 @@ $(document).ready(function(){
     		})
     	}
 	}
-    $('#save').on('click', save)
+
 })
