@@ -91,6 +91,7 @@ public class UserController {
 			@ModelAttribute User edited, 
 			@RequestParam(required=false) String pass2,
 			Model model, HttpSession session) {
+	
 		//Busca el usuario a editar
 		User target = entityManager.find(User.class, id);
 		model.addAttribute("user", target);
@@ -105,10 +106,10 @@ public class UserController {
 			// save encoded version of password
 			target.setPassword(passwordEncoder.encode(edited.getPassword()));
 		}		
-		target.setLogin(edited.getLogin());
 		target.setPhone(edited.getPhone());
 		target.setMail(edited.getMail());
 		target.setAddress(edited.getAddress());
+		log.info("Datos del usuario '{}' con id={} cambiados", target.getLogin(), target.getId());
 		
 		return "perfil";
 	}	
