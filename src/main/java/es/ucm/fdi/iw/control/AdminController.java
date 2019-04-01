@@ -16,6 +16,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,8 +44,8 @@ public class AdminController {
 	@Autowired
 	private Environment env;
 	
-	@GetMapping("/")
-	public String index(Model model) {
+	@GetMapping("/{id}")
+	public String index(Model model, @PathVariable long id) {
 		model.addAttribute("activeProfiles", env.getActiveProfiles());
 		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
 
@@ -56,7 +57,9 @@ public class AdminController {
 		model.addAttribute("voteCount", countsToMap("Vote.count"));
 		model.addAttribute("groupActivity", countsToMap("CGroup.activity"));
 		
-		return "admin";
+		User u = entityManager.find(User.class, id);
+		model.addAttribute("user", u);
+		return "inicio";
 	}
 
 	/**
@@ -110,7 +113,7 @@ public class AdminController {
 			// enable
 			target.setEnabled((byte)1);
 		}
-		return index(model);
+		return index(model, id);
 	}	
 
 	@PostMapping("/delgroup")
@@ -118,7 +121,7 @@ public class AdminController {
 	public String delGroup(Model model,	@RequestParam long id) {
 		CGroup target = entityManager.find(CGroup.class, id);
 		entityManager.remove(target);
-		return index(model);
+		return index(model, id);
 	}	
 	
 	@PostMapping("/addgroup")
@@ -131,6 +134,6 @@ public class AdminController {
 		g.getParticipants().add(u);
 		entityManager.persist(g);		
 		session.setAttribute("g",  g);
-		return index(model);
+		return index(model, u.getId());
 	}	
 }
