@@ -16,7 +16,7 @@
 		<div class="card">
 			<div class="perfil">
 				<form th:action="@{/user/{id}/photo(id=${user.id})}" method="POST" enctype="multipart/form-data">
-					<img th:src="@{/user/{id}/photo(id=${user.id})}">
+					<img th:src="@{/user/{id}/photo(id=${user.id})}" alt="Foto de perfil">
 				</form>
 				<ul>
 					<li>
