@@ -50,6 +50,16 @@ public class User {
 	private String mail;
 	private String address;
 	
+	private Turno turn;
+	
+	//@ManyToOne(targetEntity=Turno.class)
+	//public Turno getTurno() {
+		//return turn;
+	//}
+	
+	//public void setTurno(Turno t){
+		//this.turn = t;
+	//}
 	
 	public boolean hasRole(String roleName) {
 		return Arrays.stream(roles.split(","))

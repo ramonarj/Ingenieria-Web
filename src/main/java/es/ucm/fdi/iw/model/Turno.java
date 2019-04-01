@@ -32,25 +32,22 @@ public class Turno {
 	private long id;
     @JsonView(Views.Public.class)    
 	private String login;	
-	private String password;
-	private String roles; // split by ',' to separate roles
 	private byte enabled;
 	private String name;
 	private String idfire;
-	private String phone;
-	private String mail;
-	private String address;
 	
+	private List<User> users;
 	
-	public boolean hasRole(String roleName) {
-		return Arrays.stream(roles.split(","))
-				.anyMatch(r -> r.equalsIgnoreCase(roleName));
-	}
+	//@OneToMany(targetEntity=User.class)
+	//@JoinColumn(name)
+	//public List<User> getUsers(){
+		//return users;
+	//}
 	
-	// application-specific fields
-	private List<Vote> votes = new ArrayList<>(); 
-	private List<Question> questions = new ArrayList<>();
-	private List<CGroup> groups = new ArrayList<>();
+	//public void setUserToTurn(List<User> users) {
+		//this.users = users;
+	//}
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,22 +66,6 @@ public class Turno {
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getRoles() {
-		return roles;
-	}
-
-	public void setRoles(String roles) {
-		this.roles = roles;
 	}
 
 	public byte getEnabled() {
@@ -109,63 +90,5 @@ public class Turno {
 
 	public void setIdfire(String idfire) {
 		this.idfire = idfire;
-	}
-	
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-	
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	
-	@OneToMany(targetEntity=Vote.class)
-	@JoinColumn(name="voter_id")
-	public List<Vote> getVotes() {
-		return votes;
-	}
-
-	public void setVotes(List<Vote> votes) {
-		this.votes = votes;
-	}
-
-	@OneToMany(targetEntity=Question.class)
-	@JoinColumn(name="author_id")
-	public List<Question> getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
-	}	
-	
-	@ManyToMany(targetEntity=CGroup.class, mappedBy="participants")
-	public List<CGroup> getGroups() {
-		return groups;
-	}
-	public void setGroups(List<CGroup> groups) {
-		this.groups = groups;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", roles=" + roles + ", enabled="
-				+ enabled + "]";
 	}
 }

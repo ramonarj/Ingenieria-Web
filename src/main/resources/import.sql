@@ -57,9 +57,16 @@ INSERT INTO user(id,enabled,login,name,idfire,phone,mail,address,password,roles)
 
 --BASE DE DATOS PARA EL CALENDARIO
 
-INSERT INTO turno(id,enabled,login,name,idfire,phone,mail,address,password,roles) VALUES
- (8, 1, 'javi', 'Javier Cordero Calvo', 'Fire01227', '000123456', 'ElCorderitoCalvo@gmail.com', 'ExtremoDuro',
-	'{bcrypt}$2a$04$9AkKzXf94ipILs.3ZmcBi.f64auKWrycYLLPRwczR/I/MAJzF1pli', 	'USER');
+ INSERT INTO turno(id,enabled,login,name,idfire) VALUES
+ (4, 1, 'ale', 'Alejandro Villar Rubio', 'Fire6729');
+ INSERT INTO turno(id,enabled,login,name,idfire) VALUES
+ (5, 1, 'ramon', 'Ramon Arjona Quijones', 'Fire8293');
+ INSERT INTO turno(id,enabled,login,name,idfire) VALUES
+ (6, 1, 'kelvin', 'Kelvin Comper Diaz', 'Fire9120');
+ INSERT INTO turno(id,enabled,login,name,idfire) VALUES
+ (7, 1, 'alberto', 'Alberto Cordoba Otriz', 'Fire1705s');
+ INSERT INTO turno(id,enabled,login,name,idfire) VALUES
+ (8, 1, 'javi', 'Javier Cordero Calvo', 'Fire01227');
 
 -- a sample group
 INSERT INTO cgroup VALUES (1, 'test');

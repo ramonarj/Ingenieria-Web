@@ -31,6 +31,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.model.Turno;
 
 /**
  * User-administration controller
@@ -57,6 +58,7 @@ public class UserController {
 	public String getUser(@PathVariable long id, Model model, HttpSession session) {
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
+		
 		return "inicio";
 	}
 	
@@ -70,6 +72,10 @@ public class UserController {
 	@GetMapping("/{id}/horario")
 	public String horario(@PathVariable long id, Model model, HttpSession session) {
 		getUser(id, model, session);
+		
+		Turno t = entityManager.find(Turno.class, id);
+		model.addAttribute("turno", t);
+		
 		return "horario";
 	}
 	

@@ -51,11 +51,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		        .getSingleResult();		
 		session.setAttribute("u", u);
 		
-//		Turno t = entityManager.createNamedQuery("Turno.byLogin", Turno.class)
-//		        .setParameter("userLogin", login)
-//		        .getSingleResult();		
-//		session.setAttribute("t", t);
-//		
 		// add a 'ws' session variable
 		session.setAttribute("ws", request.getRequestURL().toString()
 				.replaceFirst("[^:]*", "ws")	// http[s]://... => ws://...
