@@ -11,6 +11,13 @@
 </head>
 <body>
 	<div class="bg-image"></div>
+	<div id="exit">
+		<form th:action = "@{/logout}" method="POST">
+			<button type="submit">
+				<a>Salir<i class="fa fa-sign-out" aria-hidden="true"></i></a>
+			</button>
+		</form>
+	</div>
 	<div class="container">
 		<div class="box" id="">
 			<div class="thumb">

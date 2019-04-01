@@ -19,6 +19,40 @@ body{
 	background-size: cover;
 }
 
+#exit button[type="submit"]{
+	position: relative;
+	left: 90%;
+	background-color: Transparent;
+	border: none;
+	font-size: 28px;
+	font-family: 'Roboto', sans-serif;
+}
+
+
+#exit a{
+	display: block;
+	margin: 20px 0;
+	padding: 10px 40px;
+	text-decoration: none;
+	color: #ffffff;
+	cursor:pointer;
+}
+
+#exit a:hover {
+	background: #0080c0;
+	border-radius: 4px;
+	color: white;
+	transition: 0.5s;
+}
+
+#exit i{
+	margin-left: 10px;
+}
+
+#exit a:hover{
+	background-color: red;
+}
+
 .container{
 	margin: 0;
 	padding: 0;

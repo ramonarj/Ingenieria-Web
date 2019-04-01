@@ -17,17 +17,17 @@
 			<div class="perfil">
 				<form th:action="@{/user/{id}/perfil/photo(id=${user.id})}" method="POST" enctype="multipart/form-data">
 					<img th:src="@{/user/{id}/perfil/photo(id=${user.id})}" alt="Foto de perfil">
+					<ul>
+						<li>
+							<h2 th:text="${user.name}">usuario</h2>
+						</li>
+						<li>
+							<h2 th:text="${user.idfire}">contraseña</h2>
+						</li>
+					</ul>
 					<input type="file" name="photo" class=""></input>
-					<button type="submit" class="">Cambiar foto</button>
+					<button type="submit" id="savePhoto" class="">Cambiar foto</button>
 				</form>
-				<ul>
-					<li>
-						<h2 th:text="${user.name}">usuario</h2>
-					</li>
-					<li>
-						<h2 th:text="${user.idfire}">contraseña</h2>
-					</li>
-				</ul>
 			</div>
 			<ul class="infoBottom">
 				<form class="smallform" th:action="@{/user/{id}(id=${user.id})} + '/perfil'" method="POST">
