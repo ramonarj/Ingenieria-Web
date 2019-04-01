@@ -15,8 +15,10 @@
 	<div class="cardBox">
 		<div class="card">
 			<div class="perfil">
-				<form th:action="@{/user/{id}/photo(id=${user.id})}" method="POST" enctype="multipart/form-data">
-					<img th:src="@{/user/{id}/photo(id=${user.id})}" alt="Foto de perfil">
+				<form th:action="@{/user/{id}/perfil/photo(id=${user.id})}" method="POST" enctype="multipart/form-data">
+					<img th:src="@{/user/{id}/perfil/photo(id=${user.id})}" alt="Foto de perfil">
+					<input type="file" name="photo" class=""></input>
+					<button type="submit" class="">Cambiar foto</button>
 				</form>
 				<ul>
 					<li>

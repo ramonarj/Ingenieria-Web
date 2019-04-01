@@ -114,7 +114,7 @@ public class UserController {
 		return "perfil";
 	}	
 	
-	@GetMapping(value="/{id}/photo")
+	@GetMapping(value="/{id}/perfil/photo")
 	public StreamingResponseBody getPhoto(@PathVariable long id, Model model) throws IOException {		
 		File f = localData.getFile("user", ""+id);
 		InputStream in;
@@ -132,7 +132,7 @@ public class UserController {
 		};
 	}
 	
-	@PostMapping("/{id}/photo")
+	@PostMapping("/{id}/perfil/photo")
 	public String postPhoto(@RequestParam("photo") MultipartFile photo,
 			@PathVariable("id") String id, Model model, HttpSession session){
 		User target = entityManager.find(User.class, Long.parseLong(id));
@@ -142,7 +142,7 @@ public class UserController {
 		User requester = (User)session.getAttribute("u");
 		if (requester.getId() != target.getId() &&
 				! requester.hasRole("ADMIN")) {			
-			return "user";
+			return "perfil";
 		}
 		
 		log.info("Updating photo for user {}", id);
@@ -159,6 +159,6 @@ public class UserController {
 			}
 			log.info("Successfully uploaded photo for {} into {}!", id, f.getAbsolutePath());
 		}
-		return "user";
+		return "perfil";
 	}
 }
