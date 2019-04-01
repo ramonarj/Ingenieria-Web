@@ -13,7 +13,9 @@
 <body>
 	<div class="bg-image"></div>
 	<header>
-		<div class="avatar"></div>
+		<div class="avatar">
+		<img th:src="@{/user/{id}/perfil/photo(id=${user.id})}" alt="Foto de perfil">
+		</div>
 		<div class="menu-toggle"></div>
 		<nav>
 			<ul>
