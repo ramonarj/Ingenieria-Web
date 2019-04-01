@@ -63,7 +63,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		// redirects to 'admin' or 'user/{id}', depending on the user
 		response.sendRedirect(
-				u.hasRole("admin") ? "admin/" :
+				u.hasRole("admin") ? "admin/" + u.getId():
 				u.hasRole("student") ? "clase/" :
 					"user/" + u.getId());
 	}

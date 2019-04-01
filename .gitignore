@@ -16,6 +16,9 @@
 *.iml
 *.ipr
 
+### Fichero de Log ###
+*.log
+
 ### NetBeans ###
 /nbproject/private/
 /build/
@@ -26,5 +29,4 @@
 /.mvn
 /mvnw*
 
-### Fichero de Log ###
-*.log
+
