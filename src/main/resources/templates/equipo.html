@@ -4,13 +4,65 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="utf-8">
+	<title>Firefighter Space</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<title>Firefighter space</title>
-	<link rel="stylesheet" th:href="@{/css/horario.css}" href="../static/css/horario.css" type="text/css"/>
+	<link rel="stylesheet" th:href="@{/css/Herramientas.css}" href="../static/css/Herramientas.css" type="text/css"/>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <head th:replace="/fragments/toolbar.html :: head"></head>
 <body>
 	<nav th:replace="/fragments/toolbar.html :: body"></nav>
+	
+	<div class="buttons">
+		<button type="button" id="Lantern" class="active" onclick="addInfoToLanternTable()">Linternas</button>
+		<button type="button" id="Walkie" class="active" onclick="addInfoToWalkieTable()">Walkies</button>
+	</div>
+	
+	<div class="tables">
+		<div class="tableInfo" id="lanternTable">
+			<table>
+				<tr>
+					<th>Lantern</th>
+					<th>Asignación</th>
+				</tr>
+				<tr>
+					<td>Lantern</td>
+					<td>Asignación</td>
+				</tr>
+				<tr>
+					<td>Lantern</td>
+					<td>Asignación</td>
+				</tr>
+				<tr>
+					<td>Lantern</td>
+					<td>Asignación</td>
+				</tr>
+				<tr>
+					<td>Lantern</td>
+					<td>Asignación</td>
+				</tr>
+				<tr>
+					<td>Lantern</td>
+					<td>Asignación</td>
+				</tr>
+				<tr>
+					<td>Lantern</td>
+					<td>Asignación</td>
+				</tr>
+				<tr>
+					<td>Lantern</td>
+					<td>Asignación</td>
+				</tr>
+				<tr>
+					<td>Lantern</td>
+					<td>Asignación</td>
+				</tr>
+				
+			</table>
+		</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="/js/Herramientas.js"></script>
 </body>
 </html>
