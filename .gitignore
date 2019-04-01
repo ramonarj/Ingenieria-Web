@@ -25,3 +25,6 @@
 /.nb-gradle/
 /.mvn
 /mvnw*
+
+### Fichero de Log ###
+*.log
