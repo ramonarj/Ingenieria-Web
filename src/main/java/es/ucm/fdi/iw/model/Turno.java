@@ -1,7 +1,5 @@
 package es.ucm.fdi.iw.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,12 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
+import es.ucm.fdi.iw.model.User;
 
 @Entity
 @NamedQueries({
@@ -35,19 +34,18 @@ public class Turno {
 	private byte enabled;
 	private String name;
 	private String idfire;
-	
+	private String date;
 	private List<User> users;
+		
+	@OneToMany(targetEntity=User.class)
+	@JoinColumn(name="name")
+	public List<User> getUsers(){
+		return users;
+	}
 	
-	//@OneToMany(targetEntity=User.class)
-	//@JoinColumn(name)
-	//public List<User> getUsers(){
-		//return users;
-	//}
-	
-	//public void setUserToTurn(List<User> users) {
-		//this.users = users;
-	//}
-	
+	public void setUsers(List<User> u) {
+		this.users = u;
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,4 +89,13 @@ public class Turno {
 	public void setIdfire(String idfire) {
 		this.idfire = idfire;
 	}
+	
+	public String getDate() {
+		return date;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 }

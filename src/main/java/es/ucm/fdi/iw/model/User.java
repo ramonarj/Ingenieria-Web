@@ -11,21 +11,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-/**
- * A user.
- * 
- * Note that, in this particular application, we will automatically be creating
- * users for students. Those users will have the group password as their "password", 
- * but will be generally unable to actually log in without the group password.  
- * 
- * @author mfreire
- */
+import es.ucm.fdi.iw.model.Turno;
+
 @Entity
 @NamedQueries({
 	@NamedQuery(name="User.byLogin",
@@ -51,16 +45,7 @@ public class User {
 	private String address;
 	
 	private Turno turn;
-	
-	//@ManyToOne(targetEntity=Turno.class)
-	//public Turno getTurno() {
-		//return turn;
-	//}
-	
-	//public void setTurno(Turno t){
-		//this.turn = t;
-	//}
-	
+			
 	public boolean hasRole(String roleName) {
 		return Arrays.stream(roles.split(","))
 				.anyMatch(r -> r.equalsIgnoreCase(roleName));
@@ -180,6 +165,14 @@ public class User {
 	}
 	public void setGroups(List<CGroup> groups) {
 		this.groups = groups;
+	}
+	
+	@ManyToOne(targetEntity=Turno.class)
+	public Turno getTurno() {
+		return turn;
+	}
+	public void setTurno(Turno t) {
+		this.turn = t;
 	}
 
 	@Override
