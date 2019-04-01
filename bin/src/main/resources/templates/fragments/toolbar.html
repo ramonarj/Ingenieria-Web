@@ -13,10 +13,17 @@
 <body>
 	<div class="bg-image"></div>
 	<header>
-		<div class="avatar"></div>
+		<div class="avatar">
+		<img th:src="@{/user/{id}/perfil/photo(id=${user.id})}" alt="Foto de perfil">
+		</div>
 		<div class="menu-toggle"></div>
 		<nav>
 			<ul>
+				<li th:if="${session.u.hasRole('admin')}">
+					<form th:action = "@{/user/} + ${user.id} + '/admin'" method="get">
+					<button type="submit" id=""><a>Añadir Bomberos</a></button>
+					</form>
+				</li>
 				<li>
 					<form th:action = "@{/user/} + ${user.id} + '/horario'" method="get">
 					<button type="submit"><a>Horario</a></button>
@@ -36,6 +43,13 @@
 					<form th:action = "@{/user/} + ${user.id} + '/perfil'" method="get">
 					<button type="submit"><a>Perfil</a></button>
 					</form>
+				</li>
+				<li id="exit">
+				<form th:action = "@{/logout}" method="POST">
+					<button type="submit">
+						<a>Salir<i class="fa fa-sign-out" aria-hidden="true"></i></a>
+					</button>
+				</form>
 				</li>
 			</ul>
 		</nav>

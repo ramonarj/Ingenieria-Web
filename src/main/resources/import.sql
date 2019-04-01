@@ -66,6 +66,17 @@ INSERT INTO user(id,enabled,login,name,idfire,phone,mail,address,password,roles)
  INSERT INTO turno(name, timeDate) VALUES
  ('D', 'Fire1705s');
 
+ --BASE DE DATOS PARA LAS HERRAMIENTAS
+
+ INSERT INTO Herramienta(name, type) VALUES
+ ('L01', 'Lantern');
+ INSERT INTO Herramienta(name, type) VALUES
+ ('L02', 'Lantern');
+ INSERT INTO Herramienta(name, type) VALUES
+ ('L03', 'Lantern');
+ INSERT INTO Herramienta(name, type) VALUES
+ ('L04', 'Lantern');
+
 -- a sample group
 INSERT INTO cgroup VALUES (1, 'test');
 

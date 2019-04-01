@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
 import es.ucm.fdi.iw.model.Turno;
+import es.ucm.fdi.iw.model.Herramienta;
 
 /**
  * User-administration controller
@@ -82,6 +83,10 @@ public class UserController {
 	@GetMapping("/{id}/equipo")
 	public String equipo(@PathVariable long id, Model model, HttpSession session) {
 		getUser(id, model, session);
+		
+		Herramienta h = entityManager.find(Herramienta.class, id);
+		model.addAttribute("herramienta", h);
+		
 		return "equipo";
 	}
 	

@@ -7,6 +7,11 @@
 </head>
 <body>
   <div class="calendar" id="calendar-app">
+   <ul>
+		<li>
+			<h2 th:text="${user.getName()}"></h2>
+		</li>
+	</ul>
   <div class="calendar--day-view" id="day-view">
     <span class="day-view-exit" id="day-view-exit">&times;</span>
     <span class="day-view-date" id="day-view-date">MAY 29 2016</span>

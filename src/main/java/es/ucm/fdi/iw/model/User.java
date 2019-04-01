@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import es.ucm.fdi.iw.model.Turno;
+import es.ucm.fdi.iw.model.Herramienta;
 
 @Entity
 @NamedQueries({
@@ -45,7 +46,10 @@ public class User {
 	private String address;
 	
 	private Turno turn;
-			
+	private List<Herramienta> tools;
+	
+	
+	
 	public boolean hasRole(String roleName) {
 		return Arrays.stream(roles.split(","))
 				.anyMatch(r -> r.equalsIgnoreCase(roleName));
@@ -137,6 +141,16 @@ public class User {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	@OneToMany(targetEntity=Herramienta.class)
+	@JoinColumn(name="name")
+	public List<Herramienta> getTools(){
+		return tools;
+	}
+	
+	public void setTools(List<Herramienta> h) {
+		this.tools = h;
 	}
 	
 	@OneToMany(targetEntity=Vote.class)

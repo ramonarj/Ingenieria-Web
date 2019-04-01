@@ -31,7 +31,7 @@ header{
 	font-size: 20px;
 }
 
-.avatar{
+.avatar img{
 	margin: 0;
 	padding: 0;
 	float: left;
@@ -40,7 +40,6 @@ header{
 	position: relative;
 	border: 2px solid #ff3900;
 	border-radius: 50%;
-	background: url("../img/person.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -71,6 +70,7 @@ nav ul li button[type="submit"]{
 	font-family: 'Roboto', sans-serif;
 }
 
+
 nav ul li a{
 	display: block;
 	margin: 20px 0;
@@ -85,6 +85,14 @@ nav ul li a:hover {
 	border-radius: 4px;
 	color: white;
 	transition: 0.5s;
+}
+
+nav ul li#exit i{
+	margin-left: 10px;
+}
+
+nav ul li#exit a:hover{
+	background-color: red;
 }
 
 @media (max-width: 1200px){
