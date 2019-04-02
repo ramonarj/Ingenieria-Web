@@ -63,10 +63,14 @@ public class AdminController {
 	}
 
 	@GetMapping("/{id}/chooseRole")
-	public String chooseRole(Model model, @RequestParam("role") String role)
+	public String chooseRole(Model model, @PathVariable long id, 
+			@RequestParam("role") String role)
 	{
+		User u = entityManager.find(User.class, id);
+		model.addAttribute("user", u);
+		
 		log.info("The admin has chosen to enter the page with " + role + " role");
-		if(role == "USER")
+		if(role.equals("USER"))
 			return "inicio";
 		else
 			return "admin";
