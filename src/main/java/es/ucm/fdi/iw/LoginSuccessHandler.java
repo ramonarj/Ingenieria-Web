@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import es.ucm.fdi.iw.model.User;
 import es.ucm.fdi.iw.model.Turno;
+import es.ucm.fdi.iw.model.Herramienta;
 
 /**
  * Called when a user is first authenticated (via login).
@@ -50,6 +51,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		        .setParameter("userLogin", login)
 		        .getSingleResult();		
 		session.setAttribute("u", u);
+		
+
 		
 		// add a 'ws' session variable
 		session.setAttribute("ws", request.getRequestURL().toString()

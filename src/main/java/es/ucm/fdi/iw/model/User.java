@@ -1,6 +1,5 @@
 package es.ucm.fdi.iw.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,13 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonView;
 
 import es.ucm.fdi.iw.model.Turno;
 import es.ucm.fdi.iw.model.Herramienta;
@@ -32,9 +28,7 @@ import es.ucm.fdi.iw.model.Herramienta;
 			+ "WHERE u.login = :userLogin")
 })
 public class User {
-    @JsonView(Views.Public.class)    
 	private long id;
-    @JsonView(Views.Public.class)    
 	private String login;	
 	private String password;
 	private String roles; // split by ',' to separate roles
@@ -45,20 +39,13 @@ public class User {
 	private String mail;
 	private String address;
 	
-	private Turno turn;
+	private Turno turno;
 	private List<Herramienta> tools;
-	
-	
 	
 	public boolean hasRole(String roleName) {
 		return Arrays.stream(roles.split(","))
 				.anyMatch(r -> r.equalsIgnoreCase(roleName));
 	}
-	
-	// application-specific fields
-	private List<Vote> votes = new ArrayList<>(); 
-	private List<Question> questions = new ArrayList<>();
-	private List<CGroup> groups = new ArrayList<>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -144,7 +131,7 @@ public class User {
 	}
 	
 	@OneToMany(targetEntity=Herramienta.class)
-	@JoinColumn(name="name")
+	@JoinColumn(name="user_id")
 	public List<Herramienta> getTools(){
 		return tools;
 	}
@@ -153,40 +140,12 @@ public class User {
 		this.tools = h;
 	}
 	
-	@OneToMany(targetEntity=Vote.class)
-	@JoinColumn(name="voter_id")
-	public List<Vote> getVotes() {
-		return votes;
-	}
-
-	public void setVotes(List<Vote> votes) {
-		this.votes = votes;
-	}
-
-	@OneToMany(targetEntity=Question.class)
-	@JoinColumn(name="author_id")
-	public List<Question> getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
-	}	
-	
-	@ManyToMany(targetEntity=CGroup.class, mappedBy="participants")
-	public List<CGroup> getGroups() {
-		return groups;
-	}
-	public void setGroups(List<CGroup> groups) {
-		this.groups = groups;
-	}
-	
 	@ManyToOne(targetEntity=Turno.class)
 	public Turno getTurno() {
-		return turn;
+		return turno;
 	}
 	public void setTurno(Turno t) {
-		this.turn = t;
+		this.turno = t;
 	}
 
 	@Override
