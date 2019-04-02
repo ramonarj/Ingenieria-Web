@@ -44,7 +44,17 @@ public class User {
 	private String phone;
 	private String mail;
 	private String address;
+	private String rankfire;
+	private String driver;
 	
+	public String getDriver() {
+		return driver;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
 	private Turno turn;
 	private List<Herramienta> tools;
 	
@@ -78,6 +88,7 @@ public class User {
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 
 	public String getPassword() {
 		return password;
@@ -141,6 +152,14 @@ public class User {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public String getRankfire() {
+		return rankfire;
+	}
+
+	public void setRankfire(String rankfire) {
+		this.rankfire = rankfire;
 	}
 	
 	@OneToMany(targetEntity=Herramienta.class)

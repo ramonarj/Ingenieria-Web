@@ -33,11 +33,11 @@
 				<form class="smallform" th:action="@{/user/{id}(id=${user.id})} + '/perfil'" method="POST">
 					<li>
 						<span><i class="fa fa-fire" aria-hidden="true"></i></span>
-						<span>Un rango</span>
+						<span th:text = ${user.rankfire}>Un rango</span>
 					</li>
 					<li>
 						<span><i class="fa fa-truck" aria-hidden="true"></i></span>
-						<span>Si</span>
+						<span  th:text = ${user.driver}>Si</span>
 					</li>
 					<li>
 						<span><i class="fa fa-phone" aria-hidden="true"></i></span>

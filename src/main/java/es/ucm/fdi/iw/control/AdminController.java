@@ -62,7 +62,7 @@ public class AdminController {
 		return "index";
 	}
 
-	@GetMapping("/{id}/chooseRole")
+	@PostMapping("/{id}/chooseRole")
 	public String chooseRole(Model model, @PathVariable long id, 
 			@RequestParam String role)
 	{
