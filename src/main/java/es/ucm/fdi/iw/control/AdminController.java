@@ -64,7 +64,7 @@ public class AdminController {
 
 	@GetMapping("/{id}/chooseRole")
 	public String chooseRole(Model model, @PathVariable long id, 
-			@RequestParam("role") String role)
+			@RequestParam String role)
 	{
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
