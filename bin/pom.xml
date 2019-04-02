@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>es.ucm</groupId>
-	<artifactId>iw1819</artifactId>
+	<artifactId>firefighter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Space Bombers</name>
 	<description>Proyecto de un prototipo para una pagina que sirve para gestionar información básica para un centro de bomberos</description>
