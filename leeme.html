@@ -30,11 +30,16 @@
 	</p>
 	<h2>Vistas</h2>
 		<ul>
-		<li><a href="http://localhost:8080/">index</a> - vista inicial. Permite especificar una clase, o hacer login 
-		(esquina superior derecha). 
-		<li><a href="http://localhost:8080/menu">menu</a> - vista para cualquier bombero. 
-		Primera página que permite el acceso a dos secciones: ver los horarios y ver el equipo que lleva
-		cada bombero.
+		<li><a href="http://localhost:8080/">index</a> - vista inicial. Permite especificar una clase, o hacer login (esquina superior derecha). 
+		<li><a href="http://localhost:8080/admin">admin</a> - vista de elección de rol. Permite a un usuario admin elegir si quiere entrar como administrador o como usuario normal.
+		<li><a href="http://localhost:8080/user">user</a> - vista principal después del login. Permite al usuario el acceso a las diferentes vistas: horarios, equipo, chat y perfil, además de poder hacer logout.
+		</ul>
+				Los vistas citadas abajo tienen en común una toolbar en la parte superior que permite al usuario moverse entre ellas, y un botón que permite al usuario hacer logout.
+		<ul>
+		<li><a href="http://localhost:8080/horario">horario</a> - vista del horario. Permite al usuario ver el calendario de turnos que le corresponde.
+		<li><a href="http://localhost:8080/equipo">equipo</a> - vista del equipo el bombero. Permite al bombero ver el equipo que le corresponde.
+		<li><a href="http://localhost:8080/chat">chat</a> - vista del chat entre bomberos. Permite a los usuarios enviarse mensajes entre ellos.
+		<li><a href="http://localhost:8080/perfil">perfil</a> - vista del perfil de usuario. Permite al usuario ver su perfil y modificar algunos de sus datos (y su foto de perfil).
 		</ul>
 </body>
 </html>
