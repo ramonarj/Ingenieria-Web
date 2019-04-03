@@ -2,6 +2,12 @@
 
 INSERT INTO turno(id, date) VALUES
 (1, '08/01/1997');
+INSERT INTO turno(id, date) VALUES
+(2, '04/12/1998');
+INSERT INTO turno(id, date) VALUES
+(3, '15/12/1998');
+INSERT INTO turno(id, date) VALUES
+(4, '23/12/1998');
 
 -- NUUESTROS USUARIOS	
 INSERT INTO user(id,enabled,login,name,idfire,phone,mail,address,password,roles, turno_id) VALUES 
