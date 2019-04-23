@@ -19,7 +19,11 @@ import es.ucm.fdi.iw.model.Herramienta;
 
 //TODO:
 //1. CHAT CON WEBSOCKET
-//2. INTERFAZ DEL ADMIN
+//2. BASE DE DATOS PERSISTENTE -> DONE
+//3. INTERFAZ DEL ADMIN 
+//4. SEGURIDAD
+//5. LIMAR TODO
+
 @Entity
 @NamedQueries({
 	@NamedQuery(name="User.byLogin",
