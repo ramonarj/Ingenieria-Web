@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import es.ucm.fdi.iw.model.Turno;
 import es.ucm.fdi.iw.model.Herramienta;
 
+//TODO:
+//1. CHAT CON WEBSOCKET
+//2. INTERFAZ DEL ADMIN
 @Entity
 @NamedQueries({
 	@NamedQuery(name="User.byLogin",

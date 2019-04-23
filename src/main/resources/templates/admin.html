@@ -9,6 +9,13 @@
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+	<div id="exit">
+		<form th:action = "@{/logout}" method="POST">
+			<button type="submit">
+				<a>Salir<i class="fa fa-sign-out" aria-hidden="true"></i></a>
+			</button>
+		</form>
+	</div>
 	<div>
 		<form class="smallform" th:action="@{/admin/adduser}" method="POST">
 			<ul>
