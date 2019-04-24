@@ -1,7 +1,7 @@
 
 
 INSERT INTO turno(id, date) VALUES
-(1, '08/01/1997');
+(1, '24/03/2019');
 INSERT INTO turno(id, date) VALUES
 (2, '04/12/1998');
 INSERT INTO turno(id, date) VALUES

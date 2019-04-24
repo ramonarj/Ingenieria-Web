@@ -349,18 +349,18 @@ input.add-event-edit:-ms-input-placeholder {
   cursor: pointer;
 }
 .has-events::after{
-  border-radius:100%;
   animation: popIn 200ms 1 forwards;
-  background: rgba(255,255,255,0.95);
+  border-radius:5%;
+  background: rgba(255,0,0,0.6);
   transform: scale(0);
-  content: '';
+  content: 'Turno';
   display: block;
   position: absolute;
-  width: 8px;
-  height: 8px;
-  top: 8px;
-  left: 12px;
-  
+  width:80%;
+  height: 80%;
+  top: 7px;
+  left: 14px;
+  z-index: -100;
 }
 .cview--date:hover::before{
   background: rgba(255,255,255,0.2);
