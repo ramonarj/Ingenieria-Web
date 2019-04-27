@@ -12,8 +12,23 @@
 <script th:src='@{/js/daygrid.js}'></script>
 <script th:src='@{/js/timegrid.js}'></script>
 <script th:src='@{/js/list.js}'></script>
-<script>	
-  var generados = JSON.parse(htmlDecode('[[${eventos}]]'));
+
+<script th:inline="javascript">	
+
+	/*<![CDATA[*/
+
+	var start =	/*[[${user.turno.start}]]*/;
+	var end = /*[[${user.turno.end}]]*/;
+	var name = /*[[${user.turno.name}]]*/;
+	
+	var message = "[{\"title\":\""+ name + "\",\"start\":\"" + start + "\",\"end\":\"" + end +"\"}]";
+	console.log(message);
+
+	/*]]>*/
+
+
+  //var generados = JSON.parse(htmlDecode('[[${eventos}]]'));
+  var generados = JSON.parse(htmlDecode(message));
   
   // profe: no sé cómo evitar que Thymeleaf escape JS
   function htmlDecode(input){
@@ -33,7 +48,7 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
       },
-      defaultDate: '2010-01-01',
+      defaultDate: new Date(),
       editable: true,
       navLinks: true, // can click day/week names to navigate views
       eventLimit: true, // allow "more" link when too many events
@@ -78,13 +93,13 @@
 
   #calendar {
     max-width: 1000px;
-    margin: 50px auto;
+    margin: 50px 60px;
     padding: 10px 10px;
     background: white;
     position: absolute;
     border-radius: 5px;
     top: 50%;
-    left: 50%;
+    left: 45%;
     transform: translate(-50%, -50%);
   }
 

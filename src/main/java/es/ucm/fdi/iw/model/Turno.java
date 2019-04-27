@@ -14,7 +14,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Turno {
 	private long id;
-	private String date;
+	private String start;
+	private String end;
+	private String name;
 	private List<User> users;
 		
 	@OneToMany(targetEntity=User.class)
@@ -37,12 +39,28 @@ public class Turno {
 		this.id = id;
 	}	
 
-	public String getDate() {
-		return date;
+	public String getStart() {
+		return start;
 	}
 	
-	public void setDate(String date) {
-		this.date = date;
+	public void setStart(String date) {
+		this.start = date;
+	}
+	
+	public void setName(String n) {
+		this.name = n;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getEnd() {
+		return end;
+	}
+	
+	public void setEnd(String e) {
+		this.end = e;
 	}
 	
 }
