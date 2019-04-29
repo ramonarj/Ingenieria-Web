@@ -83,7 +83,7 @@
 		<nav>
 			<ul>
 				<li th:if="${session.u.hasRole('admin')}">
-					<form th:action = "@{/user/} + ${user.id} + '/admin'" method="get">
+					<form th:action = "@{/admin/} + ${user.id}" method="get">
 					<button type="submit" id=""><a>Añadir Bomberos</a></button>
 					</form>
 				</li>
