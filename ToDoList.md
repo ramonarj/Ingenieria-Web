@@ -20,9 +20,9 @@ Notificar a los implicados (en Notificaciones, con webSockets)
 2. TERMINAR WEBSOCKETS (+ NOTIFICACIONES)
 
 
-3. CAMBIAR PÁGINA DE ENTRADA DEL ADMIN
+3. CAMBIAR PÁGINA DE ENTRADA DEL ADMIN 
 
 
 
-ws.send(@all holis)
+ws.send("@all Holiiiiii")
 

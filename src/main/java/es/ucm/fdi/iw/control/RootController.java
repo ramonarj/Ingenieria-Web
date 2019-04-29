@@ -37,7 +37,7 @@ public class RootController {
 	//Página de login (la que sale por defecto)
 	@GetMapping("/")
 	public String menu(Model model) {
-		iwSocketHandler.sendText("ramon", "!menu: alguien esta mirando el menu");
+
 		return "login";
 	} 
 	
