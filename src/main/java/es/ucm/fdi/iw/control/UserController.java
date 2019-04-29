@@ -75,7 +75,8 @@ public class UserController {
 		getUser(id, model, session);
 		
 		Turno t = entityManager.find(Turno.class, id);
-		model.addAttribute("turno", t);
+		
+		model.addAttribute("dias", dias);
 		
 		//model.addAttribute("eventos", "[{\"title\":\"event1\",\"start\":\"2010-01-01\",\"end\":\"2010-01-02\"}]");
 		
