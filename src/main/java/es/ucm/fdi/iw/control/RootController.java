@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,16 +36,9 @@ public class RootController {
 	//Página de inicio (se accede desde el login)
 	
 	//Página de login (la que sale por defecto)
-	@GetMapping("/")
+	@GetMapping(path= {"/", "/login"})
 	public String menu(Model model) {
 
-		return "login";
-	} 
-	
-	//Página de inicio (se accede desde el login)
-	@GetMapping("/login")
-	public String login(Model model)
-	{
 		return "login";
 	} 
 	
@@ -54,11 +48,19 @@ public class RootController {
 		return "horario";
 	} 
 	
-	//Página de equipo (se accede desde el inicio)
-	@GetMapping("/equipo")
-	public String equipo(Model model) {
-		return "equipo";
+	//Página de perfil (se accede desde el inicio)
+	@GetMapping("/perfil")
+	public String perfil(Model model) {
+		return "perfil";
 	} 
+	
+	@GetMapping("/equipo")
+	public String equipo(Model model, HttpSession session) {
+		model.addAttribute("users", entityManager.createQuery(
+				"SELECT u FROM User u").getResultList());
+		
+		return "equipo";
+	}
 	
 	//Página de chat (se accede desde el inicio)
 	@GetMapping("/chat")
@@ -74,7 +76,7 @@ public class RootController {
 		
 		log.info("let us all welcome this admin, {}", principal.getName());
 		
-		return "index";
+		return "admin";
 	}
 	
 	@GetMapping("/error")

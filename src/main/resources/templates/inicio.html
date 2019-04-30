@@ -28,7 +28,7 @@
 			</div>
 			<div class="details">
 				<div class="content">
-				<form th:action = "@{/user/} + ${user.id} + '/horario'" method="get">
+				<form th:action = "@{/horario}" method="get">
 						<button type="submit"><i class="fa fa-calendar" aria-hidden="true"></i></button>
 						<h3>Horario</h3>
 						<a href="#">Leer Más</a>
@@ -45,7 +45,7 @@
 			</div>
 			<div class="details">
 				<div class="content">
-				<form th:action = "@{/user/} + ${user.id} + '/equipo'" method="get">
+				<form th:action = "@{/equipo}" method="get">
 						<button type="submit"><i class="fa fa-fire-extinguisher" aria-hidden="true"></i></button>
 						<h3>Equipo</h3>
 						<a href="#">Leer Más</a>
@@ -62,7 +62,7 @@
 			</div>
 			<div class="details">
 				<div class="content">
-					<form th:action = "@{/user/} + ${user.id} + '/chat'" method="get">
+					<form th:action = "@{/chat}" method="get">
 						<button type="submit"><i class="fa fa-comments" aria-hidden="true"></i></button>
 						<h3>Chat</h3>
 						<a href="#">Leer Más</a>
@@ -79,7 +79,7 @@
 			</div>
 			<div class="details">
 				<div class="content">
-					<form th:action = "@{/user/} + ${user.id} + '/perfil'" method="get">	
+					<form th:action = "@{/perfil}" method="get">	
 						<button type="submit"><i class="fa fa-user-circle-o" aria-hidden="true"></i></button>
 						<h3>Perfil</h3>
 						<a href="#">Leer Más</a>

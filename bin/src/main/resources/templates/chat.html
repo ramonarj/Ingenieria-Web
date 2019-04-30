@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Firefighter chat</title>
+	<link rel="stylesheet" th:href="@{/css/horario.css}" href="../static/css/horario.css" type="text/css"/>
+	<link rel="stylesheet" th:href="@{/css/chat.css}" href="../static/css/chat.css" type="text/css"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<head th:replace="/fragments/toolbar.html :: head"></head>
+<body>
+	<nav th:replace="/fragments/toolbar.html :: body"></nav>
+
+	<div class="chat-box">
+			<h1>Chat</h1>
+		
+			<textarea id="recibido" cols="100" rows="20">
+			</textarea>
+			<form id="escrito">
+			<input id="texto" size="98" placeholder="escribe algo y pulsa enter para enviarlo"/>
+			</form>
+	</div>
+	
+	<script>
+		
+		// texto entre dobles-corchetes se interpreta como template  		
+		const lineForm = document.getElementById("escrito");
+		const lineInput = document.getElementById("texto");
+		const lineOutput = document.getElementById("recibido");
+		
+		// envio
+		escrito.onsubmit = function (e) {
+			var t = lineInput.value;
+			ws.send("@all " + t);
+			lineInput.value = ""
+			return false;
+		}
+		
+		// recepcion
+		ws.receive = function(e) {
+			//if (e.startsWith("!")) {...}
+			//else
+			lineOutput.value = lineOutput.value + '\n' + e;
+		}		
+	</script>
+</body>
+</html>

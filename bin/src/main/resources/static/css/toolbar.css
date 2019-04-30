@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+}
+
+.bg-image{
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	background: url("../img/LoginBG.jpg");
+	
+	margin: -20px auto;
+	position: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+header{
+	z-index: 999;
+	position: relative;
+	max-width: 1200px;
+	margin: 20px auto;
+	padding: 10px;
+	background: white;
+	box-sizing: border-box;
+	border-radius: 4px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	font-size: 20px;
+}
+
+.avatar img{
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 80px;
+	height: 80px;
+	position: relative;
+	border: 2px solid #ff3900;
+	border-radius: 50%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+nav{
+	float: right;
+}
+
+.clearfix{
+	clear: both;
+}
+
+nav ul{
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+nav ul li{
+	list-style: none;
+}
+
+nav ul li button[type="submit"]{
+	background-color: Transparent;
+	border: none;
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+}
+
+
+nav ul li a{
+	display: block;
+	margin: 20px 0;
+	padding: 10px 40px;
+	text-decoration: none;
+	color: #262626;
+	cursor:pointer;
+}
+
+nav ul li a:hover {
+	background: #0080c0;
+	border-radius: 4px;
+	color: white;
+	transition: 0.5s;
+}
+
+nav ul li#exit i{
+	margin-left: 10px;
+}
+
+nav ul li#exit a:hover{
+	background-color: red;
+}
+
+@media (max-width: 1200px){
+	header{
+		margin: 20px 50px;
+	}
+}
+
+@media (max-width: 768px){
+	.menu-toggle{
+		display: block;
+		width: 40px;
+		height: 40px;
+		margin: 20px 10px;
+		float: right;
+		cursor: pointer;
+		text-align: center;
+		font-size: 30px;
+		color: #0080c0;
+	}
+	
+	.menu-toggle:before{
+		content: '\f0c9';
+		font-family:fontAwesome;
+		line-height: 40px;
+	}
+	
+	.menu-toggle.active:before{
+		content: '\f00d';
+	}
+	
+	nav{
+		display: none;
+	}
+	
+	nav.active {
+		display: block;
+		width: 100%;
+		margin: 10px 0;
+	}
+	
+	nav.active ul {
+		display: block;
+	}
+	
+	nav.active ul li a {
+		margin: 0;
+	}
+}
+
+
+
