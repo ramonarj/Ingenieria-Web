@@ -37,6 +37,7 @@ public class RootController {
 	//Página de login (la que sale por defecto)
 	@GetMapping("/")
 	public String menu(Model model) {
+
 		return "login";
 	} 
 	
@@ -62,9 +63,6 @@ public class RootController {
 	//Página de chat (se accede desde el inicio)
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
-		model.addAttribute("socketUrl", request.getRequestURL().toString()
-				.replaceFirst("[^:]*", "ws")
-				.replace("chat", "ws"));
 		return "chat";
 	} 
 		

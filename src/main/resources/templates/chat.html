@@ -26,8 +26,6 @@
 	<script>
 		
 		// texto entre dobles-corchetes se interpreta como template  		
-		const socketUrl = "[[${socketUrl}]]";
-		const socket = new WebSocket(socketUrl);
 		const lineForm = document.getElementById("escrito");
 		const lineInput = document.getElementById("texto");
 		const lineOutput = document.getElementById("recibido");
@@ -35,14 +33,16 @@
 		// envio
 		escrito.onsubmit = function (e) {
 			var t = lineInput.value;
-			socket.send(t);
+			ws.send("@all " + t);
 			lineInput.value = ""
 			return false;
 		}
 		
 		// recepcion
-		socket.onmessage = function(e) {
-			lineOutput.value = lineOutput.value + '\n' + e.data;
+		ws.receive = function(e) {
+			//if (e.startsWith("!")) {...}
+			//else
+			lineOutput.value = lineOutput.value + '\n' + e;
 		}		
 	</script>
 </body>

@@ -53,6 +53,9 @@ public class UserController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private IwSocketHandler iwSocketHandler;
 
 	
 	@GetMapping("/{id}")
@@ -60,6 +63,8 @@ public class UserController {
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
 		
+		//Enviar mensaje al admin
+		iwSocketHandler.sendText("ramon", "AVISO: " + u.getLogin() + " esta mirando el menu");
 		return "inicio";
 	}
 	
@@ -75,7 +80,8 @@ public class UserController {
 		getUser(id, model, session);
 		
 		Turno t = entityManager.find(Turno.class, id);
-		model.addAttribute("turno", t);
+		
+		//model.addAttribute("dias", dias);
 		
 		//model.addAttribute("eventos", "[{\"title\":\"event1\",\"start\":\"2010-01-01\",\"end\":\"2010-01-02\"}]");
 		
