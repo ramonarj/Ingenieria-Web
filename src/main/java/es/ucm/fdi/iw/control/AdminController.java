@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.model.Turno;
 
 /**
  * Admin-only controller
@@ -55,7 +56,11 @@ public class AdminController {
 				"SELECT u FROM User u").getResultList());
 		
 		User u = entityManager.find(User.class, id);
+		
 		model.addAttribute("user", u);
+		model.addAttribute("turnos", entityManager.createQuery(
+				"SELECT t FROM Turno t").getResultList());
+		
 		return "admin";
 	}
 	
@@ -63,7 +68,7 @@ public class AdminController {
 	@PostMapping("/adduser")
 	@Transactional
 	public String addUser(Model model, @RequestParam String login, @RequestParam String password, @RequestParam String name,
-			@RequestParam String idfire)
+			@RequestParam String idfire, @RequestParam Turno turno)
 	{
 		User user = new User();
 		user.setEnabled((byte)1);
@@ -72,6 +77,7 @@ public class AdminController {
 		user.setRoles("USER");
 		user.setName(name);
 		user.setIdfire(idfire);
+		user.setTurno(turno);
 		entityManager.persist(user);
 		entityManager.flush();
 		

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -81,6 +84,7 @@ public class UserController {
 		
 		Turno t = entityManager.find(Turno.class, id);
 		
+		//List<Turno> t = entityManager.find(List<Turno.class>, id);
 		//model.addAttribute("dias", dias);
 		
 		//model.addAttribute("eventos", "[{\"title\":\"event1\",\"start\":\"2010-01-01\",\"end\":\"2010-01-02\"}]");

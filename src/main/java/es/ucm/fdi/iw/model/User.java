@@ -49,6 +49,18 @@ public class User {
 	private String driver;
 	
 	private Turno turno;
+	private List<Turno> diasLaborales;
+	
+	@OneToMany(targetEntity=User.class)
+	@JoinColumn(name="turno_id")
+	public List<Turno> getDiasLaborales() {
+		return diasLaborales;
+	}
+
+	public void setDiasLaborales(List<Turno> diasLaborales) {
+		this.diasLaborales = diasLaborales;
+	}
+
 	public String getDriver() {
 		return driver;
 	}
