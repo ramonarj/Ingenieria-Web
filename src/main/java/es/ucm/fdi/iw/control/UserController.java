@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.websocket.server.PathParam;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -70,74 +71,56 @@ public class UserController {
 		return "inicio";
 	}
 	
-	//LAS 4 VISTAS PRINCIPALES DE LA PÁGINA
-	@GetMapping("/{id}/perfil")
-	public String perfil(@PathVariable long id, Model model, HttpSession session) {
-		getUser(id, model, session);
-		return "perfil";
+	private void alterUser(User target, User changed, String pass2) {
+		if (changed.getPassword() != null && changed.getPassword().equals(pass2)) {
+			// save encoded version of password
+			target.setPassword(passwordEncoder.encode(changed.getPassword()));
+		}		
+		target.setPhone(changed.getPhone());
+		target.setMail(changed.getMail());
+		target.setAddress(changed.getAddress());
+		log.info("Datos del usuario '{}' con id={} cambiados", target.getLogin(), target.getId());		
 	}
 	
-	@GetMapping("/{id}/horario")
-	public String horario(@PathVariable long id, Model model, HttpSession session) {
-		getUser(id, model, session);
-		
-		Turno t = entityManager.find(Turno.class, id);
-		
-		//model.addAttribute("dias", dias);
-		
-		//model.addAttribute("eventos", "[{\"title\":\"event1\",\"start\":\"2010-01-01\",\"end\":\"2010-01-02\"}]");
-		
-		return "horario";
-	}
-	
-	@GetMapping("/{id}/equipo")
-	public String equipo(@PathVariable long id, Model model, HttpSession session) {
-		getUser(id, model, session);
-		model.addAttribute("users", entityManager.createQuery(
-				"SELECT u FROM User u").getResultList());
-		
-		return "equipo";
-	}
-	
-	@GetMapping("/{id}/chat")
-	public String chat(@PathVariable long id, Model model, HttpSession session) {
-		getUser(id, model, session);
-		return "chat";
-	}
-	
-	@PostMapping("/{id}/perfil")
+	@PostMapping("/")
 	@Transactional //¡¡PARA MODIFICAR LA BASE DE DATOS!!
-	public String postUser(@PathVariable long id, 
+	public String editSelf(
 			@ModelAttribute User edited, 
 			@RequestParam(required=false) String pass2,
 			Model model, HttpSession session) {
 	
 		//Busca el usuario a editar
-		User target = entityManager.find(User.class, id);
-		model.addAttribute("user", target);
-		
-		//Esta linea es de test
-		//List<User> test = entityManager.createQuery("SELECT u FROM User u").getResultList();
-		
-		//Pilla el usuario que quiere cambiar algo
 		User requester = (User)session.getAttribute("u");
-		if (requester.getId() != target.getId() && ! requester.hasRole("admin")) {			
-			return "perfil";
-		}
+		User target = entityManager.find(User.class, requester.getId());
 		
-		if (edited.getPassword() != null && edited.getPassword().equals(pass2)) {
-			// save encoded version of password
-			target.setPassword(passwordEncoder.encode(edited.getPassword()));
-		}		
-		target.setPhone(edited.getPhone());
-		target.setMail(edited.getMail());
-		target.setAddress(edited.getAddress());
-		log.info("Datos del usuario '{}' con id={} cambiados", target.getLogin(), target.getId());
+		alterUser(target, edited, pass2);
 		
 		return "perfil";
 	}	
 	
-	@GetMapping(value="/{id}/perfil/photo")
+	@PostMapping("/{id}")
+	@Transactional //¡¡PARA MODIFICAR LA BASE DE DATOS!!
+	public String editOther(
+			@ModelAttribute User edited, 
+			@PathVariable long id,
+			@RequestParam(required=false) String pass2,
+			Model model, 
+			HttpSession session) {
+	
+		//Busca el usuario a editar
+		User requester = (User)session.getAttribute("u");
+		User target = entityManager.find(User.class, id);
+		
+		if (! requester.hasRole("admin")) {			
+			return "perfil";
+		}
+
+		alterUser(target, edited, pass2);
+
+		return "admin";
+	}	
+	
+	@GetMapping(value="/photo/{id}")
 	public StreamingResponseBody getPhoto(@PathVariable long id, Model model) throws IOException {		
 		File f = localData.getFile("user", ""+id);
 		InputStream in;
@@ -155,7 +138,7 @@ public class UserController {
 		};
 	}
 	
-	@PostMapping("/{id}/perfil/photo")
+	@PostMapping("/photo/{id}")
 	public String postPhoto(@RequestParam("photo") MultipartFile photo,
 			@PathVariable("id") String id, Model model, HttpSession session){
 		User target = entityManager.find(User.class, Long.parseLong(id));

@@ -33,6 +33,9 @@ INSERT INTO user(id,enabled,login,name,idfire,rankfire,driver,phone,mail,address
  --BASE DE DATOS PARA LAS HERRAMIENTAS
 
  INSERT INTO Herramienta(id, type, user_id) VALUES
+ (3, 'Barrita de chocolate', 6);
+
+ INSERT INTO Herramienta(id, type, user_id) VALUES
  (1, 'Lantern', 8);
  
   INSERT INTO Herramienta(id, type, user_id) VALUES

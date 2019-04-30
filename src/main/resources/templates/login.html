@@ -33,6 +33,20 @@
 			</div>
 		</div>
 		<div class="right">
+			<div class="debug" th:if="${application.debug} and not ${session.u}">
+				<form th:action="@{/login}" method="post">
+					<input type="hidden" name="username" value="ale">
+					<input type="hidden" name="password" value="ale">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<button type="submit">ale</button>
+  				</form>				
+				<form th:action="@{/login}" method="post">
+					<input type="hidden" name="username" value="ramon">
+					<input type="hidden" name="password" value="ramon">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<button type="submit">ramon</button>
+  				</form> 			
+  			</div>
 			<div class="formBox">
 				<form action="login" method="post">
 					<div class="inputBox">
