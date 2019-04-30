@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+
+}
+
+.bg-image{
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	background: url("../img/LoginBG.jpg");
+	filter: blur(8px);
+	
+	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.title{
+	z-index: 1;
+	position: relative;
+	text-align: center;
+	padding: 50px 0 20px;
+}
+
+.title h1{
+	margin: 0;
+	padding: 0;
+	color: white;
+	text-transform: uppercase;
+	font-size: 54px;
+}
+
+.container{
+	z-index: 1;
+	height: 600px;
+	position: relative;
+	max-width: 1000px;
+	margin: 50px auto;
+	background: rgba(0, 26, 51, 0.8);
+	border: 2px solid;
+	border-image: linear-gradient(to bottom, white, transparent, white);
+	border-image-slice: 1;
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.container .left{
+	float: left;
+	width: 50%;
+	height: 100%;
+	background: url("../img/loginiconHelmet.png");
+	background-position: center;
+	background-size: cover;
+	border-right: 2px solid;
+	border-image: linear-gradient(to bottom, transparent, white, transparent);
+	border-image-slice: 1;
+}
+
+.container .left .infoBox{
+	margin: 0;
+	padding: 30px 0;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+}
+
+.container .left .infoBox li{
+	list-style: none;
+	color: white;
+	font-size: 18px;
+	padding: 50px 0;
+	text-transform: uppercase;
+}
+
+.container .left .infoBox li i{
+	font-size: 60px;
+}
+
+.container .left .infoBox li span:nth-child(1){
+	width: 80px;
+	display: inline-block;
+	
+}
+
+.container .right{
+	float: right;
+	width: 49%;
+	height: 100%;
+}
+
+.formBox {
+	width: 100%;
+	height: 100%;
+	padding: 100px 50px;
+	box-sizing: border-box;
+}
+
+.container .right .inputBox{
+	position: relative;
+	margin-top: 40px;
+}
+
+.container .right .inputBox input{
+	width: 100%;
+	font-size: 18px;
+	color:#ffffff;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	outline: none;
+	background: transparent;
+}
+
+.container .right .inputBox label{
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 18px;
+	font-weight: bold;
+	color:#ffffff;
+	pointer-events: none;
+	transition: .5s;
+}
+
+.container .right .inputBox input:focus ~ label,
+.container .right .inputBox input:valid ~ label{
+	top: -18px;
+	left: 0;
+	color: #0080ff;
+	font-size: 12px;
+}
+
+
+.container .right a{
+	text-decoration: underline;
+	font-size: 12px;
+	line-height: 20px;
+	color: #ffffff;
+}
+
+.container .right a:hover{
+	color: #ffc107;
+}
+
+
+.container .right button[type="submit"]{
+	width: 75%;
+	height: 40px;
+	background: #303030;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+	border: solid;
+	border-width: 2px;
+	text-decoration: none;
+	margin-top: 100px;
+	margin-left: 15%;
+}
+
+.container .right button[type="submit"]:hover{
+	cursor: pointer;
+	background: #ffffff;
+	color: #000;
+}
+
+@media (max-width: 1200px)
+{
+	.container
+	{
+		margin: 50px 40px;
+	}
+	.container .left
+	{
+		opacity: 0;
+	}
+	
+	.container .right
+	{
+		width: 100%;
+		position: absolute;
+	}
+}
+
+@media (max-width: 768px)
+{
+	.title h1{
+		font-size: 32px;
+	}
+	.container
+	{
+		margin: 50px 20px;
+	}
+}
+
+.loginAlicante {
+	width: 6vw;
+	height: 8vw;
+	position: absolute;
+	bottom: 0%;
+	margin-left: 2%;
+	margin-bottom: 2%;
+}

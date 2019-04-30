@@ -1,6 +1,7 @@
 package es.ucm.fdi.iw.control;
 
 import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,6 +35,7 @@ import es.ucm.fdi.iw.model.User;
 import es.ucm.fdi.iw.model.Turno;
 import es.ucm.fdi.iw.model.Herramienta;
 
+import java.util.List;
 /**
  * User-administration controller
  * 
@@ -91,9 +93,8 @@ public class UserController {
 	@GetMapping("/{id}/equipo")
 	public String equipo(@PathVariable long id, Model model, HttpSession session) {
 		getUser(id, model, session);
-		
-		Herramienta h = entityManager.find(Herramienta.class, id);
-		model.addAttribute("herramienta", h);
+		model.addAttribute("users", entityManager.createQuery(
+				"SELECT u FROM User u").getResultList());
 		
 		return "equipo";
 	}
@@ -114,6 +115,9 @@ public class UserController {
 		//Busca el usuario a editar
 		User target = entityManager.find(User.class, id);
 		model.addAttribute("user", target);
+		
+		//Esta linea es de test
+		//List<User> test = entityManager.createQuery("SELECT u FROM User u").getResultList();
 		
 		//Pilla el usuario que quiere cambiar algo
 		User requester = (User)session.getAttribute("u");

@@ -22,15 +22,8 @@
 		<div class="tableInfo" id="lanternTable">
 			<table>
 				<tr>
-					<th>Bombero</th>
+					<th th:text="${user.tools[0].type}"></th>
 					<th>Asignación</th>
-				</tr>
-				<tr th:each="user: ${users}">
-					<td th:text="${user.name}">Nombre</th>
-					<td>
-						<span th:each="h: ${user.tools}" th:text="${h.type}">
-							Herramienta</span>
-					</td>
 				</tr>
 			</table>
 		</div>

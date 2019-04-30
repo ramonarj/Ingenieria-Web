@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+
+}
+
+.bg-image{
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	background: url("../img/LoginBG.jpg");
+	filter: blur(8px);
+	
+	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#exit button[type="submit"]{
+	position: relative;
+	left: 90%;
+	background-color: Transparent;
+	border: none;
+	font-size: 28px;
+	font-family: 'Roboto', sans-serif;
+}
+
+
+#exit a{
+	display: block;
+	margin: 20px 0;
+	padding: 10px 40px;
+	text-decoration: none;
+	color: #ffffff;
+	cursor:pointer;
+}
+
+#exit a:hover {
+	background: #0080c0;
+	border-radius: 4px;
+	color: white;
+	transition: 0.5s;
+}
+
+#exit i{
+	margin-left: 10px;
+}
+
+#exit a:hover{
+	background-color: red;
+}
+
+.container{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 1200px;
+	height: 600px;
+	display: flex;
+}
+
+.container .box{
+	position: relative;
+	width: 300px;
+	height: 600px;
+	background: #ccc;
+	transition: 0.5s;
+	
+}
+
+.container .box:hover{
+	transform: scale(1.1);
+	z-index: 1;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 1);
+}
+
+.container .box .thumb{
+	position: absolute;
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+}
+
+.container .box:nth-child(odd) .thumb{
+	bottom: 0;
+	left: 0;
+}
+
+.container .box .thumb img{
+	width: 100%;
+	transform: scale(1);
+	opacity: 1;
+	transition: 0.5s;
+}
+
+.container .box .thumb h3{
+	position: absolute;
+	top: 20%;
+	transform: translateY(-50%);
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	color: #fff;
+	transform: scale(0);
+	opacity: 0;
+	transition: 0.5s;
+	text-align: center;
+}
+
+.container .box:nth-child(4) .thumb h3{
+	color: #000;
+}
+
+#active img{
+	transform: scale(0);
+	opacity: 0;
+}
+
+#active h3{
+	transform: scale(1);
+	opacity: 1;
+}
+
+.container .box .details{
+	position: absolute;
+	width: 100%;
+	height: 300px;
+	overflow: hidden;	
+}
+
+.container .box:nth-child(even) .details{
+	bottom: 0;
+	left: 0;
+}
+
+.container .box:nth-child(1){
+	background: #0080c0;
+}
+
+.container .box:nth-child(2){
+	background: #000000;
+}
+
+.container .box:nth-child(3){
+	background: #fe6001;
+}
+
+.container .box:nth-child(4){
+	background: #ffffff;
+}
+
+.container .box .details .content{
+	position: absolute;
+	top: calc(50% + 16px);
+	transform: translateY(-50%);
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+	transition: 0.5s;
+}
+
+.container .box .details .content button[type="submit"]{
+	background-color: Transparent;
+	border: none;
+}
+
+.container .box .details .content .fa{
+	font-size: 80px;
+	color: #fff;
+}
+
+.container .box .details .content h3{
+	margin: 0;
+	padding: 0;
+	padding: 10px 0;
+	color: #fff;
+}
+
+.container .box:nth-child(4) .content .fa{
+	color: #000;
+}
+
+.container .box:nth-child(4) .content h3{
+	color: #000;
+}
+
+.container .box .details .content a{
+	display: inline-block;
+	padding: 5px 20px;
+	color: #fff;
+	border: 2px solid #fff;
+	text-decoration: none;
+	transition: 0.5s;
+	border-radius: 20px;
+	transform: scale(0);
+}
+
+@media (min-width: 1000px){
+	.container .box:hover .details .content a{
+		transform: scale(1);
+	}
+	
+	.container .box:hover .details .content{
+		top: calc(50%);
+	}
+}
+
+.container .box .details .content a:hover{
+	background: #fff;
+	color: #262626;
+}
+
+.container .box:nth-child(4) .content a{
+	border: 2px solid #000;
+	color: #000;
+}
+
+.container .box:nth-child(4) .content a:hover{
+	background: #000;
+	color: #ccc;
+}
+
+.container .box .content i{
+	transition: 0.5s;
+}
+
+.container .box .content i:hover{
+	cursor: pointer;
+	transform: scale(1.2);
+	margin-bottom: 20px;
+}
+
+@media (max-width: 1000px){
+	.container{
+		width: 100%;
+		height: auto;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+	
+	.container .box{
+		height: 300px;
+		
+	}
+	
+	.container .box .thumb{
+		display: none;
+	}
+}
+
+@media (max-width: 768px){
+	.container{
+		display: initial;
+	}
+	
+	.container .box{
+		width: 50%;
+		height: 300px;
+		float: left;
+	}
+}
+
+@media (max-width: 480px){
+	.container{
+		top: 0;
+		left: 0;
+		transform: translate(0);
+	}
+	
+	.container .box{
+		width: 100%;
+		height: 200px;
+		float: none;
+	}
+	
+	.container .box .details{
+		height: 200px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

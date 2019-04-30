@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Firefighter space</title>
+	<link rel="stylesheet" th:href="@{/css/inicio.css}" href="../static/css/inicio.css" type="text/css"/>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="bg-image"></div>
+	<div id="exit">
+		<form th:action = "@{/logout}" method="POST">
+			<button type="submit">
+				<a>Salir<i class="fa fa-sign-out" aria-hidden="true"></i></a>
+			</button>
+		</form>
+	</div>
+	<div class="container">
+		<div class="box" id="">
+			<div class="thumb">
+				<img src="/img/calendarioInicio.png" alt="Calendario">
+				<h3>
+					Podrás consultar tus turnos. También tienes la posibilidad de pedir el cambio de turno con alguno de tus compañeros.
+				</h3>
+			</div>
+			<div class="details">
+				<div class="content">
+				<form th:action = "@{/user/} + ${user.id} + '/horario'" method="get">
+						<button type="submit"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+						<h3>Horario</h3>
+						<a href="#">Leer Más</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box" id="">
+			<div class="thumb">
+				<img src="/img/equipoInicio.png" alt="Extintor">
+				<h3>
+					Toda la información diaria de tu equipo personal.
+				</h3>
+			</div>
+			<div class="details">
+				<div class="content">
+				<form th:action = "@{/user/} + ${user.id} + '/equipo'" method="get">
+						<button type="submit"><i class="fa fa-fire-extinguisher" aria-hidden="true"></i></button>
+						<h3>Equipo</h3>
+						<a href="#">Leer Más</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box" id="">
+			<div class="thumb">
+				<img src="/img/chatInicio.png" alt="Chat">
+				<h3>
+					Con esta herramienta podrás comunicarte con tus compañeros del parque.
+				</h3>
+			</div>
+			<div class="details">
+				<div class="content">
+					<form th:action = "@{/user/} + ${user.id} + '/chat'" method="get">
+						<button type="submit"><i class="fa fa-comments" aria-hidden="true"></i></button>
+						<h3>Chat</h3>
+						<a href="#">Leer Más</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box" id="">
+			<div class="thumb">
+				<img src="/img/perfilInicio.png" alt="Perfil">
+				<h3>
+					Consulta tus datos personales. 
+				</h3>
+			</div>
+			<div class="details">
+				<div class="content">
+					<form th:action = "@{/user/} + ${user.id} + '/perfil'" method="get">	
+						<button type="submit"><i class="fa fa-user-circle-o" aria-hidden="true"></i></button>
+						<h3>Perfil</h3>
+						<a href="#">Leer Más</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="../js/menu.js"></script>
+</body>
+</html>

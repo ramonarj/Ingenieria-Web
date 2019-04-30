@@ -36,6 +36,6 @@ INSERT INTO user(id,enabled,login,name,idfire,rankfire,driver,phone,mail,address
  (1, 'Lantern', 8);
  
   INSERT INTO Herramienta(id, type, user_id) VALUES
- (2, 'Walkie', 7);
+ (2, 'HACHA', 7);
 
 
