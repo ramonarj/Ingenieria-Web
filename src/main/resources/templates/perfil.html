@@ -15,8 +15,8 @@
 	<div class="cardBox">
 		<div class="card">
 			<div class="perfil">
-				<form th:action="@{/session.u/{id}/perfil/photo(id=${session.u.id})}" method="POST" enctype="multipart/form-data">
-					<img th:src="@{/session.u/{id}/perfil/photo(id=${session.u.id})}" alt="Foto de perfil">
+				<form th:action="@{/photo/session.u.id}" method="POST" enctype="multipart/form-data">
+					<img th:src="@{/photo/session.u.id}" alt="Foto de perfil">
 					<ul>
 						<li>
 							<h2 th:text="${session.u.name}">usuario</h2>

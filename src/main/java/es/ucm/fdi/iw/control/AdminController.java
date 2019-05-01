@@ -56,8 +56,8 @@ public class AdminController {
 				"SELECT u FROM User u").getResultList());
 		
 		User u = entityManager.find(User.class, id);
-		
 		model.addAttribute("user", u);
+		
 		model.addAttribute("turnos", entityManager.createQuery(
 				"SELECT t FROM Turno t").getResultList());
 		
