@@ -69,6 +69,15 @@ public class UserController {
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
 		
+		//Test para JAVI
+		
+		u.createDiasLaborales("2019-05-12T09:30:00");
+		
+		u.showDiasLaborales();
+		
+		model.addAttribute("test", Arrays.asList(u.getDiasLaborales()));
+		//Termina el test para Javi
+		
 		//Enviar mensaje al admin
 		iwSocketHandler.sendText("ramon", "AVISO: " + u.getLogin() + " esta mirando el menu");
 		return "inicio";

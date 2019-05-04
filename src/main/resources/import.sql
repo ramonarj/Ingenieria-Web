@@ -1,7 +1,7 @@
 
 
 INSERT INTO turno(id, start, end, name) VALUES
-(1, '2019-06-01T09:30:00', '2019-06-01T19:30:00', 'Turno A');
+(1, '2019-05-12T09:30:00', '2019-05-12T19:30:00', 'Turno A');
 INSERT INTO turno(id, start, end, name) VALUES
 (2, '2019-06-02T09:30:00', '2019-06-02T19:30:00', 'Turno B');
 INSERT INTO turno(id, start, end, name) VALUES

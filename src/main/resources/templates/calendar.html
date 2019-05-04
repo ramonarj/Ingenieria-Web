@@ -16,14 +16,17 @@
 <script th:inline="javascript">	
 
 	/*<![CDATA[*/
-
+		
 	var start =	/*[[${session.u.turno.start}]]*/;
 	var end = /*[[${session.u.turno.end}]]*/;
 	var name = /*[[${session.u.turno.name}]]*/;
 	
+	//Aqui deberiamos llamar a session.u.diasLaborales e iterar sobre ello para mostrar los turnos, 
+	//pero no soy capaz de llamarlo - Javi
+
 	var message = "[{\"title\":\""+ name + "\",\"start\":\"" + start + "\",\"end\":\"" + end +"\"}]";
 	
-	console.log(message);
+	//console.log(message);
 
 	/*]]>*/
 
