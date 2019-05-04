@@ -17,22 +17,32 @@
 
 	/*<![CDATA[*/
 		
-	var start =	/*[[${session.u.turno.start}]]*/;
-	var end = /*[[${session.u.turno.end}]]*/;
-	var name = /*[[${session.u.turno.name}]]*/;
+	//var start =	/*[[${session.u.turno.start}]]*/;
+	//var end = /*[[${session.u.turno.end}]]*/;
+	//var name = /*[[${session.u.turno.name}]]*/;
 	
 	//Aqui deberiamos llamar a session.u.diasLaborales e iterar sobre ello para mostrar los turnos, 
 	//pero no soy capaz de llamarlo - Javi
-
-	var message = "[{\"title\":\""+ name + "\",\"start\":\"" + start + "\",\"end\":\"" + end +"\"}]";
 	
-	//console.log(message);
+	
+	var list = [];
+	list = /*[[${session.u.diasLaborales}]]*/
+	var JsonTurns;
+	
+	for(int i = 0; i < list.length; i++){
+		
+		JsonTurns = JsonTurns + "[{\"title\":\""+ list[i].name + "\",\"start\":\"" + list[i].start + "\",\"end\":\"" + list[i].end +"\"}]";
+	}
+
+	//var JsonTurns = "[{\"title\":\""+ name + "\",\"start\":\"" + start + "\",\"end\":\"" + end +"\"}]";
+	
+	//console.log(JsonTurns);
 
 	/*]]>*/
 
 
   //var generados = JSON.parse(htmlDecode('[[${eventos}]]'));
-  var generados = JSON.parse(htmlDecode(message));
+  var generados = JSON.parse(htmlDecode(JsonTurns));
   
   // profe: no sé cómo evitar que Thymeleaf escape JS
   function htmlDecode(input){

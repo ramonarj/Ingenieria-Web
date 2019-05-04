@@ -148,7 +148,6 @@ public class User {
 			
 			end = Endyear + "-" + Endmonth + "-" + Endday + Endhour;
 			
-			
 			//Finalmente los anadimos al auxiliar y lo metemos en la lista
 			auxT.setStart(start);
 			auxT.setEnd(end);

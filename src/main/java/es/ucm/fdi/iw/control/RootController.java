@@ -45,7 +45,7 @@ public class RootController {
 	
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/horario")
-	public String horario(Model model) {
+	public String horario(Model model) {		
 		return "horario";
 	} 
 	

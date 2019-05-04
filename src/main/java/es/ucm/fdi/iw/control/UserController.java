@@ -75,7 +75,7 @@ public class UserController {
 		
 		u.showDiasLaborales();
 		
-		model.addAttribute("test", Arrays.asList(u.getDiasLaborales()));
+		//model.addAttribute("test", Arrays.asList(u.getDiasLaborales()));
 		//Termina el test para Javi
 		
 		//Enviar mensaje al admin
