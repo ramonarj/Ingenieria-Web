@@ -54,21 +54,21 @@ public class User {
 	private String driver;
 	
 	private Turno turno;
-	private List<Turno> diasLaborales;
+	private List<Dia> diasLaborales;
 	
 	@OneToMany(targetEntity=User.class)
 	@JoinColumn(name="turno_id")
-	public List<Turno> getDiasLaborales() {
+	public List<Dia> getDiasLaborales() {
 		return diasLaborales;
 	}
 	
 	public String laboralesEnBonito() {
 		List<String> turnosBonitos = new ArrayList<>();
-		for (Turno t : diasLaborales) turnosBonitos.add(t.toString());
+		for (Dia d : diasLaborales) turnosBonitos.add(d.toString());
 		return "[" + String.join(",", turnosBonitos) + "]";
 	}
 	
-	public void setDiasLaborales(List<Turno> diasLaborales) {
+	public void setDiasLaborales(List<Dia> diasLaborales) {
 		this.diasLaborales = diasLaborales;
 	}
 	
@@ -80,93 +80,11 @@ public class User {
 		
 		//Lo limpiamos solo de momento
 		//Primero anadimos el primr turno que tenemos en la lista
-		diasLaborales.add(turno);
-		
-		//"2019-06-01T09:30:00" Formato de fecha
-		
-		//Cogemos el comienzo y el fin del turno para iterar sobre ello
-		String start = turno.getStart();
-		String end = turno.getEnd();
-
-		//Despues anadimos otros 29 turnos, para que en total sean 30, sumando 4 dias a los siguientes
-		for(int i = 0; i < 29; i++) {
-			Turno auxT = new Turno();
+		Dia d = new Dia();
+		for(int i = 0; i < 10; i++) {
 			
-			//Todos los turnos van a tener la misma ID y Nombre
-			auxT.setId(turno.getId());
-			auxT.setName(turno.getName());
-			
-			//START DATE
-			String Startyear = start.substring(0,4);
-			String Startmonth = start.substring(5,7);
-			String Startday = start.substring(8,10);
-			String Starthour = start.substring(10, start.length());
-			
-			//Parseamos a entero para sumar
-			int intStartDay = Integer.parseInt(Startday);
-			intStartDay = intStartDay + 4;
-			
-			//Si nuestro dia supera el 30 DE MOMENTO lo ponemos a dia 1 y cambiamos de mes
-			if(intStartDay > 30) {
-				intStartDay = 1;
-				int intStartMonth = Integer.parseInt(Startmonth);
-				intStartMonth = intStartMonth + 1;
-				
-				//Para establecer el formato que acepta el calendario
-				if(intStartMonth > 9)
-					Startmonth = Integer.toString(intStartMonth);
-				else
-					Startmonth = "0" + Integer.toString(intStartMonth);
-			}
-			
-			//Aceptarse al formato de dias
-			if(intStartDay > 9) 
-				Startday = Integer.toString(intStartDay);
-			else 
-				Startday = "0" + Integer.toString(intStartDay);
-			
-			//Aqui debemos sumar el año si nos hemos pasado, pero para probar no hace falta de momento
-			
-			//Finalmente establecemos el dia de inicio como este nuevo dia creado
-			start = Startyear + "-" + Startmonth + "-" + Startday + Starthour;
-			
-			//Hacemos exactamente lo mismo con la fecha de fin del evento
-			//END DATE
-			String Endyear = end.substring(0,4);
-			String Endmonth = end.substring(5,7);
-			String Endday = end.substring(8,10);
-			String Endhour = end.substring(10, end.length());
-			
-			int intEndDay = Integer.parseInt(Endday);
-			intEndDay = intEndDay + 4;
-			
-			if(intEndDay > 30) {
-				intEndDay = 1;
-				int intEndMonth = Integer.parseInt(Endmonth);
-				intEndMonth = intEndMonth + 1;
-				
-				if(intEndMonth > 9)
-					Endmonth = Integer.toString(intEndMonth);
-				else
-					Endmonth = "0" + Integer.toString(intEndMonth);
-			}
-			
-			if(intEndDay > 9) 
-				Endday = Integer.toString(intEndDay);
-			else 
-				Endday = "0" + Integer.toString(intEndDay);
-			
-			//Falta añadir la suma del año
-			
-			end = Endyear + "-" + Endmonth + "-" + Endday + Endhour;
-			
-			//Finalmente los anadimos al auxiliar y lo metemos en la lista
-			auxT.setStart(start);
-			auxT.setEnd(end);
-		
-			em.persist(auxT);
-			diasLaborales.add(auxT);		
 		}
+		diasLaborales.add(turno);
 		
 		log.info("Creados turnos para usuario {}, que acaba con {}",  getId(),  diasLaborales.size());
 	}
