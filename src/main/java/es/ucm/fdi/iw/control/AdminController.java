@@ -64,10 +64,15 @@ public class AdminController {
 		return "admin";
 	}
 	
+	@GetMapping("/addUser")
+	public String addUser(Model model) {
+		return "addUser";
+	}
 	
-	@PostMapping("/adduser")
+	
+	@PostMapping("/addUserToDB")
 	@Transactional
-	public String addUser(Model model, @RequestParam String login, @RequestParam String password, @RequestParam String name,
+	public String addUserToDB(Model model, @RequestParam String login, @RequestParam String password, @RequestParam String name,
 			@RequestParam String idfire, @RequestParam Turno turno)
 	{
 		User user = new User();

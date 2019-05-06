@@ -45,7 +45,7 @@ public class RootController {
 	
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/horario")
-	public String horario(Model model) {		
+	public String horario(Model model) {	
 		return "horario";
 	} 
 	
@@ -68,15 +68,9 @@ public class RootController {
 	public String chat(Model model, HttpServletRequest request) {
 		return "chat";
 	} 
-		
-
+	
 	@GetMapping("/admin")
-	public String admin(Model model, Principal principal) {
-		model.addAttribute("activeProfiles", env.getActiveProfiles());
-		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
-		
-		log.info("let us all welcome this admin, {}", principal.getName());
-		
+	public String admin(Model model, Principal principal) {		
 		return "admin";
 	}
 	
