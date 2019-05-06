@@ -8,15 +8,20 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<link rel="stylesheet" th:href="@{/css/Herramientas.css}" href="../static/css/Herramientas.css" type="text/css"/>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+  		$( function() {
+    	$( "#draggable" ).draggable();
+      }
+    });
+  } );
+  </script>
 </head>
 <head th:replace="/fragments/toolbar.html :: head"></head>
 <body>
 	<nav th:replace="/fragments/toolbar.html :: body"></nav>
-	
-	<div class="buttons">
-		<button type="button" id="Lantern" class="active" onclick="addInfoToLanternTable()">Linternas</button>
-		<button type="button" id="Walkie" class="active" onclick="addInfoToWalkieTable()">Walkies</button>
-	</div>
 	
 	<div class="tables">
 		<div class="tableInfo" id="lanternTable">
@@ -25,7 +30,7 @@
 					<th>Bombero</th>
 					<th>Asignación</th>
 				</tr>
-				<tr th:each="user: ${users}">
+				<tr id="draggable" th:each="user: ${users}">
 					<td th:text="${user.name}">Nombre</th>
 					<td>
 						<span th:each="h: ${user.tools}" th:text="${h.type}">

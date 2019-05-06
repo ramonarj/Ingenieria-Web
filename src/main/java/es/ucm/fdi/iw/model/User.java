@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,8 +16,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-import es.ucm.fdi.iw.model.Turno;
-import es.ucm.fdi.iw.model.Herramienta;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 //TODO:
 //1. CHAT CON WEBSOCKET
@@ -36,6 +37,9 @@ import es.ucm.fdi.iw.model.Herramienta;
 			+ "WHERE u.login = :userLogin")
 })
 public class User {
+	
+	private static final Logger log = LogManager.getLogger(User.class);
+	
 	private long id;
 	private String login;	
 	private String password;
@@ -57,16 +61,24 @@ public class User {
 	public List<Turno> getDiasLaborales() {
 		return diasLaborales;
 	}
-
+	
+	public String laboralesEnBonito() {
+		List<String> turnosBonitos = new ArrayList<>();
+		for (Turno t : diasLaborales) turnosBonitos.add(t.toString());
+		return "[" + String.join(",", turnosBonitos) + "]";
+	}
+	
 	public void setDiasLaborales(List<Turno> diasLaborales) {
 		this.diasLaborales = diasLaborales;
 	}
 	
-	public void createDiasLaborales(String startDate) {
+	public void createDiasLaborales(String startDate, EntityManager em) {
 		//diasLaborales = new ArrayList<Turno>();
+		log.info("Creando turnos para usuario {}, que empieza con {}",  getId(),  diasLaborales.size());
+		
+		if ( ! diasLaborales.isEmpty()) return;
 		
 		//Lo limpiamos solo de momento
-		diasLaborales.clear();
 		//Primero anadimos el primr turno que tenemos en la lista
 		diasLaborales.add(turno);
 		
@@ -152,18 +164,22 @@ public class User {
 			auxT.setStart(start);
 			auxT.setEnd(end);
 		
-			diasLaborales.add(auxT);
-		
+			em.persist(auxT);
+			diasLaborales.add(auxT);		
 		}
+		
+		log.info("Creados turnos para usuario {}, que acaba con {}",  getId(),  diasLaborales.size());
 	}
 	
 	//Metodo para debuguear en la consola
 	public void showDiasLaborales() {
+		/*
 		for(int i = 0; i < diasLaborales.size(); i++) {
 			System.out.println("////------------/////" + diasLaborales.get(i).getName() + "////------------/////"  + diasLaborales.get(i).getStart() + 
 						"////------------/////" + diasLaborales.get(i).getEnd() + "////------------/////");
 				
 		}
+		*/
 	}
 
 	public String getDriver() {

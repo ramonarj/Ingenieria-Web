@@ -65,15 +65,16 @@ public class UserController {
 
 	
 	@GetMapping("/{id}")
+	@Transactional
 	public String getUser(@PathVariable long id, Model model, HttpSession session) {
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
 		
 		//Test para JAVI
 		
-		u.createDiasLaborales("2019-05-12T09:30:00");
-		
+		u.createDiasLaborales("2019-05-12T09:30:00", entityManager);		
 		u.showDiasLaborales();
+		session.setAttribute("u",  u);
 		
 		//model.addAttribute("test", Arrays.asList(u.getDiasLaborales()));
 		//Termina el test para Javi

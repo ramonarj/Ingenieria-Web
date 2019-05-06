@@ -63,4 +63,11 @@ public class Turno {
 		this.end = e;
 	}
 	
+	@Override
+	public String toString() {
+		return "{id: '" + id + "'"
+			+ ", start: '" + start + "'"
+			+ ", end: '" + end + "'"
+			+ ", name: '" + name + "'}";
+	}	
 }

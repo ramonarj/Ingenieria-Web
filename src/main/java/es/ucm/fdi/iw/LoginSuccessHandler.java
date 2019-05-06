@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,20 +48,15 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	    log.info("Storing user info for {} in session {}", login, session.getId());
 		User u = entityManager.createNamedQuery("User.byLogin", User.class)
 		        .setParameter("userLogin", login)
-		        .getSingleResult();		
+		        .getSingleResult();	
 		session.setAttribute("u", u);
-		
 
-		
 		// add a 'ws' session variable
 		session.setAttribute("ws", request.getRequestURL().toString()
 				.replaceFirst("[^:]*", "ws")	// http[s]://... => ws://...
 				.replaceFirst("/[^/]*$", "/ws"));	// .../foo		 => .../ws
 		
 		// redirects to 'admin' or 'user/{id}', depending on the user
-		response.sendRedirect(
-				//u.hasRole("admin") ? "admin/" + u.getId(): -----> NO NOS INTERESA DISTINGUIR AL EMPEZAR
-				u.hasRole("student") ? "clase/" :
-					"user/" + u.getId());
+		response.sendRedirect("user/" + u.getId());
 	}
 }
