@@ -17,15 +17,14 @@
 		</form>
 	</div>
 	<div>
-		<h1>Administración</h1>
-		<form th:action = "@{/admin/addUser}" method="get">
-			<button type="submit"><a>Añadir usuario</a></button>
-		</form>
-		<form th:action = "@{/admin/delUser}" method="get">
-			<button type="submit"><a>Eliminar usuario</a></button>
-		</form>
-		<form th:action = "@{/addUser}" method="get">
-			<button type="submit"><a>Añadir turnos</a></button>
+		<form class="smallform" th:action="@{/admin/delUserFromDB}" method="POST">
+			<ul>
+				<li>
+					<input type="text" name="id" class="placeholder" required placeholder="Id del bombero: "/>
+				</li>
+			</ul>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+			<button type="submit" class="">Borrar Bombero</button>
 		</form>
 	</div>
 </body>
