@@ -51,7 +51,7 @@ public class IwSocketHandler extends TextWebSocketHandler {
     	if (payload.startsWith("@")) {
     		String dest = payload.substring(1, payload.indexOf(' '));
     		if (users.containsKey(dest)) {
-    			sendText(dest, userName + ": " + payload.substring(payload.indexOf(' ')+1));
+    			sendText(dest, userName + " (privado): " + payload.substring(payload.indexOf(' ')+1));
     			sendText(userName, "Yo: " + payload.substring(payload.indexOf(' ')+1));
     		} else if (dest.equals("all")) {
     			for (String u : users.keySet()) {
