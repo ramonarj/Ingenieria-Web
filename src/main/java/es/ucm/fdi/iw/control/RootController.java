@@ -44,7 +44,11 @@ public class RootController {
 	} 
 	
 	@GetMapping("/inicio")
-	public String inicio(Model model) {	
+	public String inicio(Model model) {	// HttpSession session
+//		User u = (User)session.getAttribute("u");
+//		model.addAttribute("user", u);
+//		
+//		iwSocketHandler.sendText("ramon", "AVISO: " + u.getLogin() + " esta mirando el menu");
 		return "inicio";
 	} 
 	
