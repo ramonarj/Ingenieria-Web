@@ -45,16 +45,21 @@ public class IwSocketHandler extends TextWebSocketHandler {
     	log.info("received message: " 
     			+ message.getPayload() + " from " 
     			+ userName);
-
+    	
     	// do something with message; for example, re-send it
     	String payload = message.getPayload();
     	if (payload.startsWith("@")) {
     		String dest = payload.substring(1, payload.indexOf(' '));
     		if (users.containsKey(dest)) {
-    			sendText(dest, userName + ": " + payload.substring(payload.indexOf(' ')+1));
+    			sendText(dest, userName + " (privado): " + payload.substring(payload.indexOf(' ')+1));
+    			sendText(userName, "Yo: " + payload.substring(payload.indexOf(' ')+1));
     		} else if (dest.equals("all")) {
     			for (String u : users.keySet()) {
-    				sendText(u, userName + " shouts: " + payload.substring(payload.indexOf(' ')+1));
+    				if(u.equals(userName)) {
+    					sendText(u, "Yo: " + payload.substring(payload.indexOf(' ')+1));
+    				} else {
+    					sendText(u, userName + ": " + payload.substring(payload.indexOf(' ')+1));
+    				}
     			}
     		}
     	}

@@ -48,15 +48,12 @@ public class AdminController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@GetMapping("/{id}")
-	public String index(Model model, @PathVariable long id) {
+	@GetMapping("/")
+	public String index(Model model) {
 		model.addAttribute("activeProfiles", env.getActiveProfiles());
 		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
 		model.addAttribute("users", entityManager.createQuery(
 				"SELECT u FROM User u").getResultList());
-		
-		User u = entityManager.find(User.class, id);
-		model.addAttribute("user", u);
 		
 		model.addAttribute("turnos", entityManager.createQuery(
 				"SELECT t FROM Turno t").getResultList());
@@ -67,6 +64,11 @@ public class AdminController {
 	@GetMapping("/addUser")
 	public String addUser(Model model) {
 		return "addUser";
+	}
+	
+	@GetMapping("/delUser")
+	public String delUser(Model model) {
+		return "delUser";
 	}
 	
 	
@@ -86,6 +88,15 @@ public class AdminController {
 		entityManager.persist(user);
 		entityManager.flush();
 		
+		return "admin";
+	}
+	
+	@PostMapping("/delUserFromDB")
+	@Transactional
+	public String delUserFromDB(Model model, @RequestParam long id)
+	{
+		User u = entityManager.find(User.class, id);
+		entityManager.remove(u);
 		return "admin";
 	}
 	
@@ -127,6 +138,6 @@ public class AdminController {
 			// enable
 			target.setEnabled((byte)1);
 		}
-		return index(model, id);
+		return index(model);
 	}		
 }

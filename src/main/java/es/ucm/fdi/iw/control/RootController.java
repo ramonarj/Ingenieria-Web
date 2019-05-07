@@ -43,6 +43,15 @@ public class RootController {
 		return "login";
 	} 
 	
+	@GetMapping("/inicio")
+	public String inicio(Model model) {	// HttpSession session
+//		User u = (User)session.getAttribute("u");
+//		model.addAttribute("user", u);
+//		
+//		iwSocketHandler.sendText("ramon", "AVISO: " + u.getLogin() + " esta mirando el menu");
+		return "inicio";
+	} 
+	
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/horario")
 	public String horario(Model model, HttpSession session) {
@@ -69,6 +78,8 @@ public class RootController {
 	//Página de chat (se accede desde el inicio)
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
+		model.addAttribute("users", entityManager.createQuery(
+				"SELECT u FROM User u").getResultList());
 		return "chat";
 	} 
 	
