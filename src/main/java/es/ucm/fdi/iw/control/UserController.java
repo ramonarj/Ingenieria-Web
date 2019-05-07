@@ -63,18 +63,7 @@ public class UserController {
 	@Autowired
 	private IwSocketHandler iwSocketHandler;
 
-	
-	@GetMapping("/{id}")
-	@Transactional
-	public String getUser(@PathVariable long id, Model model, HttpSession session) throws Exception {
-		User u = entityManager.find(User.class, id);
-		model.addAttribute("user", u);
-		
-		//Enviar mensaje al admin
-		iwSocketHandler.sendText("ramon", "AVISO: " + u.getLogin() + " esta mirando el menu");
-		return "inicio";
-	}
-	
+	//Cambia un usuario
 	private void alterUser(User target, User changed, String pass2) {
 		if (changed.getPassword() != null && changed.getPassword().equals(pass2)) {
 			// save encoded version of password
