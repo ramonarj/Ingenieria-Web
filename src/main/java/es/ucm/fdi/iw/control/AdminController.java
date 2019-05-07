@@ -49,14 +49,15 @@ public class AdminController {
 	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index(Model model, HttpSession session) {
 		model.addAttribute("activeProfiles", env.getActiveProfiles());
 		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
 		model.addAttribute("users", entityManager.createQuery(
 				"SELECT u FROM User u").getResultList());
 		
-		model.addAttribute("turnos", entityManager.createQuery(
+		session.setAttribute("turnos", entityManager.createQuery(
 				"SELECT t FROM Turno t").getResultList());
+		
 		
 		return "admin";
 	}
@@ -75,7 +76,7 @@ public class AdminController {
 	@PostMapping("/addUserToDB")
 	@Transactional
 	public String addUserToDB(Model model, @RequestParam String login, @RequestParam String password, @RequestParam String name,
-			@RequestParam String idfire, @RequestParam Turno turno)
+			@RequestParam String idfire, @RequestParam long turno_id)
 	{
 		User user = new User();
 		user.setEnabled((byte)1);
@@ -83,8 +84,11 @@ public class AdminController {
 		user.setPassword(passwordEncoder.encode(password));
 		user.setRoles("USER");
 		user.setName(name);
-		user.setIdfire(idfire);
-		user.setTurno(turno);
+		user.setIdfire(idfire);		
+		Turno t = entityManager.find(Turno.class, turno_id);
+		user.setTurno(t);
+		user.createDiasLaborales(t.getStart(), entityManager);
+		
 		entityManager.persist(user);
 		entityManager.flush();
 		
@@ -125,7 +129,7 @@ public class AdminController {
 	
 	@PostMapping("/toggleuser")
 	@Transactional
-	public String delUser(Model model,	@RequestParam long id) {
+	public String delUser(Model model,	@RequestParam long id, HttpSession session) {
 		User target = entityManager.find(User.class, id);
 		if (target.getEnabled() == 1) {
 			// disable
@@ -138,6 +142,6 @@ public class AdminController {
 			// enable
 			target.setEnabled((byte)1);
 		}
-		return index(model);
+		return index(model, session);
 	}		
 }

@@ -54,7 +54,7 @@ public class StartupConfig {
 		log.info("Application is ready to load. Initializing user workdays...");
 		List<User> all = entityManager.createNamedQuery("User.all").getResultList();
 		for (User u : all) {
-			u.createDiasLaborales("2019-05-12", entityManager);
+			u.createDiasLaborales(u.getTurno().getStart(), entityManager);
 		}
 	}
 }

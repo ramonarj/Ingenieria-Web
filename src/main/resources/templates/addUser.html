@@ -31,10 +31,10 @@
 				<li>
 					<input type="text" name="idfire" class="placeholder" required placeholder="ID de Bombero: "/>
 				</li>
-				<select name="dropdownTurno">
-			    	<option th:each="turno: ${turnos}" th:text="${turno.name}" value="${turno.id}">Turno X</option>
-        		 </select>
 			</ul>
+			<select id="dropdownTurno" name="turno_id">
+				<option th:each="turno: ${session.turnos}" th:text="${turno.name}" th:value="${turno.id}">Turno X</option>
+	        </select>
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 			<button type="submit" class="">Añadir Bombero</button>
 		</form>
