@@ -45,7 +45,10 @@ public class RootController {
 	
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/horario")
-	public String horario(Model model) {	
+	public String horario(Model model, HttpSession session) {
+		User u = (User)session.getAttribute("u");
+		u = entityManager.find(User.class, u.getId());
+		model.addAttribute("calendario", u.laboralesEnBonito());
 		return "horario";
 	} 
 	

@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import es.ucm.fdi.iw.control.UserController;
+
 //TODO:
 //1. CHAT CON WEBSOCKET
 //2. BASE DE DATOS PERSISTENTE -> DONE
@@ -39,6 +41,8 @@ import org.apache.logging.log4j.Logger;
 			+ "WHERE u.login = :userLogin")
 })
 public class User {
+	
+	private static final Logger log = LogManager.getLogger(UserController.class);
 	
 	private long id;
 	private String login;	
@@ -63,8 +67,11 @@ public class User {
 	}
 	
 	public String laboralesEnBonito() {
+		
 		List<String> turnosBonitos = new ArrayList<>();
+		
 		for (Dia d : diasLaborales) turnosBonitos.add(d.toString());
+		
 		return "[" + String.join(",", turnosBonitos) + "]";
 	}
 	
@@ -73,12 +80,8 @@ public class User {
 	}
 	
 	public void createDiasLaborales(String startDate, EntityManager em) {
-		//diasLaborales = new ArrayList<Turno>();
 		
 		if ( ! diasLaborales.isEmpty()) return;
-		
-		//Lo limpiamos solo de momento
-		//Primero anadimos el primr turno que tenemos en la lista
 		
 		Dia dIni = new Dia();
 		dIni.setFecha(startDate);

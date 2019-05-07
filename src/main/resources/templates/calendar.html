@@ -19,23 +19,21 @@
 		
 			/*<![CDATA[*/
 			
-			var list = /*[[${session.u.laboralesEnBonito}]]*/;
+			var list = /*[[${calendario}]]*/;
 			var JsonTurns;
+			var r = [];
+			r = list.split("'");
 			
-			for(var i = 0; i < list.length; i++){
-				
-				JsonTurns = JsonTurns + "[{\"title\":\""+ list[i].name + "\",\"start\":\"" + list[i].start + "\",\"end\":\"" + list[i].end +"\"}]";
-			}
-		
+			
+			
 			//var JsonTurns = "[{\"title\":\""+ name + "\",\"start\":\"" + start + "\",\"end\":\"" + end +"\"}]";
 			
-			console.log(JsonTurns);
+			var JsonTurns = "[{\"title\":\""+ "chanquete" + "\",\"start\":\"" + "2019-05-09T09:00" + "\",\"end\":\"" + "2019-05-09T12:00" +"\"}]";
 		
 			/*]]>*/
 		
-		
-		  //var generados = JSON.parse(htmlDecode('[[${eventos}]]'));
 		  var generados = JSON.parse(htmlDecode(JsonTurns));
+		  console.log(generados);
 		  
 		  // profe: no sé cómo evitar que Thymeleaf escape JS
 		  function htmlDecode(input){
