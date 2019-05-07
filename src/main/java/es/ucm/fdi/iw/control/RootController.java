@@ -71,6 +71,8 @@ public class RootController {
 	//Página de chat (se accede desde el inicio)
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
+		model.addAttribute("users", entityManager.createQuery(
+				"SELECT u FROM User u").getResultList());
 		return "chat";
 	} 
 	
