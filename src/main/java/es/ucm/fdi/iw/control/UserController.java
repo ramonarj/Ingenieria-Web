@@ -66,14 +66,13 @@ public class UserController {
 	
 	@GetMapping("/{id}")
 	@Transactional
-	public String getUser(@PathVariable long id, Model model, HttpSession session) {
+	public String getUser(@PathVariable long id, Model model, HttpSession session) throws Exception {
 		User u = entityManager.find(User.class, id);
 		model.addAttribute("user", u);
 		
 		//Test para JAVI
 		
-		u.createDiasLaborales("2019-05-12T09:30:00", entityManager);		
-		u.showDiasLaborales();
+		u.createDiasLaborales("2019-05-12", entityManager);		
 		session.setAttribute("u",  u);
 		
 		//model.addAttribute("test", Arrays.asList(u.getDiasLaborales()));
@@ -91,8 +90,7 @@ public class UserController {
 		}		
 		target.setPhone(changed.getPhone());
 		target.setMail(changed.getMail());
-		target.setAddress(changed.getAddress());
-		log.info("Datos del usuario '{}' con id={} cambiados", target.getLogin(), target.getId());		
+		target.setAddress(changed.getAddress());	
 	}
 	
 	@PostMapping("/")

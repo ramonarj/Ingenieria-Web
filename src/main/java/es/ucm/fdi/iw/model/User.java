@@ -38,8 +38,6 @@ import org.apache.logging.log4j.Logger;
 })
 public class User {
 	
-	private static final Logger log = LogManager.getLogger(User.class);
-	
 	private long id;
 	private String login;	
 	private String password;
@@ -57,7 +55,7 @@ public class User {
 	private List<Dia> diasLaborales;
 	
 	@OneToMany(targetEntity=User.class)
-	@JoinColumn(name="turno_id")
+	@JoinColumn(name="fecha")
 	public List<Dia> getDiasLaborales() {
 		return diasLaborales;
 	}
@@ -72,34 +70,27 @@ public class User {
 		this.diasLaborales = diasLaborales;
 	}
 	
-	public void createDiasLaborales(String startDate, EntityManager em) {
+	public void createDiasLaborales(String startDate, EntityManager em) throws Exception {
 		//diasLaborales = new ArrayList<Turno>();
-		log.info("Creando turnos para usuario {}, que empieza con {}",  getId(),  diasLaborales.size());
 		
 		if ( ! diasLaborales.isEmpty()) return;
 		
 		//Lo limpiamos solo de momento
 		//Primero anadimos el primr turno que tenemos en la lista
-		Dia d = new Dia();
-		for(int i = 0; i < 10; i++) {
-			
-		}
-		diasLaborales.add(turno);
 		
-		log.info("Creados turnos para usuario {}, que acaba con {}",  getId(),  diasLaborales.size());
+		Dia dIni = new Dia();
+		dIni.setFecha(startDate);
+		dIni.setTurno(turno);
+		diasLaborales.add(dIni);
+		
+		for(int i = 1; i < 10; i++) {
+			Dia d = new Dia();
+			d.setFecha(d.next(diasLaborales.get(i - 1).getFecha(), 4));
+			d.setTurno(turno);
+			diasLaborales.add(d);
+		}
 	}
 	
-	//Metodo para debuguear en la consola
-	public void showDiasLaborales() {
-		/*
-		for(int i = 0; i < diasLaborales.size(); i++) {
-			System.out.println("////------------/////" + diasLaborales.get(i).getName() + "////------------/////"  + diasLaborales.get(i).getStart() + 
-						"////------------/////" + diasLaborales.get(i).getEnd() + "////------------/////");
-				
-		}
-		*/
-	}
-
 	public String getDriver() {
 		return driver;
 	}
