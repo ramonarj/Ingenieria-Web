@@ -26,7 +26,7 @@
 	
 	<select id="destinatario">
 	  <option value="all" selected>Todos</option>
-	  <option th:each="user: ${users}">
+	  <option th:each="user: ${users}" th:if="${user.login} != ${session.u.login}">
 	  		<value th:text="${user.login}"></value>
 	  </option>
 	</select>
