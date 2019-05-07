@@ -77,14 +77,14 @@
 	<div class="bg-image"></div>
 	<header>
 		<div class="avatar">
-		<img th:src="@{/user/{id}/perfil/photo(id=${session.u.id})}" alt="Foto de perfil">
+		<img th:src="@{/user/photo/} + ${session.u.id}" alt="Foto de perfil">
 		</div>
 		<div class="menu-toggle"></div>
 		<nav>
 			<ul>
 				<li th:if="${session.u.hasRole('admin')}">
-					<form th:action = "@{/admin}" method="get">
-					<button type="submit" id=""><a>Añadir Bomberos</a></button>
+					<form th:action = "@{/admin/} + ${session.u.id}" method="get">
+					<button type="submit" id=""><a>Administración</a></button>
 					</form>
 				</li>
 				<li>
@@ -98,12 +98,12 @@
 					</form>
 				</li>
 				<li>
-					<form th:action = "@{/chat}'" method="get">
+					<form th:action = "@{/chat}" method="get">
 					<button type="submit"><a>Chat</a></button>
 					</form>
 				</li>
 				<li>
-					<form th:action = "@{/perfil}'" method="get">
+					<form th:action = "@{/perfil}" method="get">
 					<button type="submit"><a>Perfil</a></button>
 					</form>
 				</li>

@@ -1,120 +1,135 @@
 <!DOCTYPE html>
 <html 
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head>
-<meta charset='utf-8' />
-<link th:href='@{/css/core.css}' rel='stylesheet' />
-<link th:href='@{/css/daygrid.css}' rel='stylesheet' />
-<link th:href='@{/css/timegrid.css}' rel='stylesheet' />
-<link th:href='@{/css/list.css}' rel='stylesheet' />
-<script th:src='@{/js/core.js}'></script>
-<script th:src='@{/js/interaction.js}'></script>
-<script th:src='@{/js/daygrid.js}'></script>
-<script th:src='@{/js/timegrid.js}'></script>
-<script th:src='@{/js/list.js}'></script>
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset='utf-8' />
+		<link th:href='@{/css/core.css}' rel='stylesheet' />
+		<link th:href='@{/css/daygrid.css}' rel='stylesheet' />
+		<link th:href='@{/css/timegrid.css}' rel='stylesheet' />
+		<link th:href='@{/css/list.css}' rel='stylesheet' />
+		<script th:src='@{/js/core.js}'></script>
+		<script th:src='@{/js/interaction.js}'></script>
+		<script th:src='@{/js/daygrid.js}'></script>
+		<script th:src='@{/js/timegrid.js}'></script>
+		<script th:src='@{/js/list.js}'></script>
+		
+		<script th:inline="javascript">	
+		
+		
+			/*<![CDATA[*/
 
-<script th:inline="javascript">	
-
-	/*<![CDATA[*/
-
-	var start =	/*[[${user.turno.start}]]*/;
-	var end = /*[[${user.turno.end}]]*/;
-	var name = /*[[${user.turno.name}]]*/;
+			var start =/*[[${session.u.turno.start}]]*/;
+			var end = /*[[${session.u.turno.end}]]*/;
+			var name = /*[[${session.u.turno.name}]]*/;
+			
+			//Aqui deberiamos llamar a session.u.diasLaborales e iterar sobre ello para mostrar los turnos, 
+			//pero no soy capaz de llamarlo - Javi
+			
+			
+			var list = /*[[${session.u.laboralesEnBonito()}]]*/;
+			var JsonTurns;
+			
+			for(var i = 0; i < list.length; i++){
+				
+				JsonTurns = JsonTurns + "[{\"title\":\""+ list[i].name + "\",\"start\":\"" + list[i].start + "\",\"end\":\"" + list[i].end +"\"}]";
+			}
+		
+			//var JsonTurns = "[{\"title\":\""+ name + "\",\"start\":\"" + start + "\",\"end\":\"" + end +"\"}]";
+			
+			console.log(JsonTurns);
+		
+			/*]]>*/
+		
+		
+		  //var generados = JSON.parse(htmlDecode('[[${eventos}]]'));
+		  var generados = JSON.parse(htmlDecode(JsonTurns));
+		  
+		  // profe: no sé cómo evitar que Thymeleaf escape JS
+		  function htmlDecode(input){
+			  var e = document.createElement('textarea');
+			  e.innerHTML = input;
+			  // handle case of empty input
+			  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+		  }
+		  
+		  document.addEventListener('DOMContentLoaded', function() {
+		    var calendarEl = document.getElementById('calendar');
+		
+		    var calendar = new FullCalendar.Calendar(calendarEl, {
+		      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+		      header: {
+		        left: 'prev,next today',
+		        center: 'title',
+		        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+		      },
+		      defaultDate: new Date(),
+		      editable: true,
+		      navLinks: true, // can click day/week names to navigate views
+		      eventLimit: true, // allow "more" link when too many events
+		      events: generados,
+		      loading: function(bool) {
+		        document.getElementById('loading').style.display =
+		          bool ? 'block' : 'none';
+		      }
+		    });
+		
+		    calendar.render();
+		  });
+		
+		</script>
+		<style>
+		
+		  body {
+		    margin: 0;
+		    padding: 0;
+		    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+		    font-size: 14px;
+		  }
+		
+		  #script-warning {
+		    display: none;
+		    background: #eee;
+		    border-bottom: 1px solid #ddd;
+		    padding: 0 10px;
+		    line-height: 40px;
+		    text-align: center;
+		    font-weight: bold;
+		    font-size: 12px;
+		    color: red;
+		  }
+		
+		  #loading {
+		    display: none;
+		    position: absolute;
+		    top: 10px;
+		    right: 10px;
+		  }
+		
+		  #calendar {
+		    max-width: 1000px;
+		    margin: 50px 60px;
+		    padding: 10px 10px;
+		    background: white;
+		    position: absolute;
+		    border-radius: 5px;
+		    top: 50%;
+		    left: 45%;
+		    transform: translate(-50%, -50%);
+		  }
+		
+		</style>
+	</head>
+	<body>
 	
-	var message = "[{\"title\":\""+ name + "\",\"start\":\"" + start + "\",\"end\":\"" + end +"\"}]";
-	console.log(message);
-
-	/*]]>*/
-
-
-  //var generados = JSON.parse(htmlDecode('[[${eventos}]]'));
-  var generados = JSON.parse(htmlDecode(message));
-  
-  // profe: no sé cómo evitar que Thymeleaf escape JS
-  function htmlDecode(input){
-	  var e = document.createElement('textarea');
-	  e.innerHTML = input;
-	  // handle case of empty input
-	  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      },
-      defaultDate: new Date(),
-      editable: true,
-      navLinks: true, // can click day/week names to navigate views
-      eventLimit: true, // allow "more" link when too many events
-      events: generados,
-      loading: function(bool) {
-        document.getElementById('loading').style.display =
-          bool ? 'block' : 'none';
-      }
-    });
-
-    calendar.render();
-  });
-
-</script>
-<style>
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #script-warning {
-    display: none;
-    background: #eee;
-    border-bottom: 1px solid #ddd;
-    padding: 0 10px;
-    line-height: 40px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 12px;
-    color: red;
-  }
-
-  #loading {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-
-  #calendar {
-    max-width: 1000px;
-    margin: 50px 60px;
-    padding: 10px 10px;
-    background: white;
-    position: absolute;
-    border-radius: 5px;
-    top: 50%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-  }
-
-</style>
-</head>
-<body>
-
-  <div id='script-warning'>
-    <code>php/get-events.php</code> must be running.
-  </div>
-
-  <div id='loading'>loading...</div>
-
-  <div id='calendar'></div>
-
-</body>
+	  <div id='script-warning'>
+	    <code>php/get-events.php</code> must be running.
+	  </div>
+	
+	  <div id='loading'>loading...</div>
+	
+	  <div id='calendar'></div>
+	
+	</body>
 </html>
 

@@ -28,6 +28,8 @@ import org.apache.logging.log4j.Logger;
 
 @Entity
 @NamedQueries({
+	@NamedQuery(name="User.all",
+	query="SELECT u FROM User u"),
 	@NamedQuery(name="User.byLogin",
 	query="SELECT u FROM User u "
 			+ "WHERE u.login = :userLogin AND u.enabled = 1"),
@@ -52,10 +54,10 @@ public class User {
 	private String driver;
 	
 	private Turno turno;
-	private List<Dia> diasLaborales;
+	private List<Dia> diasLaborales = new ArrayList<>();
 	
-	@OneToMany(targetEntity=User.class)
-	@JoinColumn(name="fecha")
+	@OneToMany(targetEntity=Dia.class)
+	@JoinColumn(name="currela_id")
 	public List<Dia> getDiasLaborales() {
 		return diasLaborales;
 	}
@@ -70,7 +72,7 @@ public class User {
 		this.diasLaborales = diasLaborales;
 	}
 	
-	public void createDiasLaborales(String startDate, EntityManager em) throws Exception {
+	public void createDiasLaborales(String startDate, EntityManager em) {
 		//diasLaborales = new ArrayList<Turno>();
 		
 		if ( ! diasLaborales.isEmpty()) return;
@@ -81,13 +83,16 @@ public class User {
 		Dia dIni = new Dia();
 		dIni.setFecha(startDate);
 		dIni.setTurno(turno);
+		dIni.setCurrela(this);
 		diasLaborales.add(dIni);
+		em.persist(dIni);
 		
 		for(int i = 1; i < 10; i++) {
 			Dia d = new Dia();
 			d.setFecha(d.next(diasLaborales.get(i - 1).getFecha(), 4));
 			d.setTurno(turno);
 			diasLaborales.add(d);
+			em.persist(d);
 		}
 	}
 	

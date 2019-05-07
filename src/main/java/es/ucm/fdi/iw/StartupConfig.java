@@ -1,8 +1,11 @@
 package es.ucm.fdi.iw;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletContext;
+import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,6 +16,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import es.ucm.fdi.iw.control.RootController;
+import es.ucm.fdi.iw.model.User;
 
 /**
  * This code will execute when the application first starts.
@@ -28,9 +32,13 @@ public class StartupConfig {
 	private Environment env;
 
 	@Autowired
+	private EntityManager entityManager;
+	
+	@Autowired
 	private ServletContext context;
 	
 	@EventListener(ContextRefreshedEvent.class)
+	@Transactional
 	public void contextRefreshedEvent() {
 		String debugProperty = env.getProperty("es.ucm.fdi.debug");
 		context.setAttribute("debug", debugProperty != null 
@@ -42,5 +50,11 @@ public class StartupConfig {
 		// and https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
 		context.setAttribute("dateFormatter", 
 				new SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss.sssZ"));
+		
+		log.info("Application is ready to load. Initializing user workdays...");
+		List<User> all = entityManager.createNamedQuery("User.all").getResultList();
+		for (User u : all) {
+			u.createDiasLaborales("2019-05-12", entityManager);
+		}
 	}
 }

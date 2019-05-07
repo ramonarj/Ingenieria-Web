@@ -22,6 +22,7 @@ public class Dia {
 	private long id;
 	private String fecha; 
 	private Turno turno;
+	private User currela;
 	
 	public String getFecha() {
 		return fecha;
@@ -45,10 +46,19 @@ public class Dia {
 	public long getId() {
 		return id;
 	}
-	
+		
 	public void setId(long id) {
 		this.id = id;
 	}	
+
+	@ManyToOne(targetEntity = User.class)
+	public User getCurrela() {
+		return currela;
+	}
+
+	public void setCurrela(User currela) {
+		this.currela = currela;
+	}
 
 	@Override
 	public String toString() {
@@ -64,7 +74,7 @@ public class Dia {
 		return fecha;
 	}	
 	
-	public static String next(String fecha, int numDiasEntreTurnos) throws Exception {
+	public static String next(String fecha, int numDiasEntreTurnos) {
  		// 2019-05-12 => 2019-05-13 ; 2019-05-30 => 2019-06-01		
 		String[] parts = fecha.split("-");
 		int day = Integer.parseInt(parts[2]);
@@ -83,9 +93,11 @@ public class Dia {
 		
 		String dateString = String.format("%4d-%2d-%2d", year, month, day);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = df.parse(dateString);  
-		String str = df.format(date);
-		
-		return str;
+		try {
+			Date date = df.parse(dateString);
+			return df.format(date);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("No puedo parsear " + dateString, e);
+		}
 	}
 }

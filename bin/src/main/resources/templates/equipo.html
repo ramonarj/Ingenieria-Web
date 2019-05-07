@@ -8,15 +8,12 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<link rel="stylesheet" th:href="@{/css/Herramientas.css}" href="../static/css/Herramientas.css" type="text/css"/>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </head>
 <head th:replace="/fragments/toolbar.html :: head"></head>
 <body>
 	<nav th:replace="/fragments/toolbar.html :: body"></nav>
-	
-	<div class="buttons">
-		<button type="button" id="Lantern" class="active" onclick="addInfoToLanternTable()">Linternas</button>
-		<button type="button" id="Walkie" class="active" onclick="addInfoToWalkieTable()">Walkies</button>
-	</div>
 	
 	<div class="tables">
 		<div class="tableInfo" id="lanternTable">
@@ -27,9 +24,10 @@
 				</tr>
 				<tr th:each="user: ${users}">
 					<td th:text="${user.name}">Nombre</th>
-					<td>
-						<span th:each="h: ${user.tools}" th:text="${h.type}">
-							Herramienta</span>
+					<td>					
+							<span th:each="h: ${user.tools}" th:text="${h.type}">
+							Herramienta
+							</span>
 					</td>
 				</tr>
 			</table>
