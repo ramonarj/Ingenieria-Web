@@ -96,7 +96,9 @@ public class UserController {
 		User requester = (User)session.getAttribute("u");
 		User target = entityManager.find(User.class, requester.getId());
 		
+		//Cambia el usuario y actualiza la sesión
 		alterUser(target, edited, pass2);
+		session.setAttribute("u",  target);
 		
 		return "perfil";
 	}	
@@ -118,7 +120,9 @@ public class UserController {
 			return "perfil";
 		}
 
+		//Cambia el usuario y actualiza la sesión
 		alterUser(target, edited, pass2);
+		session.setAttribute("u",  target);
 
 		return "admin";
 	}	

@@ -43,6 +43,11 @@ public class RootController {
 		return "login";
 	} 
 	
+	@GetMapping("/inicio")
+	public String inicio(Model model) {	
+		return "inicio";
+	} 
+	
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/horario")
 	public String horario(Model model) {	

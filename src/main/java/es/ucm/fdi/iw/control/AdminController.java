@@ -48,7 +48,7 @@ public class AdminController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@GetMapping("/{id}")
+	@GetMapping("/")
 	public String index(Model model, @PathVariable long id) {
 		model.addAttribute("activeProfiles", env.getActiveProfiles());
 		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
