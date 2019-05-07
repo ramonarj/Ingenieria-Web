@@ -52,7 +52,7 @@ public class AdminController {
 	public String index(Model model, HttpSession session) {
 		model.addAttribute("activeProfiles", env.getActiveProfiles());
 		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
-		model.addAttribute("users", entityManager.createQuery(
+		session.setAttribute("users", entityManager.createQuery(
 				"SELECT u FROM User u").getResultList());
 		
 		session.setAttribute("turnos", entityManager.createQuery(
@@ -97,9 +97,9 @@ public class AdminController {
 	
 	@PostMapping("/delUserFromDB")
 	@Transactional
-	public String delUserFromDB(Model model, @RequestParam long id)
+	public String delUserFromDB(Model model, @RequestParam long user_id)
 	{
-		User u = entityManager.find(User.class, id);
+		User u = entityManager.find(User.class, user_id);
 		entityManager.remove(u);
 		return "admin";
 	}

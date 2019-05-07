@@ -6,16 +6,12 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>Firefighter space</title>
+	<link rel="stylesheet" th:href="@{/css/addUser.css}" href="../static/css/addUser.css" type="text/css"/>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+<head th:replace="/fragments/toolbar.html :: head"></head>
 <body>
-	<div id="exit">
-		<form th:action = "@{/logout}" method="POST">
-			<button type="submit">
-				<a>Salir<i class="fa fa-sign-out" aria-hidden="true"></i></a>
-			</button>
-		</form>
-	</div>
+	<nav th:replace="/fragments/toolbar.html :: body"></nav>
 	<div>
 		<form class="smallform" th:action="@{/admin/addUserToDB}" method="POST">
 			<ul>
