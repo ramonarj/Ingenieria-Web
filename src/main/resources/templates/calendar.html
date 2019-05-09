@@ -17,22 +17,26 @@
 		<script th:inline="javascript">	
 		
 		
-			/*<![CDATA[*/
+		/*<![CDATA[*/
 			
 			var list = /*[[${calendario}]]*/;
-			var JsonTurns;
-			var r = [];
-			r = list.split("'");
-			console.log(r);
-			
-			
-			
-			//var JsonTurns = "[{\"title\":\""+ name + "\",\"start\":\"" + start + "\",\"end\":\"" + end +"\"}]";
-			
-			var JsonTurns = "[{\"title\":\""+ "chanquete" + "\",\"start\":\"" + "2019-05-09T09:00" + "\",\"end\":\"" + "2019-05-09T12:00" +"\"}]";
+	
+		/*]]>*/
 		
-			/*]]>*/
+	    var JsonTurns;
+		var aux = [];
+		aux = list.split("'");
+			
+		var i;
+		var JsonTurns = "[{\"title\":\""+ aux[7] + "\",\"start\":\"" +  aux[3] + "\",\"end\":\"" + aux[5] +"\"}";
 		
+		for (i = 8; i < aux.length - 1; i+=8) { 
+			 JsonTurns += ",{\"title\":\""+ aux[i + 7] + "\",\"start\":\"" +  aux[i + 3] + "\",\"end\":\"" + aux[i + 5] +"\"}";
+			}
+		
+		 JsonTurns += "]";
+			
+			
 		  var generados = JSON.parse(htmlDecode(JsonTurns));
 		  console.log(generados);
 		  

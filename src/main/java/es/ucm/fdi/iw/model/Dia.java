@@ -77,10 +77,12 @@ public class Dia {
 	public static String next(String fecha, int numDiasEntreTurnos) {
  		// 2019-05-12 => 2019-05-13 ; 2019-05-30 => 2019-06-01		
 		String[] parts = fecha.split("-");
-		int day = Integer.parseInt(parts[2]);
+		
+		int day = Integer.parseInt(parts[2].substring(0, 2));
 		int month = Integer.parseInt(parts[1]);
 		int year = Integer.parseInt(parts[0]);
 		int d = day;
+		
 		day += numDiasEntreTurnos;
 		if (day == 31) {
 			month ++;
