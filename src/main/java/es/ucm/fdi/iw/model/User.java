@@ -81,7 +81,8 @@ public class User {
 	
 	public void createDiasLaborales(String startDate, EntityManager em) {
 		
-		if ( ! diasLaborales.isEmpty()) return;
+		// modificar: sólo si no tiene laborables, o si el ultimo es menor que el inicio del turno
+		//if ( ! diasLaborales.isEmpty()) return;
 		
 		Dia dIni = new Dia();
 		dIni.setFecha(startDate);
@@ -90,7 +91,7 @@ public class User {
 		diasLaborales.add(dIni);
 		em.persist(dIni);
 		
-		for(int i = 1; i < 10; i++) {
+		for(int i = 1; i < 91; i++) {
 			Dia d = new Dia();
 			d.setFecha(d.next(diasLaborales.get(i - 1).getFecha(), 4));
 			d.setTurno(turno);

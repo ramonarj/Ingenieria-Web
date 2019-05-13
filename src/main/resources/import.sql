@@ -1,13 +1,13 @@
 
 
 INSERT INTO turno(id, start, end, name) VALUES
-(1, '2019-05-12T09:30:00', '2019-05-12T19:30:00', 'Turno A');
+(1, '2019-01-01T09:30:00', '2019-01-01T19:30:00', 'Turno A');
 INSERT INTO turno(id, start, end, name) VALUES
-(2, '2019-05-12T09:30:00', '2019-05-12T19:30:00', 'Turno B');
+(2, '2019-01-02T09:30:00', '2019-01-02T19:30:00', 'Turno B');
 INSERT INTO turno(id, start, end, name) VALUES
-(3, '2019-05-12T09:30:00', '2019-05-12T19:30:00', 'Turno C');
+(3, '2019-01-03T09:30:00', '2019-01-03T19:30:00', 'Turno C');
 INSERT INTO turno(id, start, end, name) VALUES
-(4, '2019-05-12T09:30:00', '2019-05-12T19:30:00', 'Turno D');
+(4, '2019-01-04T09:30:00', '2019-01-04T19:30:00', 'Turno D');
 
 -- NUUESTROS USUARIOS	
 INSERT INTO user(id,enabled,login,name,idfire,rankfire,driver,phone,mail,address,password,roles, turno_id) VALUES 
