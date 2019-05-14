@@ -45,28 +45,27 @@ public class RootController {
 	
 	@GetMapping("/inicio")
 	public String inicio(Model model) {	// HttpSession session
-//		User u = (User)session.getAttribute("u");
-//		model.addAttribute("user", u);
-//		
-//		iwSocketHandler.sendText("ramon", "AVISO: " + u.getLogin() + " esta mirando el menu");
 		return "inicio";
 	} 
 	
 	//Página de horarios (se accede desde el inicio)
 	@GetMapping("/horario")
-	public String horario(Model model, HttpSession session) {
+	 public String horario(Model model, HttpSession session) {
 		
-		model.addAttribute("users", entityManager.createQuery(
+		incorporaHorario(model, session, entityManager);
+		return "horario";
+	} 
+	
+	//Para llamarlo desde otros controladores
+	 protected static void incorporaHorario(Model model, HttpSession session, EntityManager em) {
+		
+		model.addAttribute("users", em.createQuery(
 				"SELECT u FROM User u").getResultList());
 		
 		User u = (User)session.getAttribute("u");
-		u = entityManager.find(User.class, u.getId());
+		u = em.find(User.class, u.getId());
 		
 		model.addAttribute("calendario", u.laboralesEnBonito());
-		
-
-		
-		return "horario";
 	} 
 	
 	//Página de perfil (se accede desde el inicio)
