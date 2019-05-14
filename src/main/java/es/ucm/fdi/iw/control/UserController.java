@@ -92,6 +92,8 @@ public class UserController {
 		return "perfil";
 	}	
 	
+	
+	
 	@PostMapping("/{id}")
 	@Transactional //¡¡PARA MODIFICAR LA BASE DE DATOS!!
 	public String editOther(
@@ -163,4 +165,16 @@ public class UserController {
 		}
 		return "perfil";
 	}
+	
+	@GetMapping("/cambiaTurno")
+	public String cambiaTurno(Model model, HttpSession session, 
+			@RequestParam String date1, @RequestParam String date2, @RequestParam long user2_id) {
+		
+		User u = (User)session.getAttribute("u");
+		User u2 = entityManager.find(User.class, user2_id);
+		
+		log.info(u.getLogin() + "quiere cambiar su turno del dia " + date1 + " al día " + date2 + "a " + u2.getLogin());
+		
+		return "horario";
+	}	
 }
