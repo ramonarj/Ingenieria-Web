@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>Firefighter chat</title>
+	<link rel="stylesheet" th:href="@{/css/horario.css}" href="../static/css/horario.css" type="text/css"/>
 	<link rel="stylesheet" th:href="@{/css/chat.css}" href="../static/css/chat.css" type="text/css"/>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -16,12 +17,19 @@
 	<div class="chat-box">
 			<h1>Chat</h1>
 		
-			<textarea id="recibido" cols="100" rows="20">
+			<textarea readonly id="recibido" cols="100" rows="20">
 			</textarea>
 			<form id="escrito">
 			<input id="texto" size="98" placeholder="escribe algo y pulsa enter para enviarlo"/>
 			</form>
 	</div>
+	
+	<select id="destinatario">
+	  <option value="all" selected>Todos</option>
+	  <option th:each="user: ${users}" th:if="${user.login} != ${session.u.login}">
+	  		<value th:text="${user.login}"></value>
+	  </option>
+	</select>
 	
 	<script>
 		
@@ -30,10 +38,27 @@
 		const lineInput = document.getElementById("texto");
 		const lineOutput = document.getElementById("recibido");
 		
+/* 		// get reference to select element
+		var sel = document.getElementById('destinatario');
+
+		// create new option element
+		var opt = document.createElement('option');
+		// create text node to add to option element (opt)
+		opt.appendChild( document.createTextNode('Alejandro') );
+		// set value property of opt
+		opt.value = '@ale';
+		
+		// add opt to end of select box (sel)
+		sel.appendChild(opt); */
+		
 		// envio
 		escrito.onsubmit = function (e) {
 			var t = lineInput.value;
-			ws.send("@all " + t);
+			
+			var user = document.getElementById("destinatario").value;
+			ws.send("@" + user + " " + t);
+			
+			//ws.send("@all " + t);
 			lineInput.value = ""
 			return false;
 		}

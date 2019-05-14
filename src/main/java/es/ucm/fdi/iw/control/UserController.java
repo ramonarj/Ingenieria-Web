@@ -36,7 +36,9 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.model.Cambio;
 import es.ucm.fdi.iw.model.Turno;
+import es.ucm.fdi.iw.model.Dia;
 import es.ucm.fdi.iw.model.Herramienta;
 
 import java.util.List;
@@ -170,11 +172,47 @@ public class UserController {
 	public String cambiaTurno(Model model, HttpSession session, 
 			@RequestParam String date1, @RequestParam String date2, @RequestParam long user2_id) {
 		
+		//Identificamos a los usuarios implicados
 		User u = (User)session.getAttribute("u");
 		User u2 = entityManager.find(User.class, user2_id);
+
+		//Creamos el cambio
+		Cambio c = new Cambio();
+		c.setEstado("Propuesto");
+		c.setUser1(u);
+		c.setDia1(date1);
+		c.setUser2(u2);
+		c.setDia2(date2);
 		
-		log.info(u.getLogin() + "quiere cambiar su turno del dia " + date1 + " al día " + date2 + "a " + u2.getLogin());
+		//Lo añadimos a la base de datos
+		entityManager.persist(c);
+		entityManager.flush();
 		
+		log.info(u.getLogin() + "quiere cambiar su turno del dia " + date1 + " al día " + date2 + " a " + u2.getLogin());
+		
+		//Recargamos la info del horario
+		RootController.incorporaHorario(model, session, entityManager);
 		return "horario";
 	}	
+	
+	@GetMapping("/getUsersToChange")
+	public String getUsersToChange(Model model, HttpSession session, String fechaOrigen, String fechaDestino) 
+	{
+//		List<User> users = entityManager.createQuery("SELECT u FROM User u").getResultList();
+//		//List<User> filteredUsers = new List<User>();
+//		for(User u : users)
+//		{
+//			for(Dia d: u.getDiasLaborales())
+//			{
+//				if(d == d1)
+//					//Salir del for
+//				else if(d == dia2)
+//					//Añadir a filteredUsers y salir
+//				
+//			}
+//		}
+//		
+		
+		return "horario";
+	}
 }

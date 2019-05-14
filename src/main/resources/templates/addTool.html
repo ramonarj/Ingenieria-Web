@@ -13,26 +13,19 @@
 <body>
 	<nav th:replace="/fragments/toolbar.html :: body"></nav>
 	<div>
-		<form class="smallform" th:action="@{/admin/addUserToDB}" method="POST">
+		<form class="smallform" th:action="@{/admin/addToolToDB}" method="POST">
 			<ul>
 				<li>
-					<input type="text" name="login" class="placeholder" required placeholder="Usuario: "/>
+					<input type="text" name="type" class="placeholder" required placeholder="Nombre herramienta: "/>
 				</li>
 				<li>
-					<input type="password" name="password" class="placeholder" required placeholder="Contraseña: "/>
-				</li>
-				<li>
-					<input type="text" name="name" class="placeholder" required placeholder="Nombre y Apellidos: "/>
-				</li>
-				<li>
-					<input type="text" name="idfire" class="placeholder" required placeholder="ID de Bombero: "/>
+					<select id="dropdownTool" name="user_id">
+						<option th:each="user: ${users}" th:text="${user.name}" th:value="${user.id}">usuario</option>
+	        		</select>
 				</li>
 			</ul>
-			<select id="dropdownTurno" name="turno_id">
-				<option th:each="turno: ${session.turnos}" th:text="${turno.name}" th:value="${turno.id}">Turno X</option>
-	        </select>
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-			<button type="submit" class="">Añadir Bombero</button>
+			<button type="submit" class="">Añadir herramienta</button>
 		</form>
 	</div>
 </body>

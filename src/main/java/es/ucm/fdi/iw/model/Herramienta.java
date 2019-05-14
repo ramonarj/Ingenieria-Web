@@ -22,7 +22,7 @@ public class Herramienta {
 		this.user = u;
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}
