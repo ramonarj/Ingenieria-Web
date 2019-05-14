@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
 import es.ucm.fdi.iw.model.Turno;
+import es.ucm.fdi.iw.model.Herramienta;
 
 /**
  * Admin-only controller
@@ -65,6 +66,15 @@ public class AdminController {
 	@GetMapping("/addUser")
 	public String addUser(Model model) {
 		return "addUser";
+	}
+	
+	@GetMapping("/addTool")
+	public String addTool(Model model) {
+		
+		model.addAttribute("users", entityManager.createQuery(
+				"SELECT u FROM User u").getResultList());
+		
+		return "addTool";
 	}
 	
 	@GetMapping("/delUser")
@@ -111,6 +121,30 @@ public class AdminController {
 	 * 	- full rows, if each row has over 2 columns
 	 *  - single values (those of the 2nd column), if each row has exactly 2 columns
 	 */
+	
+	/*Añadimos aqui dentro una herramienta nueva a la base de datos y
+	 *  se la asignamos a una persona <3*/
+	
+	@PostMapping("/addToolToDB")
+	@Transactional
+	public String addToolToDB(Model model, @RequestParam String type, 
+			@RequestParam String user_id)
+	{
+		
+		User u = entityManager.find(User.class, Long.parseLong(user_id));
+		
+		Herramienta herramienta = new Herramienta();	
+		herramienta.setUser(u);
+		herramienta.setType(type);
+
+		entityManager.persist(herramienta);
+		//entityManager.flush();
+
+		
+		return "admin";
+	}
+	
+	
 	private Map<Long, Object> countsToMap(String queryName) {
 		Map<Long, Object> m = new HashMap<>();
 		@SuppressWarnings("unchecked")

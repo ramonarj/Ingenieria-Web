@@ -6,22 +6,21 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<title>Firefighter space</title>
-	<link rel="stylesheet" th:href="@{/css/admin.css}" href="../static/css/admin.css" type="text/css"/>
+	<link rel="stylesheet" th:href="@{/css/delUser.css}" href="../static/css/delUser.css" type="text/css"/>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <head th:replace="/fragments/toolbar.html :: head"></head>
 <body>
 	<nav th:replace="/fragments/toolbar.html :: body"></nav>
 	<div>
-		<h1>Administración</h1>
-		<form th:action = "@{/admin/addUser}" method="get">
-			<button type="submit"><a>Añadir usuario</a></button>
-		</form>
-		<form th:action = "@{/admin/delUser}" method="get">
-			<button type="submit"><a>Eliminar usuario</a></button>
-		</form>
-		<form th:action = "@{/addUser}" method="get">
-			<button type="submit"><a>Añadir turnos</a></button>
+		<form class="smallform" th:action="@{/admin/delUserFromDB}" method="POST">
+		<ul>
+			<li th:each="user: ${session.users}">
+				<input type="checkbox" name="user_id" th:value="${user.id}" th:text="${user.name}"/>
+			</li>
+		</ul>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+			<button type="submit" class="">Borrar Bombero</button>
 		</form>
 	</div>
 </body>
