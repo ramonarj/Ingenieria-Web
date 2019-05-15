@@ -175,13 +175,26 @@ public class UserController {
 	public String getUsersToChange(Model model, HttpSession session, String date1, String date2) 
 	{
 		log.info("Fetching users with Date1=" + date1 + ", Date2=" + date2);
+		
+		//1.VEMOS SI NOSOTROS TENEMOS ESE DÍA
+		User sessionUser = (User)session.getAttribute("u");
+		User us = entityManager.find(User.class, sessionUser.getId());
+		for(Dia d: us.getDiasLaborales()) 
+		{
+			String fecha = d.getFecha().split("T")[0];
+			if(fecha.equals(date1))
+				session.setAttribute("d1",  d); //Lo añadimos a la sesión
+		}
+			
+			
+		//2.VEMOS QUÉ USUARIOS TIENEN EL SEGUNDO DÍA
 		@SuppressWarnings("unchecked")
 		List<User> users = (List<User>)entityManager.createNamedQuery("User.all").getResultList();
 		List<User> filteredUsers = new ArrayList<User>();
 		for(User u : users)
 		{
 			
-			//log.info("User " + u.getLogin() + "has first day: " + u.getDiasLaborales().get(0).getFecha().split("T")[0]);
+			log.info("User " + u.getLogin() + "has first day: " + u.getDiasLaborales().get(0).getFecha());
 			for(Dia d: u.getDiasLaborales()) 
 			{
 				String fecha = d.getFecha().split("T")[0];
@@ -192,6 +205,7 @@ public class UserController {
 				else if(fecha.equals(date2))
 				{
 					filteredUsers.add(u);
+					session.setAttribute("d2",  d);
 					break;
 				}
 				//else: no hacemos nada
@@ -213,8 +227,6 @@ public class UserController {
 	@GetMapping("/cambiaTurno")
 	public String cambiaTurno(Model model, HttpSession session, @RequestParam long user2_id) {
 		
-		String day1 = (String)session.getAttribute("date1");
-		String day2 = (String)session.getAttribute("date2");
 		//Identificamos a los usuarios implicados
 		User u = (User)session.getAttribute("u");
 		User u2 = entityManager.find(User.class, user2_id);
@@ -223,17 +235,15 @@ public class UserController {
 		Cambio c = new Cambio();
 		c.setEstado("Propuesto");
 		c.setUser1(u);
-		c.setDia1(day1);
+		c.setDia1((Dia)session.getAttribute("d1"));
 		c.setUser2(u2);
-		c.setDia2(day2);
+		c.setDia2((Dia)session.getAttribute("d2"));
 		
 		//COMPROBAR SI NO HAY CONFLICTOS CON UN CAMBIO YA EXISTENTE
 		
 		//Lo añadimos a la base de datos
 		entityManager.persist(c);
 		entityManager.flush();
-		
-		log.info(u.getLogin() + "quiere cambiar su turno del dia " + day1 + " al día " + day2 + " a " + u2.getLogin());
 		
 		//Recargamos la info del horario
 		RootController.incorporaHorario(model, session, entityManager);

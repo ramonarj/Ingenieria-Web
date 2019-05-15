@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
 import es.ucm.fdi.iw.model.Cambio;
+import es.ucm.fdi.iw.model.Dia;
 import es.ucm.fdi.iw.model.Turno;
 import es.ucm.fdi.iw.model.Herramienta;
 
@@ -132,10 +133,20 @@ public class AdminController {
 		if(req.getParameter("acceptButton") != null) 
 		{
 			c.setEstado("Aceptado");
-//			User u1 = entityManager.find(User.class, c.getUser1());
-//			User u2 = entityManager.find(User.class, c.getUser2());
+			User u1 = entityManager.find(User.class, c.getUser1().getId());
+			User u2 = entityManager.find(User.class, c.getUser2().getId());
+//			Dia d1 = entityManager.find(Dia.class, c.getDia1().getId());
+//			Dia d2 = entityManager.find(Dia.class, c.getDia2());
 			
-
+			//Cambio de día
+			//Se quita el antiguo...
+			u1.getDiasLaborales().add(c.getDia2());
+			u2.getDiasLaborales().add(c.getDia1());
+			
+			//Y se pone el nuevo
+			u1.getDiasLaborales().remove(c.getDia1());
+			u2.getDiasLaborales().remove(c.getDia2());
+			entityManager.flush();
 		}
 		else if(req.getParameter("denyButton") != null)
 			c.setEstado("Denegado");

@@ -19,11 +19,11 @@
 			<li th:each="cambio: ${session.cambiosPropuestos}">
 				<b th:text="${cambio.user1.name}" />
 				<i> (Día </i>
-				<b th:text="${cambio.dia1}" />
+				<b th:text="${cambio.dia1.fecha}" />
 				<i>) quiere cambiar con </i>
 				<b th:text="${cambio.user2.name}"/>
 				<i> (Día </i>
-				<b th:text="${cambio.dia2}" />
+				<b th:text="${cambio.dia2.fecha}" />
 				<input type="hidden" th:name="cambio_id" th:value="${cambio.id}" />
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 				<i>) </i>

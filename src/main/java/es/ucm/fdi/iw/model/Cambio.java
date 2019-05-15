@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.CascadeType;
 
 import es.ucm.fdi.iw.model.User;
 
@@ -31,10 +32,10 @@ public class Cambio{
 	private String estado; // Estado de la petición: Propuesto, Aceptado, Denegado
 	
 	private User user1;	// Usuario 1 que pide el cambio
-	private String dia1;	//Dia a cambiar del usuario 1
+	private Dia dia1;	//Dia a cambiar del usuario 1
 	
 	private User user2;	//Usuario 2 por el que se va a cambiar
-	private String dia2;	// Dia a cambiar del usuario 2
+	private Dia dia2;	// Dia a cambiar del usuario 2
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -60,11 +61,11 @@ public class Cambio{
 	public void setUser1(User user1) {
 		this.user1 = user1;
 	}
-	
-	public String getDia1() {
+	@ManyToOne(targetEntity=Dia.class)
+	public Dia getDia1() {
 		return dia1;
 	}
-	public void setDia1(String dia1) {
+	public void setDia1(Dia dia1) {
 		this.dia1 = dia1;
 	}
 	
@@ -75,11 +76,11 @@ public class Cambio{
 	public void setUser2(User user2) {
 		this.user2 = user2;
 	}
-	
-	public String getDia2() {
+	@ManyToOne(targetEntity=Dia.class)
+	public Dia getDia2() {
 		return dia2;
 	}
-	public void setDia2(String dia2) {
+	public void setDia2(Dia dia2) {
 		this.dia2 = dia2;
 	}
 }
