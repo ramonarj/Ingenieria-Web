@@ -12,6 +12,7 @@ import java.io.OutputStream;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
@@ -168,10 +169,52 @@ public class UserController {
 		return "perfil";
 	}
 	
-	@GetMapping("/cambiaTurno")
-	public String cambiaTurno(Model model, HttpSession session, 
-			@RequestParam String date1, @RequestParam String date2, @RequestParam long user2_id) {
+	
+	
+	@GetMapping("/getUsersToChange")
+	public String getUsersToChange(Model model, HttpSession session, String date1, String date2) 
+	{
+		log.info("Fetching users with Date1=" + date1 + ", Date2=" + date2);
+		@SuppressWarnings("unchecked")
+		List<User> users = (List<User>)entityManager.createNamedQuery("User.all").getResultList();
+		List<User> filteredUsers = new ArrayList<User>();
+		for(User u : users)
+		{
+			
+			//log.info("User " + u.getLogin() + "has first day: " + u.getDiasLaborales().get(0).getFecha().split("T")[0]);
+			for(Dia d: u.getDiasLaborales()) 
+			{
+				String fecha = d.getFecha().split("T")[0];
+				//El usuario en cuestión trabaja el día que queremos que él reciba (cambio no válido)
+				if(fecha.equals(date1))
+					break;
+				//El usuario tiene esa fecha disponible
+				else if(fecha.equals(date2))
+				{
+					filteredUsers.add(u);
+					break;
+				}
+				//else: no hacemos nada
+			}
+		}
 		
+		//Añadimos los usuarios filtrados al modelo
+		session.setAttribute("filteredUsers", filteredUsers);
+		
+		//Las devolvemos para que se queden al recargar
+		session.setAttribute("date1",  date1);
+		session.setAttribute("date2",  date2);
+		
+		RootController.incorporaHorario(model, session, entityManager);
+		return "horario";
+	}
+	
+	@Transactional
+	@GetMapping("/cambiaTurno")
+	public String cambiaTurno(Model model, HttpSession session, @RequestParam long user2_id) {
+		
+		String day1 = (String)session.getAttribute("date1");
+		String day2 = (String)session.getAttribute("date2");
 		//Identificamos a los usuarios implicados
 		User u = (User)session.getAttribute("u");
 		User u2 = entityManager.find(User.class, user2_id);
@@ -180,39 +223,20 @@ public class UserController {
 		Cambio c = new Cambio();
 		c.setEstado("Propuesto");
 		c.setUser1(u);
-		c.setDia1(date1);
+		c.setDia1(day1);
 		c.setUser2(u2);
-		c.setDia2(date2);
+		c.setDia2(day2);
+		
+		//COMPROBAR SI NO HAY CONFLICTOS CON UN CAMBIO YA EXISTENTE
 		
 		//Lo añadimos a la base de datos
 		entityManager.persist(c);
 		entityManager.flush();
 		
-		log.info(u.getLogin() + "quiere cambiar su turno del dia " + date1 + " al día " + date2 + " a " + u2.getLogin());
+		log.info(u.getLogin() + "quiere cambiar su turno del dia " + day1 + " al día " + day2 + " a " + u2.getLogin());
 		
 		//Recargamos la info del horario
 		RootController.incorporaHorario(model, session, entityManager);
 		return "horario";
 	}	
-	
-	@GetMapping("/getUsersToChange")
-	public String getUsersToChange(Model model, HttpSession session, String fechaOrigen, String fechaDestino) 
-	{
-//		List<User> users = entityManager.createQuery("SELECT u FROM User u").getResultList();
-//		//List<User> filteredUsers = new List<User>();
-//		for(User u : users)
-//		{
-//			for(Dia d: u.getDiasLaborales())
-//			{
-//				if(d == d1)
-//					//Salir del for
-//				else if(d == dia2)
-//					//Añadir a filteredUsers y salir
-//				
-//			}
-//		}
-//		
-		
-		return "horario";
-	}
 }

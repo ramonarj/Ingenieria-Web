@@ -59,8 +59,7 @@ public class RootController {
 	//Para llamarlo desde otros controladores
 	 protected static void incorporaHorario(Model model, HttpSession session, EntityManager em) {
 		
-		model.addAttribute("users", em.createQuery(
-				"SELECT u FROM User u").getResultList());
+		model.addAttribute("users", em.createNamedQuery("User.all").getResultList());
 		
 		User u = (User)session.getAttribute("u");
 		u = em.find(User.class, u.getId());
@@ -76,8 +75,7 @@ public class RootController {
 	
 	@GetMapping("/equipo")
 	public String equipo(Model model, HttpSession session) {
-		model.addAttribute("users", entityManager.createQuery(
-				"SELECT u FROM User u").getResultList());
+		model.addAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
 		
 		return "equipo";
 	}
@@ -85,8 +83,7 @@ public class RootController {
 	//Página de chat (se accede desde el inicio)
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
-		model.addAttribute("users", entityManager.createQuery(
-				"SELECT u FROM User u").getResultList());
+		model.addAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
 		return "chat";
 	} 
 	

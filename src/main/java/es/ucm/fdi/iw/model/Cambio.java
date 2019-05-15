@@ -5,15 +5,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import es.ucm.fdi.iw.model.User;
 
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Cambio.all",
+	query="SELECT c FROM Cambio c"),
+	@NamedQuery(name="Cambio.proposedOnes",
+	query="SELECT c FROM Cambio c "
+			+ "WHERE c.estado = 'Propuesto' "),
+	@NamedQuery(name="Cambio.acceptedOnes",
+	query="SELECT c FROM Cambio c "
+			+ "WHERE c.estado = 'Aceptado' "),
+	@NamedQuery(name="Cambio.deniedOnes",
+	query="SELECT c FROM Cambio c "
+			+ "WHERE c.estado = 'Denegado' ")//Para los cambios que han sido acordados/no
+})
 public class Cambio{
 	private long id;
 
-	private String estado; // Estado de la petición: Propuesto, Acordado
+	private String estado; // Estado de la petición: Propuesto, Aceptado, Denegado
 	
 	private User user1;	// Usuario 1 que pide el cambio
 	private String dia1;	//Dia a cambiar del usuario 1

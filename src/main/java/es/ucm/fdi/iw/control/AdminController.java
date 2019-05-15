@@ -53,8 +53,7 @@ public class AdminController {
 	public String index(Model model, HttpSession session) {
 		model.addAttribute("activeProfiles", env.getActiveProfiles());
 		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
-		session.setAttribute("users", entityManager.createQuery(
-				"SELECT u FROM User u").getResultList());
+		session.setAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
 		
 		session.setAttribute("turnos", entityManager.createQuery(
 				"SELECT t FROM Turno t").getResultList());
@@ -69,10 +68,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/addTool")
-	public String addTool(Model model) {
+	public String addTool(Model model, HttpSession session) {
 		
-		model.addAttribute("users", entityManager.createQuery(
-				"SELECT u FROM User u").getResultList());
+		session.setAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
 		
 		return "addTool";
 	}
@@ -81,6 +79,16 @@ public class AdminController {
 	public String delUser(Model model) {
 		return "delUser";
 	}
+	
+	@GetMapping("/manageChanges")
+	public String manageChanges(Model model, HttpSession session) {
+		session.setAttribute("cambiosPropuestos", entityManager.createNamedQuery("Cambio.proposedOnes").getResultList());
+		session.setAttribute("cambiosAceptados", entityManager.createNamedQuery("Cambio.acceptedOnes").getResultList());
+		session.setAttribute("cambiosDenegados", entityManager.createNamedQuery("Cambio.deniedOnes").getResultList());
+		return "manageChanges";
+	}
+	
+	
 	
 	
 	@PostMapping("/addUserToDB")

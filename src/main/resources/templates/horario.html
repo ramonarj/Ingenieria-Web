@@ -15,27 +15,23 @@
 	<nav th:replace="/fragments/toolbar.html :: body"></nav>
 	<body th:replace="calendar.html :: body"></body>
 	 	<h2>Cambiar turno</h2>
-		<form class="smallform" th:action="@{/user/cambiaTurno}" method="GET">
+		<form class="smallform" th:action="@{/user/getUsersToChange}" method="GET">
 			<h3>Día que quieres ofrecer</h3>
-			<input type="date" name="date1"/>
+			<input type="date" name="date1" th:value="${session.date1}" required/>
 			<h3>Día que quieres recibir</h3>
-			<input type="date" name="date2"/>
+			<input type="date" name="date2" th:value="${session.date2}" required/>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+			<button type="submit" id="buscaUsuarios" class="active">Buscar usuarios</button>
+		</form>
+		
+		<form class="smallform" th:action="@{/user/cambiaTurno}" method="GET" id="pedirCambioForm">
 			<h3>Usuarios disponbles</h3>
 			<select id="dropdownUsers" name="user2_id">
-				<option th:each="user: ${users}" th:text="${user.name}" th:value="${user.id}">Usuario X</option>
+				<option th:each="user: ${session.filteredUsers}" th:text="${user.name}" th:value="${user.id}">Usuario X</option>
 	        </select>
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 			<button type="submit" id="pedirCambio" class="active">Pedir cambio</button>
-		</form>
+	   </form>
 </body>
-<script>
-	var date1 = document.getElementsByName("date1")[0];
-	var date2 = document.getElementsByName("date2")[0];
 
-	date2.addEventListener('change', (event) =>
-	{
-		
-		
-	});
-</script>
 </html>
