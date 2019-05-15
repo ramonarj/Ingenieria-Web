@@ -13,7 +13,7 @@
 <body>
 	<nav th:replace="/fragments/toolbar.html :: body"></nav>
 	<div>
-		<form class="smallform" th:action="@{/admin/delUserFromDB}" method="POST">
+		<form class="smallform" th:action="@{/admin/resolveChange}" method="POST">
 		<ul>
 			<h2>Cambios propuestos:</h2>
 			<li th:each="cambio: ${session.cambiosPropuestos}">
@@ -24,10 +24,11 @@
 				<b th:text="${cambio.user2.name}"/>
 				<i> (Día </i>
 				<b th:text="${cambio.dia2}" />
+				<input type="hidden" th:name="cambio_id" th:value="${cambio.id}" />
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 				<i>) </i>
-				<button type="submit" class="">Aceptar</button>
-				<button type="submit" class="">Denegar</button>
+				<button name="acceptButton" type="submit" class="">Aceptar</button>
+				<button name="denyButton" type="submit" class="">Denegar</button>
 			</li>
 		</ul>
 		</form>

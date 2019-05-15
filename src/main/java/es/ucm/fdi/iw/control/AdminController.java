@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.model.Cambio;
 import es.ucm.fdi.iw.model.Turno;
 import es.ucm.fdi.iw.model.Herramienta;
 
@@ -82,9 +84,7 @@ public class AdminController {
 	
 	@GetMapping("/manageChanges")
 	public String manageChanges(Model model, HttpSession session) {
-		session.setAttribute("cambiosPropuestos", entityManager.createNamedQuery("Cambio.proposedOnes").getResultList());
-		session.setAttribute("cambiosAceptados", entityManager.createNamedQuery("Cambio.acceptedOnes").getResultList());
-		session.setAttribute("cambiosDenegados", entityManager.createNamedQuery("Cambio.deniedOnes").getResultList());
+		RootController.updateChanges(model, session, entityManager);
 		return "manageChanges";
 	}
 	
@@ -121,6 +121,28 @@ public class AdminController {
 		entityManager.remove(u);
 		return "admin";
 	}
+	
+	@PostMapping("/resolveChange")
+	@Transactional
+	public String resolveChange(Model model, HttpSession session, 
+			@RequestParam long cambio_id, HttpServletRequest req)
+	{
+		Cambio c = entityManager.find(Cambio.class, cambio_id);
+		//Vemos qué botón hemos pulsado
+		if(req.getParameter("acceptButton") != null) 
+		{
+			c.setEstado("Aceptado");
+//			User u1 = entityManager.find(User.class, c.getUser1());
+//			User u2 = entityManager.find(User.class, c.getUser2());
+			
+
+		}
+		else if(req.getParameter("denyButton") != null)
+			c.setEstado("Denegado");
+		RootController.updateChanges(model, session, entityManager);
+		return "manageChanges";
+	}
+	
 	
 	/**
 	 * Creates a map from a query, where the 1st column of results is used as key.

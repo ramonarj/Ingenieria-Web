@@ -66,6 +66,13 @@ public class RootController {
 		
 		model.addAttribute("calendario", u.laboralesEnBonito());
 	} 
+	 
+	//Para llamarlo desde otros controladores
+		 protected static void updateChanges(Model model, HttpSession session, EntityManager em) {
+			session.setAttribute("cambiosPropuestos", em.createNamedQuery("Cambio.proposedOnes").getResultList());
+			session.setAttribute("cambiosAceptados", em.createNamedQuery("Cambio.acceptedOnes").getResultList());
+			session.setAttribute("cambiosDenegados", em.createNamedQuery("Cambio.deniedOnes").getResultList());
+		} 
 	
 	//Página de perfil (se accede desde el inicio)
 	@GetMapping("/perfil")
