@@ -217,6 +217,14 @@ public class User {
 		this.tools = h;
 	}
 	
+	public void addNewTool(Herramienta h) {
+		this.tools.add(h);
+	}
+	
+	public void removeTool(Herramienta h) {
+		this.tools.remove(h);
+	}
+	
 	@ManyToOne(targetEntity=Turno.class)
 	public Turno getTurno() {
 		return turno;

@@ -61,7 +61,6 @@ public class AdminController {
 		session.setAttribute("turnos", entityManager.createQuery(
 				"SELECT t FROM Turno t").getResultList());
 		
-		
 		return "admin";
 	}
 	
@@ -76,6 +75,17 @@ public class AdminController {
 		session.setAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
 		
 		return "addTool";
+	}
+	
+	@GetMapping("/assignTool")
+	public String assignTool(Model model, HttpSession session) {
+		
+		session.setAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
+		
+		session.setAttribute("herramientas", entityManager.createQuery(
+				"SELECT h FROM Herramienta h").getResultList());
+		
+		return "assignTool";
 	}
 	
 	@GetMapping("/delUser")
@@ -168,23 +178,41 @@ public class AdminController {
 	
 	@PostMapping("/addToolToDB")
 	@Transactional
-	public String addToolToDB(Model model, @RequestParam String type, 
-			@RequestParam String user_id)
+	public String addToolToDB(Model model, @RequestParam String type)
 	{
-		
-		User u = entityManager.find(User.class, Long.parseLong(user_id));
-		
 		Herramienta herramienta = new Herramienta();	
-		herramienta.setUser(u);
 		herramienta.setType(type);
-
+		
 		entityManager.persist(herramienta);
-		//entityManager.flush();
-
 		
 		return "admin";
 	}
 	
+	@PostMapping("/assignToolToDB")
+	@Transactional
+	public String assignToolToDB(Model model, @RequestParam String herramienta_id,
+			@RequestParam String user_id)
+	{
+		
+		User u = entityManager.find(User.class, Long.parseLong(user_id)); 
+		
+		Herramienta h = entityManager.find(Herramienta.class, Long.parseLong(herramienta_id)); 
+		
+		Herramienta herramienta = new Herramienta();	
+		herramienta.setType(h.getType());
+		herramienta.setUser(u);
+		
+		if(h.getUser() != null)
+			h.getUser().removeTool(herramienta);
+				
+		u.addNewTool(herramienta);
+		
+		entityManager.remove(h);
+		
+		entityManager.persist(herramienta);
+		
+		return "admin";
+	}
 	
 	private Map<Long, Object> countsToMap(String queryName) {
 		Map<Long, Object> m = new HashMap<>();

@@ -38,6 +38,11 @@ public class Herramienta {
 	public String getType() {
 		return this.type;
 	}
+	
+	public void clearUser()
+	{
+		this.user = null;
+	}
 }
 	
 	

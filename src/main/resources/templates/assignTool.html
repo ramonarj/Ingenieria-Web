@@ -13,15 +13,21 @@
 <body>
 	<nav th:replace="/fragments/toolbar.html :: body"></nav>
 	<div>
-		<form class="smallform" th:action="@{/admin/addToolToDB}" method="POST">
+		<form class="smallform" th:action="@{/admin/assignToolToDB}" method="POST">
 			<ul>
-				<li>
-					<input type="text" name="type" class="placeholder" required placeholder="Nombre herramienta: "/>
-				</li>
+			<select id="dropdownTurno" name="herramienta_id">
+				<option th:each="herramienta: ${session.herramientas}" th:text="${herramienta.type}" th:value="${herramienta.id}">Herramienta</option>
+	        </select>
+			<select id="dropdownTurno" name="user_id">
+				<option th:each="user: ${session.users}" th:text="${user.name}" th:value="${user.id}">Persona</option>
+	        </select>
 			</ul>
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-			<button type="submit" class="">Añadir herramienta</button>
+			<button type="submit" class="">Asignar herramienta</button>
 		</form>
 	</div>
 </body>
 </html>
+
+
+
