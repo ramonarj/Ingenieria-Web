@@ -99,7 +99,7 @@
 				</li>
 				<li>
 					<form th:action = "@{/chat}" method="get">
-					<button type="submit"><a>Chat</a></button>
+					<button type="submit" id="ChatButton"><a>Chat</a></button>
 					</form>
 				</li>
 				<li>
@@ -120,5 +120,17 @@
 	</header>
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script src="/js/toolbar.js"></script>
+	
+	<script>  		
+		const chatButton = document.getElementById("ChatButton");
+		
+		// recepcion
+		ws.receive = function(e) {
+			chatButton.type="submit-chat"; 
+			console.log("chat msg received");
+		}		
+	</script>
+	
 </body>
 </html>
+

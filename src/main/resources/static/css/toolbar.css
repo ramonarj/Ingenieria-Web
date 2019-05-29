@@ -70,6 +70,16 @@ nav ul li button[type="submit"]{
 	font-family: 'Roboto', sans-serif;
 }
 
+nav ul li button[type="submit-chat"]{
+	background-color: Transparent;
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	transition: 1.0s;
+	border-style: dotted;
+	border-color:#ff8040;
+	border-radius: 6px;
+}
 
 nav ul li a{
 	display: block;
@@ -82,7 +92,7 @@ nav ul li a{
 
 nav ul li a:hover {
 	background: #0080c0;
-	border-radius: 4px;
+	border-radius: 6px;
 	color: white;
 	transition: 0.5s;
 }
