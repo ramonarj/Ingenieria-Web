@@ -2,13 +2,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Leeme: Firefighter space</title>
+	<title>Leeme: Firefighter Space</title>
 	<style type="text/css">
 		.nota { color: gray; }
 	</style>
 </head>
 <body>
-	<h1>Leeme: Firefighter space</h1>
+	<h1>Firefighter Space</h1>
 	<h2>Objetivo</h2>
 	<p>
 		Creación de una aplicación web que ofrezca a un cuerpo de bomberos concreto gestionar información de 
@@ -19,27 +19,69 @@
 		Soporta los siguientes roles:
 		<ul>
 		<li>
-		El <b>administrador</b> puede dar de alta bomberos, y tendrá acceso a toda la información del parque.
+		El <b>administrador</b> puede dar de alta bomberos, añadir nuevos tipos de herramientas y aceptar o denegar cambios
+		de turno.
 		<li>		
-		Un <b>bombero</b> tiene acceso a su información personal. También puede ver información de cómo
+		Un <b>usuario</b> tiene acceso a su información personal. También puede ver información de cómo
 		están gestionadas algunos aspectos del parque. Además tiene la posibilidad de ver sus turnos y cambiarlos
 		si es necesario. Por último, puede acceder a un apartado de chat donde tiene la posibilidad de comunicarse
-		con otros bomberos.
+		con otros usuarios.
 		</li>
 		</ul>
 	</p>
 	<h2>Vistas</h2>
 		<ul>
-		<li><a href="http://localhost:8080/">index</a> - vista inicial. Permite especificar una clase, o hacer login (esquina superior derecha). 
-		<li><a href="http://localhost:8080/admin">admin</a> - vista de elección de rol. Permite a un usuario admin elegir si quiere entrar como administrador o como usuario normal.
-		<li><a href="http://localhost:8080/user">user</a> - vista principal después del login. Permite al usuario el acceso a las diferentes vistas: horarios, equipo, chat y perfil, además de poder hacer logout.
+				<li><b>login</b></li> 
+				Vista del <big><i>login</i></big>. Permite al usuario hacer login y entrar directamente como user o admin.
+				
+				<li><b>inicio</b></li> 
+				Vista del menú de <big><i>inicio</i></big>. Permite elegir desde un principio entre las cuatro funciones que puede
+				hacer un usuario normal. En el caso de que sea admin, tendrá una función más, pero esta no se verá representada en este menú,
+				sino que se verá en la <i>toolbar</i>.
+				
+				<li><b>chat</b></li> 
+				Vista del apartado de <big><i>chat</i></big>. Esta funcionalidad permite al usuario poder comunicarse con los demás usuarios
+				de la aplicación.
+				
+				<li><b>equipo</b></li> 
+				Vista del <big><i>equipo</i></big>. Aquí, el usuario podrá ver todas aquellas herramientas asignadas a cada bombero del parque, es decir,
+				puede ver quién tiene las linternas, los hachas...
+				
+				<li><b>horario</b></li> 
+				Vista del <big><i>calendario</i></big>. En esta vista podemos ver un calendario donde están señalados aquellos 
+				días en los que el usuario tiene que trabajar. Además hay un apartado que le da la posibilidad de pedir al administrador el cambio de uno de sus 
+				turnos por otro de alguno de sus compañeros.
+				
+				<li><b>perfil</b></li>
+				Vista del <big><i>perfil de usuario</i></big>. Aquí el usuario podrá ver sus datos personales y cambiar alguno de ellos si es
+				necesario.
+				
+				<li><b>admin</b></li>
+				Vista del <big><i>admin</i></big>. Este apartado de administración solo está disponible para los usuarios que sean administradores.
+				La única forma de acceder a esta vista es desde la <i>toolba</i> como se ha comentado anteriormente. Las siguientes vistas que se van a
+				explicar solo están disponibles para el administrador y la forma de acceder a ellas es a través de esta vista.
+				
+				<li><b>addUser</b></li>
+				Vista para <big><i>añadir usuario</i></big>. Desde aquí el administrador puede añadir nuevos usuarios a la base de datos, para ello tiene
+				que completar unos parámetros requeridos.
+				
+				<li><b>delUser</b></li>
+				Vista para <big><i>eliminar usuario</i></big>. Al contrario que en la vista anterior, ahora el admistrador puede eliminar a un usuario.
+
+				<li><b>addTool</b></li>
+				Vista de <big><i>añadir herramienta</i></big>. Desde aquí el administrador puede añadir a la base de datos un tipo más de herramienta.
+				
+				<li><b>assignTool</b></li>
+				Vista para <big><i>asignar herramienta</i></big>. El administrador cuenta con la posibilidad de asignar alguno de los tipos de herramientas a los
+				usuarios registrados.
+				
+				<li><b>manageChanges</b></li>
+				Vista para <big><i>manejar cambios</i></big>. A esta vista llegan las peticiones de cambio de turno propuestas por los usuarios. El administrador tiene
+				la posibilidad de aceptar o denegar esos cambios.
 		</ul>
-				Los vistas citadas abajo tienen en común una toolbar en la parte superior que permite al usuario moverse entre ellas, y un botón que permite al usuario hacer logout.
-		<ul>
-		<li><a href="http://localhost:8080/horario">horario</a> - vista del horario. Permite al usuario ver el calendario de turnos que le corresponde.
-		<li><a href="http://localhost:8080/equipo">equipo</a> - vista del equipo el bombero. Permite al bombero ver el equipo que le corresponde.
-		<li><a href="http://localhost:8080/chat">chat</a> - vista del chat entre bomberos. Permite a los usuarios enviarse mensajes entre ellos.
-		<li><a href="http://localhost:8080/perfil">perfil</a> - vista del perfil de usuario. Permite al usuario ver su perfil y modificar algunos de sus datos (y su foto de perfil).
-		</ul>
+
+		Por último, comentar la funcionalidad de la <i>toolbar</i> ya mencionada. A través de ella se puede ir a cualquier parte de la aplicación
+		que tienen en común todos los usuarios, es decir, el calendario, el equipo, el chat y el perfil. Podemos ver alguna excepción en el caso de que
+		el usuario sea un administrador, que entonces le aparece un opción para acceder al apartado de administración.
 </body>
 </html>
