@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+
+}
+
+.bg-image{
+	z-index: -99;
+	width: 100%;
+	height: 100%;
+	background: url("../img/LoginBG.jpg");
+	filter: blur(8px);
+	
+	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tables{
+	position:relative;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: rgba(255, 255, 255, 0.8);
+	border: none;
+	border-radius: 10px;
+}
+
+.tables tr.tipos{
+	font-size: 22px;
+	text-transform: uppercase;
+	height: 40px;
+	background: linear-gradient(to left, transparent, #303030, transparent);
+}
+
+.tables table{
+	border-collapse: collapse;
+	transform: translate(5%, 0%);
+	margin-top: 20px;
+	width: 90%;
+	height:10px;
+	overflow-y:scroll;
+  	text-align: center;
+}
+
+.tables table td{
+		border-bottom: 1px solid #ddd;
+		height: 40px;
+		
+	}
+.tables table th{
+		border-bottom: 1px solid #ddd;
+	}
+.tables table tr:hover{
+	background-color: rgba(230, 230, 230, 0.3);
+}
+
+.cambios{
+	position:relative;
+	margin: 20px auto;
+	background: rgba(0, 0, 0, 0.8);
+	max-width: 500px;
+	color: white;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.cambios h2{
+	font-size: 22px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #303030;
+	background: linear-gradient(to left, transparent, white, white, white, transparent);
+}
+
+.cambios select{
+	width: 80%;
+	height: 30px;
+	display:block;
+	margin: 0 auto;
+	font-size: 18px;
+}
+
+
+.cambios button{
+	width: 40%;
+	height: 30px;
+	display:block;
+	margin: 0 auto;
+	margin-top: 20px;
+	border-radius: 15px;
+	font-size: 18px;
+}

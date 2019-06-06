@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
@@ -26,9 +27,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
 import es.ucm.fdi.iw.model.Cambio;
+import es.ucm.fdi.iw.model.CambioTool;
 import es.ucm.fdi.iw.model.Dia;
 import es.ucm.fdi.iw.model.Turno;
 import es.ucm.fdi.iw.model.Herramienta;
+import es.ucm.fdi.iw.model.Auto;
 
 /**
  * Admin-only controller
@@ -77,6 +80,15 @@ public class AdminController {
 		return "addTool";
 	}
 	
+	@GetMapping("/delTool")
+	public String delTool(Model model, HttpSession session) {
+		
+		session.setAttribute("herramientas", entityManager.createQuery(
+				"SELECT h FROM Herramienta h").getResultList());
+		
+		return "delTool";
+	}
+	
 	@GetMapping("/assignTool")
 	public String assignTool(Model model, HttpSession session) {
 		
@@ -86,6 +98,14 @@ public class AdminController {
 				"SELECT h FROM Herramienta h").getResultList());
 		
 		return "assignTool";
+	}
+	
+	@GetMapping("/switchTool")
+	public String switchTool(Model model, HttpSession session) {
+		
+		session.setAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
+		
+		return "switchTool";
 	}
 	
 	@GetMapping("/delUser")
@@ -99,6 +119,24 @@ public class AdminController {
 		return "manageChanges";
 	}
 	
+	@GetMapping("/addAuto")
+	public String addAuto(Model model, HttpSession session) {		
+		return "addAuto";
+	}
+	
+	@GetMapping("/delAuto")
+	public String delAuto(Model model, HttpSession session) {	
+		session.setAttribute("autos", entityManager.createQuery("SELECT a FROM Auto a").getResultList());
+		return "delAuto";
+	}
+	
+	@GetMapping("/assignDriver")
+	public String assignDriver(Model model, HttpSession session) {
+		
+		session.setAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
+		
+		return "assignDriver";
+	}
 	
 	
 	
@@ -133,6 +171,41 @@ public class AdminController {
 		return "admin";
 	}
 	
+	@GetMapping("/getToolsOfUserToSwitch")
+	public String getToolsOfUserToSwitch(Model model, HttpSession session, @RequestParam long user1_id, @RequestParam  long user2_id) 
+	{		
+		//1.VEMOS SI NOSOTROS TENEMOS ESE DÍA	
+		User user1= entityManager.find(User.class, user1_id);
+		session.setAttribute("user1",  user1); //Lo añadimos a la sesión
+		
+		User user2 = entityManager.find(User.class, user2_id);
+		session.setAttribute("user2",  user2); //Lo añadimos a la sesión
+	
+		return "switchTool";
+	}
+	
+	@PostMapping("/resolveToolsSwitch")
+	@Transactional
+	public String resolveToolsSwitch(Model model, HttpSession session, 
+			HttpServletRequest req, @RequestParam long tool1_id, @RequestParam long tool2_id)
+	{
+		User u1 = (User)session.getAttribute("user1");
+		u1 = entityManager.find(User.class, u1.getId());
+		User u2 = (User)session.getAttribute("user2");
+		u2 = entityManager.find(User.class, u2.getId());
+		
+		Herramienta h1 = entityManager.find(Herramienta.class, tool1_id);
+		Herramienta h2 = entityManager.find(Herramienta.class, tool2_id);
+		
+		u1.getTools().add(h2);
+		u2.getTools().add(h1);
+		
+		u1.getTools().remove(h1);
+		u2.getTools().remove(h2);
+		
+		return "switchTool";
+	}
+	
 	@PostMapping("/resolveChange")
 	@Transactional
 	public String resolveChange(Model model, HttpSession session, 
@@ -164,6 +237,37 @@ public class AdminController {
 		return "manageChanges";
 	}
 	
+	@PostMapping("/resolveToolChange")
+	@Transactional
+	public String resolveToolChange(Model model, HttpSession session, 
+			@RequestParam long cambio_id, HttpServletRequest req)
+	{
+		CambioTool c = entityManager.find(CambioTool.class, cambio_id);
+		//Vemos qué botón hemos pulsado
+		if(req.getParameter("acceptButton") != null) 
+		{
+			c.setEstado("Aceptado");
+			User u1 = entityManager.find(User.class, c.getUser1().getId());
+			User u2 = entityManager.find(User.class, c.getUser2().getId());
+//			Dia d1 = entityManager.find(Dia.class, c.getDia1().getId());
+//			Dia d2 = entityManager.find(Dia.class, c.getDia2());
+			
+			//Cambio de día
+			//Se quita el antiguo...
+			u1.getTools().add(c.getTool2());
+			u2.getTools().add(c.getTool1());
+			
+			//Y se pone el nuevo
+			u1.getTools().remove(c.getTool1());
+			u2.getTools().remove(c.getTool2());
+			entityManager.flush();
+		}
+		else if(req.getParameter("denyButton") != null)
+			c.setEstado("Denegado");
+		RootController.updateChanges(model, session, entityManager);
+		return "manageChanges";
+	}
+	
 	
 	/**
 	 * Creates a map from a query, where the 1st column of results is used as key.
@@ -187,6 +291,17 @@ public class AdminController {
 		
 		return "admin";
 	}
+	
+	@PostMapping("/delToolFromDB")
+	@Transactional
+	public String delToolFromDB(Model model, @RequestParam long tool_id)
+	{
+		Herramienta h = entityManager.find(Herramienta.class, tool_id);	
+		entityManager.remove(h);
+		
+		return "admin";
+	}
+	
 	
 	@PostMapping("/assignToolToDB")
 	@Transactional
@@ -246,5 +361,49 @@ public class AdminController {
 			target.setEnabled((byte)1);
 		}
 		return index(model, session);
-	}		
+	}	
+	
+	
+	/*AQUI ESTÁ LA PARTE DE GESTIÓN VEHICULOS*/
+	@PostMapping("/addAutoToDB")
+	@Transactional
+	public String addAutoToDB(Model model, @RequestParam String type)
+	{
+		Auto a = new Auto();	
+		a.setType(type);
+		
+		entityManager.persist(a);
+		
+		return "admin";
+	}
+	
+	@PostMapping("/delAutoFromDB")
+	@Transactional
+	public String delAutoFromDB(Model model, @RequestParam long auto_id)
+	{
+		Auto a = entityManager.find(Auto.class, auto_id);	
+		entityManager.remove(a);
+		
+		return "admin";
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping("/assignDriverToDB")
+	@Transactional
+	public String assignDriverToDB(Model model, HttpSession session,
+			@RequestParam long user_id)
+	{
+		for(User u: (List<User>)session.getAttribute("users")) {
+			User user = entityManager.find(User.class, u.getId());
+			if (user.getId() == user_id)
+				user.setDriver("SI");
+			else
+				user.setDriver("NO");
+		}
+		
+		entityManager.flush();
+		
+		return "admin";
+	}
 }

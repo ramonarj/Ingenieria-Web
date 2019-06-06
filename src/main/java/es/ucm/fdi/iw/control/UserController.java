@@ -38,6 +38,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.User;
 import es.ucm.fdi.iw.model.Cambio;
+import es.ucm.fdi.iw.model.CambioTool;
 import es.ucm.fdi.iw.model.Turno;
 import es.ucm.fdi.iw.model.Dia;
 import es.ucm.fdi.iw.model.Herramienta;
@@ -223,6 +224,49 @@ public class UserController {
 		return "horario";
 	}
 	
+	@GetMapping("/getUsersWithToolToChange")
+	public String getUsersWithToolToChange(Model model, HttpSession session, @RequestParam long myTool_id, @RequestParam  long otherTool_id) 
+	{		
+		
+		log.info("Fetching users with Tool1=" + myTool_id + ", Tool2=" + otherTool_id);
+		//1.VEMOS SI NOSOTROS TENEMOS ESE DÍA	
+		Herramienta target = entityManager.find(Herramienta.class, myTool_id);
+		session.setAttribute("h1",  target); //Lo añadimos a la sesión
+			
+			
+		//2.VEMOS QUÉ USUARIOS TIENEN EL SEGUNDO DÍA
+		@SuppressWarnings("unchecked")
+		List<User> users = (List<User>)entityManager.createNamedQuery("User.all").getResultList();
+		List<User> filteredUsersWithTools = new ArrayList<User>();
+		for(User u : users)
+		{
+			for(Herramienta h: u.getTools()) 
+			{
+				//El usuario en cuestión trabaja el día que queremos que él reciba (cambio no válido)
+				if(myTool_id == h.getId())
+					break;
+				//El usuario tiene esa fecha disponible
+				else if(otherTool_id == h.getId())
+				{
+					filteredUsersWithTools.add(u);
+					session.setAttribute("h2",  h);
+					break;
+				}
+				//else: no hacemos nada
+			}
+		}
+	
+
+		//Añadimos los usuarios filtrados al modelo
+		session.setAttribute("filteredUsersWithTools", filteredUsersWithTools);
+		
+		session.setAttribute("herramienta1", myTool_id);
+		session.setAttribute("herramienta2", otherTool_id);
+		
+		RootController.incorporaEquipo(model, session, entityManager);
+		return "equipo";
+	}
+	
 	@Transactional
 	@GetMapping("/cambiaTurno")
 	public String cambiaTurno(Model model, HttpSession session, @RequestParam long user2_id) {
@@ -249,4 +293,54 @@ public class UserController {
 		RootController.incorporaHorario(model, session, entityManager);
 		return "horario";
 	}	
+	
+	@Transactional
+	@GetMapping("/cambiaHerramienta")
+	public String cambiaHerramienta(Model model, HttpSession session, @RequestParam long user2_id) {
+		
+		//Identificamos a los usuarios implicados
+		User u = (User)session.getAttribute("u");
+		User u2 = entityManager.find(User.class, user2_id);
+
+		//Creamos el cambio
+		CambioTool c = new CambioTool();
+		c.setEstado("Propuesto");
+		c.setUser1(u);
+		c.setTool1((Herramienta)session.getAttribute("h1"));
+		c.setUser2(u2);
+		c.setTool2((Herramienta)session.getAttribute("h2"));
+		
+		//COMPROBAR SI NO HAY CONFLICTOS CON UN CAMBIO YA EXISTENTE
+		
+		//Lo añadimos a la base de datos
+		entityManager.persist(c);
+		entityManager.flush();
+		
+		//Recargamos la info del horario
+		RootController.incorporaEquipo(model, session, entityManager);
+		return "equipo";
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//MANEJO DE LOS MENSAJES
+	@PostMapping("/saveMessages")
+	@Transactional //¡¡PARA MODIFICAR LA BASE DE DATOS!!
+	public String saveMessages(Model model, HttpSession session, @RequestParam long destID) {
+		User myUser = (User)session.getAttribute("u");
+		User destUser = entityManager.find(User.class, destID);
+		
+		log.info("=======================" + myUser.getName());
+		log.info("=======================" + destUser.getName());
+	
+		return "equipo";
+	}
 }

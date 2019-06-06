@@ -72,6 +72,10 @@ public class RootController {
 			session.setAttribute("cambiosPropuestos", em.createNamedQuery("Cambio.proposedOnes").getResultList());
 			session.setAttribute("cambiosAceptados", em.createNamedQuery("Cambio.acceptedOnes").getResultList());
 			session.setAttribute("cambiosDenegados", em.createNamedQuery("Cambio.deniedOnes").getResultList());
+			
+			session.setAttribute("cambiosHerramientasPropuestos", em.createNamedQuery("CambioTool.proposedOnes").getResultList());
+			session.setAttribute("cambiosHerramientasAceptados", em.createNamedQuery("CambioTool.acceptedOnes").getResultList());
+			session.setAttribute("cambiosHerramientasDenegados", em.createNamedQuery("CambioTool.deniedOnes").getResultList());
 		} 
 	
 	//Página de perfil (se accede desde el inicio)
@@ -80,11 +84,23 @@ public class RootController {
 		return "perfil";
 	} 
 	
+	
 	@GetMapping("/equipo")
-	public String equipo(Model model, HttpSession session) {
-		model.addAttribute("users", entityManager.createNamedQuery("User.all").getResultList());
+	 public String equipo(Model model, HttpSession session) {
 		
+		incorporaEquipo(model, session, entityManager);
 		return "equipo";
+	} 
+	
+	protected static void incorporaEquipo(Model model, HttpSession session, EntityManager em) {
+		model.addAttribute("users", em.createNamedQuery("User.all").getResultList());
+		User requester = (User)session.getAttribute("u");
+		User u = em.find(User.class, requester.getId());
+		model.addAttribute("user", u);
+		
+		model.addAttribute("herramientas", em.createQuery(
+				"SELECT h FROM Herramienta h").getResultList());
+		
 	}
 	
 	//Página de chat (se accede desde el inicio)

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Space Bombers
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: avr-9
+Implementation-Vendor-Id: es.ucm
+Build-Jdk: 1.8.0_211
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/firefighter
+Created-By: Maven Integration for Eclipse
+
