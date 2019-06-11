@@ -6,6 +6,7 @@
 	<style type="text/css">
 		.nota { color: gray; }
 	</style>
+	<link rel="stylesheet" th:href="@{leeme.css}" href="leeme.css" type="text/css"/>
 </head>
 <body>
 	<h1>Firefighter Space</h1>
@@ -30,58 +31,191 @@
 		</ul>
 	</p>
 	<h2>Vistas</h2>
-		<ul>
-				<li><b>login</b></li> 
+	<table class="vistas">
+		<tr>
+			<th><b>login</b></th>
+			<td>
 				Vista del <big><i>login</i></big>. Permite al usuario hacer login y entrar directamente como user o admin.
-				
-				<li><b>inicio</b></li> 
+			</td>
+		</tr>
+		<tr>
+			<th><b>inicio</b></th>
+			<td>
 				Vista del menú de <big><i>inicio</i></big>. Permite elegir desde un principio entre las cuatro funciones que puede
 				hacer un usuario normal. En el caso de que sea admin, tendrá una función más, pero esta no se verá representada en este menú,
 				sino que se verá en la <i>toolbar</i>.
-				
-				<li><b>chat</b></li> 
+			</td>
+		</tr>
+		<tr>
+			<th><b>chat</b></th>
+			<td>
 				Vista del apartado de <big><i>chat</i></big>. Esta funcionalidad permite al usuario poder comunicarse con los demás usuarios
 				de la aplicación.
-				
-				<li><b>equipo</b></li> 
+			</td>
+		</tr>
+		<tr>
+			<th><b>chat</b></th>
+			<td>
+				Vista del apartado de <big><i>chat</i></big>. Esta funcionalidad permite al usuario poder comunicarse con los demás usuarios
+				de la aplicación.
+			</td>
+		</tr>
+		<tr>
+			<th><b>equipo</b></th>
+			<td>
 				Vista del <big><i>equipo</i></big>. Aquí, el usuario podrá ver todas aquellas herramientas asignadas a cada bombero del parque, es decir,
 				puede ver quién tiene las linternas, los hachas...
-				
-				<li><b>horario</b></li> 
+			</td>
+		</tr>
+		<tr>
+			<th><b>horario</b></th>
+			<td>
 				Vista del <big><i>calendario</i></big>. En esta vista podemos ver un calendario donde están señalados aquellos 
 				días en los que el usuario tiene que trabajar. Además hay un apartado que le da la posibilidad de pedir al administrador el cambio de uno de sus 
 				turnos por otro de alguno de sus compañeros.
-				
-				<li><b>perfil</b></li>
+			</td>
+		</tr>
+		<tr>
+			<th><b>perfil</b></th>
+			<td>
 				Vista del <big><i>perfil de usuario</i></big>. Aquí el usuario podrá ver sus datos personales y cambiar alguno de ellos si es
 				necesario.
-				
-				<li><b>admin</b></li>
+			</td>
+		</tr>
+		<tr>
+			<th><b>admin</b></th>
+			<td>
 				Vista del <big><i>admin</i></big>. Este apartado de administración solo está disponible para los usuarios que sean administradores.
 				La única forma de acceder a esta vista es desde la <i>toolba</i> como se ha comentado anteriormente. Las siguientes vistas que se van a
 				explicar solo están disponibles para el administrador y la forma de acceder a ellas es a través de esta vista.
-				
-				<li><b>addUser</b></li>
+			</td>
+		</tr>
+		<tr>
+			<th><b>addUser</b></th>
+			<td>
+				<h4>Añadir usuario</h4>
 				Vista para <big><i>añadir usuario</i></big>. Desde aquí el administrador puede añadir nuevos usuarios a la base de datos, para ello tiene
 				que completar unos parámetros requeridos.
-				
-				<li><b>delUser</b></li>
+			</td>
+		</tr>
+		<tr>
+			<th><b>delUser</b></th>
+			<td>
+				<h4>Eliminar usuario</h4>
 				Vista para <big><i>eliminar usuario</i></big>. Al contrario que en la vista anterior, ahora el admistrador puede eliminar a un usuario.
-
-				<li><b>addTool</b></li>
+			</td>
+		</tr>
+		<tr>
+			<th><b>addTool</b></th>
+			<td>
+				<h4>Añadir herramienta</h4>
 				Vista de <big><i>añadir herramienta</i></big>. Desde aquí el administrador puede añadir a la base de datos un tipo más de herramienta.
-				
-				<li><b>assignTool</b></li>
+			</td>
+		</tr>
+		<tr>
+			<th><b>assignTool</b></th>
+			<td>
+				<h4>Asignar herramienta</h4>
 				Vista para <big><i>asignar herramienta</i></big>. El administrador cuenta con la posibilidad de asignar alguno de los tipos de herramientas a los
 				usuarios registrados.
-				
-				<li><b>manageChanges</b></li>
-				Vista para <big><i>manejar cambios</i></big>. A esta vista llegan las peticiones de cambio de turno propuestas por los usuarios. El administrador tiene
-				la posibilidad de aceptar o denegar esos cambios.
-		</ul>
-
+			</td>
+		</tr>
+		<tr>
+			<th><b>manageChanges</b></th>
+			<td>
+				<h4>Peticiones de cambio</h4>
+				Vista para <big><i>manejar cambios</i></big>. A esta vista llegan las peticiones de cambio de turno propuestas por los usuarios. El administrador tiene la posibilidad de aceptar o denegar esos cambios.
+			</td>
+		</tr>
+	</table>
 		Por último, comentar la funcionalidad de la <i>toolbar</i> ya mencionada. A través de ella se puede ir a cualquier parte de la aplicación
 		que tienen en común todos los usuarios, es decir, el calendario, el equipo, el chat y el perfil. Podemos ver alguna excepción en el caso de que
 		el usuario sea un administrador, que entonces le aparece un opción para acceder al apartado de administración.
+
+
+	<h2>Mejoras</h2>
+		Ahora vamos a hablar de las mejoras post-examen.
+	<table class="mejoras">
+		<tr>
+			<th><b>login</b></th>
+			<td>
+				Se han eliminado las opciones "debug" con las que se accedía rápidamente a la aplicación.
+				<i>Para poder probar el funcionamiento de la aplicación entrar con estos usuarios y constraseñas:
+					<ul>
+							<h4>Usuario </h4>
+							usuario: ale
+							contraseña: ale
+							<h4>Administrador </h4>
+							usuario: ramon
+							contraseña: ramon
+					</ul>
+				</i>
+			</td>
+		</tr>
+		<tr>
+			<th><b>inicio</b></th>
+			<td>
+				Si el administrador inicia sesión, le aparecerá directamente la opción para poder acceder al apartado de administración
+			</td>
+		</tr>
+		<tr>
+			<th><b>equipo</b></th>
+			<td>
+				Se ha mejorado el css y se ha incluido la opción para pedir el cambio de herramienta con alguno de los usuarios, sigue el mismo sistema que la petición del cambio de turno
+			</td>
+		</tr>
+		<tr>
+			<th><b>admin</b></th>
+			<td>
+				Mejorado el css y se le han añadido más opciones al administrador: las gestión de vehículos, eliminar herramientas, e intercambiar herramientas.
+			</td>
+		</tr>
+		<tr>
+			<th><b>manageChanges</b></th>
+			<td>
+				Mejorado el css. Ahora también puede gestionar las peticiones de cambios de herramientas.
+			</td>
+		</tr>
+		<tr>
+			<th><b>addUser</b></th>
+			<td>
+				Mejorado el css.
+			</td>
+		</tr>
+		<tr>
+			<th><b>addAuto</b></th>
+			<td>
+				<h4>Añadir vehículo</h4>
+				Ahora se pueden añadir tipos de vehículos a la base de datos.
+			</td>
+		</tr>
+		<tr>
+			<th><b>delAuto</b></th>
+			<td>
+				<h4>Eliminar vehículo</h4>
+				Puedes eliminar el vehículo que quieras. Al inicio no hay vehículos, por lo tanto, no aparecerá nada hasta que se añada alguno.
+			</td>
+		</tr>
+		<tr>
+			<th><b>assignDriver</b></th>
+			<td>
+				<h4>Asignar conductor</h4>
+				Asigna conductor a una sola persona sin especificar el tipo de vehículo que conducirá.
+			</td>
+		</tr>
+		<tr>
+			<th><b>delTool</b></th>
+			<td>
+				<h4>Eliminar herramienta</h4>
+				El administrador puede borrar alguna de las herramientas que hay en la base de datos.
+			</td>
+		</tr>
+		<tr>
+			<th><b>switchTool</b></th>
+			<td>
+				<h4>Intercambiar herramientas</h4>
+				Se pueden intercambiar las herramientas de los usuarios elegidos por el administrador, es decir, los usuarios intercambiarán sus herramientas a voluntad del administrador.
+			</td>
+		</tr>
 </body>
 </html>
